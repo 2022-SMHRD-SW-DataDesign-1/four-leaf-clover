@@ -29,7 +29,6 @@ const TestInfo = () => {
         .catch( err => {
             console.log('error!!', err);
         })
-        
     },[])
     
     return (

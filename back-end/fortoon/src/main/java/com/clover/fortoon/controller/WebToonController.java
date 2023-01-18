@@ -19,9 +19,7 @@ public class WebToonController {
     @GetMapping(value = "/")
     private WebToonDTO pollPage(){
         System.out.println("test값 불러오기");
-        WebToonDTO dto = webToonMapper.testwt();
-        //System.out.println(dto.getTitle());
-        return dto;
+        return webToonMapper.testwt();
     }
     
 }
