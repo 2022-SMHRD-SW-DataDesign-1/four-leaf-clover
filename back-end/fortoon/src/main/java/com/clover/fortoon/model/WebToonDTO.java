@@ -1,19 +1,15 @@
 package com.clover.fortoon.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class WebToonDTO {
-    int wt_num;
-    String wt_title;
-    String wt_writer;
-    String wt_tag;
-    String wt_synopsis;
-    int wt_like;
-    int wt_comment;
-    int wt_rating;
+    int webtoon_num;
+    String webtoon_title;
+    String webtoon_writer;
+    String webtoon_tag;
+    String webtoon_synopsis;
+    int webtoon_like;
+    int webtoon_comment;
+    float webtoon_rating;
 }
