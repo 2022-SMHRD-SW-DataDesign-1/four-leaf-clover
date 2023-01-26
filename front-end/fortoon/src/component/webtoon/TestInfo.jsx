@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import ApiService from '../../ApiService'
+import TagPage from './TagPage'
 
 const TestInfo = () => {
 
@@ -25,6 +26,14 @@ const TestInfo = () => {
                 ...info,
                 webtoon_info: res.data
             })
+        })
+        .catch( err => {
+            console.log('error!!', err);
+        })
+
+        ApiService.test2()
+        .then( res => {
+            console.log(res.data);
         })
         .catch( err => {
             console.log('error!!', err);

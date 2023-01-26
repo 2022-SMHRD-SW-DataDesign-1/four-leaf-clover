@@ -8,6 +8,10 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/');
     }
 
+    test2(){
+        return axios.get(USER_API_BASE_URL+'/test');
+    }
+
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
     // }
