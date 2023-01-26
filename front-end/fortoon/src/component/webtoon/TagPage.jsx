@@ -11,7 +11,7 @@ const TagPage = () => {
         <img src="https://shared-comic.pstatic.net/thumb/webtoon/790713/thumbnail/thumbnail_IMAG21_3919364435331003700.jpg" alt="5" />   ];
 
     return (
-        <Carousel slides={slides} autoplay={false} interval={1000}></Carousel>
+        <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
     )
 }
 
