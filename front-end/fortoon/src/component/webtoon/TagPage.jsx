@@ -4,11 +4,13 @@ import { Carousel } from './MyCarousel'
 const TagPage = () => {
 
     let slides = [
-        <img  src="https://shared-comic.pstatic.net/thumb/webtoon/790713/thumbnail/thumbnail_IMAG21_3919364435331003700.jpg" alt="1" />,
-        <img  src="https://shared-comic.pstatic.net/thumb/webtoon/747269/thumbnail/thumbnail_IMAG21_3546074950629798755.jpg" alt="2" />  ,
-        <img  src="https://shared-comic.pstatic.net/thumb/webtoon/803480/thumbnail/thumbnail_IMAG21_2e2c5658-1865-4b48-90f8-f9dfa07ab9ef.jpg" alt="3" />  ,
-        <img  src="https://shared-comic.pstatic.net/thumb/webtoon/790713/thumbnail/thumbnail_IMAG21_3919364435331003700.jpg" alt="4" />  ,
-        <img src="https://shared-comic.pstatic.net/thumb/webtoon/790713/thumbnail/thumbnail_IMAG21_3919364435331003700.jpg" alt="5" />   ];
+        <img src={require('../css/image/tagcard01.jpg')} alt="1" />,
+        <img src={require('../css/image/asdf.png')} alt="2" />  ,
+        <img src={require('../css/image/image (36).png')} alt="3" />  ,
+        <img src={require('../css/image/KakaoTalk_20230115_000011211.png')} alt="4" />  ,
+        <img src={require('../css/image/KakaoTalk_20230115_000250607.png')} alt="5" />  ,
+        <img src={require('../css/image/KakaoTalk_20230115_100329583_02.jpg')} alt="6" />  ,
+        <img src={require('../css/image/KakaoTalk_20230114_235510935.png')} alt="7" />   ];
 
     return (
         <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
