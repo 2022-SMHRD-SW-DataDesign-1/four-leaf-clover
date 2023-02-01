@@ -1,0 +1,23 @@
+.StyledFieldset2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1.5rem;
+    border: 2px solid gainsboro;
+    border-radius: 0.5rem;
+    text-Shadow: 0px 0px 2px black;
+    text-align: center; 
+    margin-top: 3vh;
+    padding-left: 50px;
+  }
+  .checkBoxes{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
