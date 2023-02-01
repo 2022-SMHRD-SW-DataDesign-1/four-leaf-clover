@@ -5,7 +5,7 @@
 <mapper namespace="com.clover.fortoon.mapper.WebToonMapper">
 	
 	<select id="testwt" resultType="com.clover.fortoon.model.WebToonDTO">
-		select * from tbl_webtoon where wt_num=1
+		select * from tbl_webtoon where webtoon_num=1
 	</select>
 	
 </mapper>
