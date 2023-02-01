@@ -1,22 +1,102 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react';
+
+const webToons = [
+    {
+        id: 1,
+        text: "하루의 하루"
+    },
+    {
+        id: 2,
+        text: "참교육"
+    },
+    {
+        id: 3,
+        text: "마루의 강쥐"
+    },
+    {
+        id: 4,
+        text: "유미의 세포들"
+    }
+];
 
 const Search = () => {
 
-const [search, setsearch] = useState("");
-    // 먼저 검색창에 검색어와 변화를 알기위해 useState hooks를 선언
-const onChange = (e) => {
-    setsearch(e.target.value)
-    // 변화된 value값을 변경해주기위해 onChange함수를 사용
-}
+    const [search, setsearch] = useState("");
+    
+    const onChange = (e) => {
+        setsearch(e.target.value)
+    }
 
+    const filterTitle = webToons.filter((webToons) => {
+        return webToons.text.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))
+    }) 
+
+    // 드롭다운 
+    // const Dropdown = () => {
+    //     const [isActive, setIsActive] = useState(false);
+    //     const [item, setItem] = useState(null);
+    //     const onActiveToggle = useCallback(() => {
+    //         setIsActive((prev) => !prev);
+    //     },[]);
+
+    //     const onSelectItem = useCallback((e) => {
+    //     const targetId = e.target.id;
+
+    //     if (targetId === "item_name") {
+    //         setItem(e.target.parentElement.innerText);
+    //     } else if (targetId === "item") {
+    //         setItem(e.target.innerText);
+    //     }
+    //     setIsActive((prev) => !prev);
+    //     }, []);
+
+    //     return(
+    //         <DropdownContainer>
+    //             <DropdownBody onClick={onActiveToggle}>
+    //                 {item ? (
+    //                     <>
+    //                         <ItemName>{item}</ItemName>
+    //                     </>
+    //                 ) : (
+    //                     <>
+    //                         <DropdownSelect> 선택! </DropdownSelect>
+    //                         <AiOutlineDown />
+    //                     </>
+    //                 )}
+    //             </DropdownBody>
+    //             <DropdownMenu isActive={isActive}>
+    //                 {dropdownItems.map((item) => (
+    //                     <DropdownItemContainer id ="item" key={item.id} onClick={onSelectItem}>
+    //                         <ItemName id="item_name">{item.name}</ItemName>
+    //                         </DropdownItemContainer>
+    //                 ))}
+
+
+    //             </DropdownMenu>
+    //         </DropdownContainer>
+    //         );
+    // };
     return (
-        <div>
-            <input type="text" value={search} onChange={onChange} />
-            {/* input태그로 검색창을 만들고 속성에 value안에는 value값을 읽을 수 있게 
-            state 선언. 또, value값을 변경하기 위해 onChange함수도 선언  */}
-        </div>
-
-  )
+        <>
+            <div className="right" 
+                style={{ width: '70%', 
+                // height: '500px',
+                float: 'right', 
+                boxSizing: 'border-box', 
+                backgroundColor: '#ece6cc' }}>
+                <div>
+                    <input type="text" value={search} onChange={onChange} />
+                </div>
+                <div>
+                    {filterTitle.map(title => (
+                        <div key={title.id}>
+                            <span>{title.text}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </>
+    )
 }
 
 export default Search;
