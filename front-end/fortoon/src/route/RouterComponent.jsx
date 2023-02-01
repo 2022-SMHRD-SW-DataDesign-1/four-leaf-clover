@@ -4,6 +4,7 @@ import ResultTag from '../page/resultTag/TagPage';
 import TestInfo from '../page/TestInfo';
 import SysnopsisPage from '../page/sysnopsis/SynopsysSelectPage'
 import GenrePage from '../page/genre/GenrePage';
+import DrawingStylePage from '../page/drawingStyle/DrawingStylePage';
 
 const AppRouter = () => {
     return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
                     <Route path="/resultTag" element={<ResultTag />} />
                     <Route path="/genre" element={<GenrePage />} />
                     <Route path="/synopsis" element={<SysnopsisPage />} />
+                    <Route path="/drawingStyle" element={<DrawingStylePage />} />
                 </Routes>
             </BrowserRouter>
         </div>
