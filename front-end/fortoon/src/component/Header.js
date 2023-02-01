@@ -1,4 +1,4 @@
-import logo from '../img/포툰로고3-removebg-preview.png';
+import logo from './img/포툰로고3-removebg-preview.png';
 
 const Header = () => {
     return (

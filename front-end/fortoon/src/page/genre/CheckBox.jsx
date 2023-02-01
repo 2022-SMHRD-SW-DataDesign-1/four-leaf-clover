@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from "./Modal";
+
 
 
 function Checkbox({ text }) {
-  const [ShowModal, SetModalIsOpen] = useState(false)
-
-  const OpenModal =() => {
-    SetModalIsOpen(prev => !prev)
-    console.log(ShowModal)
-  };
+ 
 
   return (
     <div>
       <StyledInput type="checkbox" id={text} name={text} />
-      <StyledLabel onClick={OpenModal}  htmlFor={text}>
+      <StyledLabel htmlFor={text}>
         <StyledP>{text}</StyledP>
       </StyledLabel>      
-      <Modal ShowModal={ShowModal} SetModalIsOpen={SetModalIsOpen} />
     </div>
   );
 }

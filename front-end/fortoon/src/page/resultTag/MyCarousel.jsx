@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
-import '../css/MyCarousel.scss';
+import './css/MyCarousel.scss';
 
 // const isEqual = require("react-fast-compare");
 

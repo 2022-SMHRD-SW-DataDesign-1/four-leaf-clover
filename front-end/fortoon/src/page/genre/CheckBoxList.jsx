@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Checkbox from "./CheckBox";
 import GlobalStyles from "./GlobalStyles";
-import '../components1/test.css';
+import './CheckBoxListStyle.css';
 
 const genreData = [ 
   { id1: 0, id2: 1, text1: "코믹 / 개그", text2: "액션"},

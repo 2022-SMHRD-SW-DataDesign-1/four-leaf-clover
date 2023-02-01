@@ -1,8 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import ApiService from '../../ApiService'
-import TagPage from './TagPage'
+import ApiService from '../ApiService'
 
 const TestInfo = () => {
 
