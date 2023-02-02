@@ -1,5 +1,6 @@
 import React from 'react'
 import { Carousel } from './MyCarousel'
+import Button from './TrunPageButton'
 
 const TagPage = () => {
 
@@ -13,7 +14,10 @@ const TagPage = () => {
         <img src={require('./css/image/KakaoTalk_20230114_235510935.png')} alt="7" />   ];
 
     return (
+        <div>
         <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
+        <Button/>
+        </div>
     )
 }
 
