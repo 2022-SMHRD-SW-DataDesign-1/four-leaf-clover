@@ -2,20 +2,24 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 
 const TabMenu = styled.ul`
-    background-color: white;
+    background-color: #d3d3d3;
     font-weight: bold;
     display: flex;
     flex-direction: row;
-    justify-items: center;
-    align-items: center;
+    // justify-items: center;
+    // align-items: center;
     list-style: none;
+    margin-top: 0.1rem;
+    height: auto;
     
     .submenu {
-        // width: 100% auto;
-        padding: 15px 30px;
+        display: flex;
+        padding: 30px 70px;
         cursor: pointer;
-        border: 1px solid black;
+        // border: 1px solid gray;
         
+        background-color: #d3d3d3;
+        color: gray;
     }
 `;
 
@@ -41,11 +45,16 @@ const Tab = () => {
 
   return (
     <>
-        <div style={{boxSizing:'border-box', height:'500px', backgroundColor:'pink' }}>
+        <div style={
+          { height:'350px', 
+            width:'70%', 
+            marginLeft: '30%', 
+            }}>
             <TabMenu>
                 {menuArr.map((ele, index)=>{
                     return (
-                        <div key={index}
+                        <div
+                        key={index}
                         className={currentTab === index ? "submenu focused" : "submenu"}
                         onClick={() => selectMenuHandler(index)}
                         > {ele.name}
@@ -55,7 +64,6 @@ const Tab = () => {
             </TabMenu>
             <div>
                 <h1> {menuArr[currentTab].content}</h1>
-                <p> 바뀌고 있고요~! </p>
             </div>
         </div>
     </>
