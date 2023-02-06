@@ -9,7 +9,9 @@ public class WebToonDTO {
     String webtoon_writer;
     String webtoon_tag;
     String webtoon_synopsis;
-    int webtoon_like;
-    int webtoon_comment;
+    int webtoon_rating_count;
     float webtoon_rating;
+    String webtoon_day;
+    String webtoon_thumbnail_url;
+    String webtoon_url;
 }

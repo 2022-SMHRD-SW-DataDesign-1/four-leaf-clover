@@ -1,3 +1,4 @@
+/* 글씨 */
 h1 {
     text-align:center;
     font-size: 1.25rem;
@@ -5,15 +6,32 @@ h1 {
     justify-content: center;
     align-items: center;    
 }
-
+/* 박스 */
 .box{
-    width: 70%;
+    overflow:auto; 
+    height:558px;
+    width: 700px;
     padding: 1.5rem;
     border: 2px solid gainsboro;
     border-radius: 0.5rem;
     margin: auto;
-    margin-top: 5vh;
+    margin-top: 4vh;   
 }
+
+.box::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+.box::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: gainsboro; /* 스크롤바의 색상 */
+    border-radius: 0.5rem;
+}
+
+.box::-webkit-scrollbar-track {
+    background: hsla(37, 97%, 58%, 0.102);  /*스크롤바 뒷 배경 색상*/
+}
+
 
 .box-row{
     display: flex;
@@ -23,7 +41,7 @@ h1 {
 
 .toonImg{
     box-shadow: 2px 3px 2px #dcdcdc;
-    border-radius: 40px;
+    border-radius: 35px;
     margin: 20px;
     cursor: pointer;
     

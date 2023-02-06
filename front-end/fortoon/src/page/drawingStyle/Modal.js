@@ -9,7 +9,7 @@ const Modal = ({ show, onClose, onColor }) => {
     <div className={styles.modalWrapper}>
       <div className={styles.modal}>
         <img src={require("./img/마루는 강쥐_썸.jpg")} alt="bigimg" className={styles.modal}  />
-        <img src={require("./img/1.png")} alt="closebtn" onClick={() => {onClose(); onColor();}} className={`${styles.btnClose} btn-close`}/>
+        <img src={require("./img/tooncheck.png")} alt="closebtn" onClick={() => {onClose(); onColor();}} className={`${styles.btnClose} btn-close`}/>
       </div>
     </div>
   );
