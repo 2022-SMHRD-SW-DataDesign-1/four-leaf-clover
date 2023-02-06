@@ -10,7 +10,7 @@ h1 {
 .box{
     overflow:auto; 
     height:558px;
-    width: 700px;
+    width: 730px;
     padding: 1.5rem;
     border: 2px solid gainsboro;
     border-radius: 0.5rem;
@@ -39,11 +39,9 @@ h1 {
     justify-content: center;
 }
 
-.toonImg{
+.box-row > img{
     box-shadow: 2px 3px 2px #dcdcdc;
     border-radius: 35px;
     margin: 20px;
     cursor: pointer;
-    
-    
 }

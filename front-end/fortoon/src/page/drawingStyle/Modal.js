@@ -6,7 +6,7 @@ const Modal = ({ show, onClose, onColor }) => {
     return null;
   }
   return (
-    <div className={styles.modalWrapper}>
+    <div className={styles.modalWrapper} onClick={()=>onClose()}>
       <div className={styles.modal}>
         <img src={require("./img/마루는 강쥐_썸.jpg")} alt="bigimg" className={styles.modal}  />
         <img src={require("./img/tooncheck.png")} alt="closebtn" onClick={() => {onClose(); onColor();}} className={`${styles.btnClose} btn-close`}/>
