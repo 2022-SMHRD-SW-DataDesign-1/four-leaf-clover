@@ -9,7 +9,7 @@ h1 {
 /* 박스 */
 .box{
     overflow:auto; 
-    height:558px;
+    height:500px;
     width: 730px;
     padding: 1.5rem;
     border: 2px solid gainsboro;

@@ -9,11 +9,7 @@ const Button = () => {
             <img src={require("./img/Next2.png")} className="btn_next"/>
 
             <div className='circle'>
-                <img src={require("./img/1page.png")} />
-                {/* <img src={require("./img/2page.png")} />
-                <img src={require("./img/3page.png")} /> */}
-
-
+                <img src={require("./img/1page2.png")} />
             </div>
         </div>
     );

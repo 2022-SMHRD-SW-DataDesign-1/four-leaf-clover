@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Checkbox from "./CheckBox";
 import GlobalStyles from "./GlobalStyles";
 import './CheckBoxListStyle.css';
-import Button from '../drawingStyle/TrunPageButton';
+import Button from './TrunPageButton';
 
 const genreData = [ 
   { id1: 0, id2: 1, text1: "코믹 / 개그", text2: "액션"},
@@ -18,7 +18,7 @@ const genreData = [
 function CheckBoxList() {
 
   return (
-    <main style={{height: "auto", marginBottom: "6vh"}}>
+    <main style={{height: "auto", marginBottom: "27px"}}>
       <GlobalStyles />
         <div style={{textAlign:"center", display: "flex", flexDirection: "column", justifyContent: "center"}}>
           <StyledH1>좋아하는 장르를 선택하세요.</StyledH1>
