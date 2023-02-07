@@ -8,28 +8,27 @@ import './style.css';
 const TabMenu = styled.ul`
     background-color: #d3d3d3;
     font-weight: bold;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    justify-items: stretch;
-    align-items: center;
     list-style: none;
-    margin-top: -0.3rem;
-    margin-left: -2.5rem;
+    margin-top: -0.2rem;
     height: auto;
-    width: 100%;
+    width: calc(100% /8);
     
     
     
     .submenu {
-        display: flex;
+        display: inline-flex;
         padding: 2.2% 70px;
         cursor: pointer;
         background-color: #d3d3d3;
         color: gray;
+        width: calc(100% /8);
+        border-radius:10px 10px 0px 0px;
     }
 
     .focused{
-        display: flex;
+        display: inline-flex;
         padding: 2.2% 70px;
         cursor: pointer;
         background-color: #999999;
@@ -73,7 +72,7 @@ const Tab = ({getImage}) => {
 
     return (
         <>
-            <div className="box1"
+            <div 
             style={{
                     fontFamily: 'Cafe24SsurroundAir',
                     height: '500px',
@@ -81,7 +80,9 @@ const Tab = ({getImage}) => {
                     marginTop: '50px',
                     marginRight:'10%',
                     float:'right',
-                    borderStyle : 'solid'
+                    borderStyle : 'solid',
+                    border: '2px solid gainsboro',
+                    borderRadius: '0.5rem'
                 }}>
                 <TabMenu>
                     {menuArr.map((ele, index) => {
@@ -97,8 +98,8 @@ const Tab = ({getImage}) => {
                         )
                     })}
                 </TabMenu>
-                <div style={{ marginLeft: '40px', textAlign:'center'}}>
-                    <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px' }}> {menuArr[currentTab].content}</div>
+                <div className="box1" style={{textAlign:'center'}}>
+                    <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px' }}>
                         {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 

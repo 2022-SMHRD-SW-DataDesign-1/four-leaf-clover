@@ -51,9 +51,10 @@ const Locker = ({ imagesrc }) => {
             width: '20%', height: '578px',
             float: 'left',
             boxSizing: 'border-box',
-            border:'2px solid gainsboro',
+            border:'4px solid gainsboro',
             borderRadius:'5%',
             marginLeft: '78px'
+            
             //backgroundColor: 'pink'
           }}>
           <h1 style={{ fontSize: '25px' }}> 📁 내 보관함 </h1>
