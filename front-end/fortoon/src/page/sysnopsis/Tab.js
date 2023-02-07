@@ -54,10 +54,6 @@ const Tab = ({getImage}) => {
     };
 
 
-    // const imgA = (<img src={require(`${menuArr[currentTab].img}`)}
-    //     style={{ borderRadius:'10%', width: '200px', 
-    //     border:color? '6px solid #FDCD58':'' }} onClick={()=>setColor(false)}/>)
-
     return (
         <>
             <div style={
