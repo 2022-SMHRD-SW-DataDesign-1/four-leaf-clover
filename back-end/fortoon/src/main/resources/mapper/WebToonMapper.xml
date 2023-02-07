@@ -4,8 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.clover.fortoon.mapper.WebToonMapper">
 	
-	<select id="testwt" resultType="com.clover.fortoon.model.WebToonDTO">
-		select * from tbl_webtoon where webtoon_num=1
+	<select id="genreList" resultType="String">
+		select distinct(webtoon_genre) from tbl_webtoon
 	</select>
 	
+	<select id="thumbUrlList" resultType="String">
+		select webtoon_thumbnail_url from tbl_webtoon
+	</select>
 </mapper>
