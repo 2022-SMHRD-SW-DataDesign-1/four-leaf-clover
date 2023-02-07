@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import Tab from "./Tab";
 import Header from '../../component/Header';
@@ -27,7 +27,7 @@ const webToons = [
 
 const Search1 = () => {
   const [search, setsearch] = useState("");
-
+  const [imagesrc, setImagesrc] = useState();
 
   const onChange = (e) => {
     setsearch(e.target.value)
@@ -37,15 +37,41 @@ const Search1 = () => {
     return webToons.text.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""))
   })
 
+  const getImage = (img)=>{
+
+    console.log('getImage img',img[0])
+    setImagesrc(img[0].split('/')[2])
+  }
+
+
+
+  // 1. 화면 구현이 완료됐을때 
+  // useEffect(()=>{},[])
+
+  // 2. imageSrc가 변경되었을때
+  // useEffect(()=>{
+  //   console.log('Search1 imgsrc : ',imagesrc);
+  // },[imagesrc])
+
   return (
     <div>
-      <Header />
-      <Locker />
-      <div style={{ height: '60vh' }}>
+      <Locker imagesrc={imagesrc} />
+
+      <div style={{ height: '60%', float:'right'}}>
         <div className="nav">
           <div className={search[webToons] ? "active" : "none"} /> 
           <input className='search' 
-            style={{ width: '100%', position:'relative' }} type="text" value={search} onChange={onChange} />
+            style={{ 
+              fontFamily: 'Cafe24SsurroundAir',
+              width: '18%', 
+              position:'relative',
+              display:'flex',
+              // float:'right'
+               }} 
+            type="text" 
+            value={search} 
+            onChange={onChange} 
+            placeholder=" #태그 / 웹툰제목을 검색하세요. "/>
           <div className="navContainer" >
             {filterTitle.map((title) => (
               <div key={title.id}>
@@ -54,10 +80,11 @@ const Search1 = () => {
             ))}
           </div>
         </div>
-        <Tab />
-      </div>
-      <Footer />
+        <Tab setImagesrc={setImagesrc} getImage={getImage}/>
+      </div>   
+      
     </div>
+    
   );
 };
 

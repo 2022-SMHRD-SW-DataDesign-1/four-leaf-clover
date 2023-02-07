@@ -4,12 +4,21 @@
     background-color: blanchedalmond;
   }
    */
+
+   @font-face {
+    font-family: "Cafe24SsurroundAir";
+    src: url("../resultTag/css/font/Cafe24SsurroundAir/Cafe24SsurroundAir.ttf");
+   }
+   @font-face {
+    font-family: "Cafe24Ssurround";
+    src: url("../resultTag/css/font/Cafe24Ssurround/Cafe24Ssurround.ttf");
+   }
+
   .nav {
     height: 24px;
     overflow: hidden;
     transition: 0.25s ease-in-out;
     background-color: white;
-    
   }
   
   .search {
@@ -28,6 +37,7 @@
     align-items: center;
     padding: 0;
     position:relative;
+    font-family: Cafe24SsurroundAir;
     
 }
   .nav .navContainer .active {

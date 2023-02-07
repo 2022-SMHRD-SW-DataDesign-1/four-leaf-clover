@@ -10,8 +10,10 @@ const SynopsysSelectPage = () => {
 
     return (
         <div>
+            <Header />
             <Search1 />
-    </div>
+            <Footer/>
+        </div>
     )
 }
 
