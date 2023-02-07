@@ -48,12 +48,12 @@ const Locker = ({ imagesrc }) => {
         <div className="left"
           style={{
             fontFamily: 'Cafe24Ssurround',
-            width: '20%', height: '500px',
+            width: '20%', height: '578px',
             float: 'left',
             boxSizing: 'border-box',
-            border:'2px solid gray',
+            border:'2px solid gainsboro',
             borderRadius:'5%',
-            marginLeft: '20px'
+            marginLeft: '78px'
             //backgroundColor: 'pink'
           }}>
           <h1 style={{ fontSize: '25px' }}> 📁 내 보관함 </h1>

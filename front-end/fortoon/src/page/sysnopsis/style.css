@@ -5,57 +5,60 @@
   }
    */
 
-   @font-face {
-    font-family: "Cafe24SsurroundAir";
-    src: url("../resultTag/css/font/Cafe24SsurroundAir/Cafe24SsurroundAir.ttf");
-   }
-   @font-face {
-    font-family: "Cafe24Ssurround";
-    src: url("../resultTag/css/font/Cafe24Ssurround/Cafe24Ssurround.ttf");
-   }
+@font-face {
+  font-family: "Cafe24SsurroundAir";
+  src: url("../resultTag/css/font/Cafe24SsurroundAir/Cafe24SsurroundAir.ttf");
+}
 
-  .nav {
-    height: 24px;
-    overflow: hidden;
-    transition: 0.25s ease-in-out;
-    background-color: white;
-  }
-  
-  .search {
-    z-index: 999;
-  }
+@font-face {
+  font-family: "Cafe24Ssurround";
+  src: url("../resultTag/css/font/Cafe24Ssurround/Cafe24Ssurround.ttf");
+}
 
-  .nav:hover {
+.nav {
+  height: 24px;
+  overflow: hidden;
+  transition: 0.25s ease-in-out;
+  background-color: white;
+}
+
+.search {
+  z-index: 999;
+}
+
+/* .nav:hover {
     height: 200px;
     cursor: pointer;
-  }
-  
-  .nav .navContainer {
-    height: 80px;
-    margin: auto;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0;
-    position:relative;
-    font-family: Cafe24SsurroundAir;
-    
+  } */
+
+.nav .navContainer {
+  height: 80px;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  font-family: Cafe24SsurroundAir;
+
 }
-  .nav .navContainer .active {
-    color: white;
-    z-index: 999;
-  } 
-  /* .navContainer{
+
+.nav .navContainer .active {
+  color: white;
+  z-index: 999;
+}
+
+/* .navContainer{
     
     z-index: 999;
     overflow: hidden;
   }  */
-   
-  .nav .navContainer .none {
+
+/* .nav .navContainer .none {
     background-color: none;
     z-index: 999;
-  } 
-  
-  /* .nav .navContainer li {
+  }  */
+
+/* .nav .navContainer li {
     width: 200px;
     height: 100%;
     list-style-type: none;
@@ -66,13 +69,13 @@
     align-items: center;
     justify-content: center;
   } */
-  
-  /* .nav .detailMenu {
+
+/* .nav .detailMenu {
     display: flex;
     overflow: hidden;
   }
    */
-  /* .nav .detailMenu{
+/* .nav .detailMenu{
     width: 200px;
     margin: auto;
     justify-content: space-around;
@@ -86,7 +89,36 @@
     color: rgb(7, 7, 105);
     font-weight: 600;
   } */
-  .nav .detailMenu:hover {
-    cursor: pointer;
-    background-color: rgb(198, 198, 241);
-  }
+.nav .detailMenu:hover {
+  cursor: pointer;
+  background-color: rgb(198, 198, 241);
+}
+
+.box1{
+    overflow:auto; 
+    height:500px;
+    width: 730px;
+    /* padding: 1.5rem; */
+    border: 2px solid gainsboro;
+    border-radius: 0.5rem;
+    margin: auto;
+    margin-top: 4vh;   
+}
+
+.box1::-webkit-scrollbar {
+  width: 8px;
+  /* 스크롤바의 너비 */
+}
+
+.box1::-webkit-scrollbar-thumb {
+  height: 30%;
+  /* 스크롤바의 길이 */
+  background: gainsboro;
+  /* 스크롤바의 색상 */
+  border-radius: 0.5rem;
+}
+
+.box1::-webkit-scrollbar-track {
+  background: hsla(37, 97%, 58%, 0.102);
+  /*스크롤바 뒷 배경 색상*/
+}

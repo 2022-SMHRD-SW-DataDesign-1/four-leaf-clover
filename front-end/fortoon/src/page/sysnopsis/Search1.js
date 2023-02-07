@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import Tab from "./Tab";
-import Header from '../../component/Header';
-import Footer from '../../component/Footer';
 import Locker from './Locker';
 
 
@@ -56,34 +54,34 @@ const Search1 = () => {
   return (
     <div>
       <Locker imagesrc={imagesrc} />
-
-      <div style={{ height: '60%', float:'right'}}>
         <div className="nav">
           <div className={search[webToons] ? "active" : "none"} /> 
           <input className='search' 
             style={{ 
               fontFamily: 'Cafe24SsurroundAir',
-              width: '18%', 
+              width: '85%',
+              height:'100%', 
               position:'relative',
-              display:'flex',
+              // display:'flex',
+              marginLeft: '1%'
               // float:'right'
                }} 
             type="text" 
             value={search} 
             onChange={onChange} 
             placeholder=" #태그 / 웹툰제목을 검색하세요. "/>
-          <div className="navContainer" >
+          {/* <div className="navContainer" >
             {filterTitle.map((title) => (
               <div key={title.id}>
                 <span>{title.text}</span>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         <Tab setImagesrc={setImagesrc} getImage={getImage}/>
       </div>   
       
-    </div>
+    
     
   );
 };
