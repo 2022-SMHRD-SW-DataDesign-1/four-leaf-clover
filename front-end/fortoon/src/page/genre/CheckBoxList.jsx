@@ -17,6 +17,7 @@ const CheckBoxList = () => {
   const loadGenre = () => {
     ApiService.test()
     .then(res => {
+      console.log(res.data)
       let genreList = []
       let rowList = []
       res.data.map( (text, index) =>  {
