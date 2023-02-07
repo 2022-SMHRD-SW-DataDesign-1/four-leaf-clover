@@ -1,5 +1,7 @@
 package com.clover.fortoon.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,9 @@ public class WebToonController {
     WebToonMapper webToonMapper;
 
     @GetMapping(value = "/")
-    private WebToonDTO pollPage(){
-        System.out.println("test값 불러오기");
-        return webToonMapper.testwt();
+    private List<String> genreList(){
+        System.out.println("genre값 불러오기");
+        return webToonMapper.genreList();
     }
     
 }
