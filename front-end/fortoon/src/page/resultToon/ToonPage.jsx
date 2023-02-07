@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Carousel } from './MyCarousel'
 import Button from './TrunPageButton'
+import ApiService from "../../ApiService";
 
 const Toonpage = () => {
+
+    // useEffect(()=>{
+    //     ApiService.resultToon()
+    //     .then(res => {
+    //         console.log(res.data)
+    //     })
+    // },[]);
 
     let slides = [
         <img src={require('./css/image/썸김부장.jpg')} alt="1" />,

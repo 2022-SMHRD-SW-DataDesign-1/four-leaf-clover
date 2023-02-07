@@ -8,8 +8,8 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/');
     }
 
-    test2(){
-        return axios.get(USER_API_BASE_URL+'/test');
+    resultToon(){
+        return axios.get(USER_API_BASE_URL+'/resultToon');
     }
 
     // fetchUsers(){

@@ -24,4 +24,9 @@ public class WebToonController {
         return webToonMapper.genreList();
     }
     
+    @GetMapping("/resultToon")
+    private List<String> thumbUrlList(){
+        System.out.println("썸네일url 불러오기");
+        return webToonMapper.thumbUrlList();
+    }
 }
