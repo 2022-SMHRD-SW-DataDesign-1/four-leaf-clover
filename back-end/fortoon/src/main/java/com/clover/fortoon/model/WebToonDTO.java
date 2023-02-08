@@ -15,5 +15,6 @@ public class WebToonDTO {
     float webtoon_rating;
     String webtoon_day;
     String webtoon_thumbnail_url;
+    String webtoon_big_thumbnail_url;
     String webtoon_url;
 }

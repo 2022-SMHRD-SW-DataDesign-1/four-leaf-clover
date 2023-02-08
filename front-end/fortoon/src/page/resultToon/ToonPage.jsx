@@ -1,30 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel } from './MyCarousel'
 import Button from './TrunPageButton'
 import ApiService from "../../ApiService";
 
 const Toonpage = () => {
 
-    // useEffect(()=>{
-    //     ApiService.resultToon()
-    //     .then(res => {
-    //         console.log(res.data)
-    //     })
-    // },[]);
+    const [bigThumbList, setBigThumbList] = useState([])
 
-    let slides = [
-        <img src={require('./css/image/썸김부장.jpg')} alt="1" />,
-        <img src={require('./css/image/썸마루는강쥐.jpg')} alt="2" />  ,
-        <img src={require('./css/image/썸시월드가내게집착한다.jpg')} alt="3" />  ,
-        <img src={require('./css/image/썸싸움독학.jpg')} alt="4" />  ,
-        <img src={require('./css/image/썸연애혁명.jpg')} alt="5" />  ,
-        <img src={require('./css/image/썸윌유메리미.jpg')} alt="6" />  ,
-        <img src={require('./css/image/썸참교육.jpg')} alt="7" />   ];
+    useEffect(()=>{
+        ApiService.resultToon()
+        .then(res => {
+            let tmpList = []
+            res.data.map( thumbUrl => {
+            tmpList.push(thumbUrl)
+            })
+            console.log(tmpList)
+            setBigThumbList(tmpList)
+        })
+    },[]);
+
+    // let slides = [
+    //     <img src={`${bigThumbList[10]}`} alt="1" />,
+    //     <img src={`${bigThumbList[8]}`} alt="2" />  ,
+    //     <img src={`${bigThumbList[500]}`} alt="3" />  ,
+    //     <img src={`${bigThumbList[380]}`} alt="4" />  ,
+    //     <img src={`${bigThumbList[70]}`} alt="5" />  ,
+    //     <img src={`${bigThumbList[410]}`} alt="6" />  ,
+    //     <img src={`${bigThumbList[80]}`} alt="7" />   ];
+
+    let slides = [];
+
+    for (let i = 0; i < 10; i++) {
+        slides.push(<img src={`${bigThumbList[i]}`} alt={i+1} />)
+    }
 
     return (
         <div>
-        <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
-        <Button />
+            <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
+            <Button />
         </div>
     )
 }
