@@ -90,7 +90,6 @@ function ToonChoice()  {
     let list = newImgStyle;
     list[index1][index2].color=""
     setNewImgStyle(list.map((data)=> {return(data)}));
-
   }
 
 

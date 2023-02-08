@@ -9,17 +9,16 @@ import './style.css';
 
 
 
-const Locker = ({ imagesrc }) => {
+const Locker = ( {imagesrc} ) => {
 
-  const [src, setSrc] = useState('../')
-
-  console.log(imagesrc)
-
+  const [src, setSrc] = useState([])
 
   const [imgCode, setImgCode] = useState()
 
   useEffect(() => {
-    setSrc(`../sysnopsis/img/${imagesrc}`)
+    console.log(imagesrc)
+    if (imagesrc != undefined)
+      setSrc(imagesrc)      
   }, [imagesrc])
 
   // useEffect(() => {
@@ -58,22 +57,35 @@ const Locker = ({ imagesrc }) => {
             //backgroundColor: 'pink'
           }}>
           <h1 style={{ fontSize: '25px' }}> 📁 내 보관함 </h1>
-          <div style={{width:'10px', }}>
-            {
-              src == '../sysnopsis/img/undefined' || src == '' || imagesrc == undefined
-
+          <div style={{width:'10px',display: 'inline' }}>
+            <div className='box2'>
+              {
+                (src == './img/undefned' || src == '')
                 ? <img style={{width:'30%', float:'left'}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"></img>
                 :
-                <img 
-                style={{width:'100px', 
-                borderRadius:'10%', 
-                marginLeft:'30px',
-                marginTop:'10px',
-                boxShadow: '2px 3px 2px #dcdcdc'}} 
-              src={require(`../sysnopsis/img/${imagesrc}`)}></img>
+                src.map( (srcurl, idx) => {
+                  console.log(srcurl)
+                  return(
+                    
+                      <img
+                        style={{
+                          width: '10vh',
+                          borderRadius: '10%',
+                          marginLeft: '1rem',
+                          marginTop: '2vh',
+                          boxShadow: '2px 3px 2px #dcdcdc',
+                          display: 'flex-inline'
 
-            }
-
+                        }}
+                        // src={`${srcurl}`}
+                        src='https://shared-comic.pstatic.net/thumb/webtoon/783053/thumbnail/thumbnail_IMAG21_d7732f14-26da-4e35-8762-660cc87b53f1.jpg'
+                      >
+                      </img>
+                    
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
       </div>

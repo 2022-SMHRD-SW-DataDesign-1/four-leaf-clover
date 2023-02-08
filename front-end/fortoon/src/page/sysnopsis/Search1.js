@@ -85,8 +85,8 @@ const Search1 = () => {
 
   const getImage = (img)=>{
 
-    console.log('getImage img',img[0])
-    setImagesrc(img[0].split('/')[2])
+    console.log(img)
+    setImagesrc(img)
   }
 
 
@@ -122,7 +122,7 @@ const Search1 = () => {
         <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
       </InputBox>
       {isHaveInputValue && (
-        <DropDownBox style={{width:'63.65vw', marginLeft:'2rem', float:'left', marginRight:'2rem'}}>
+        <DropDownBox style={{width:'63.65vw', marginRight:'2rem', position:'absolute', zIndex:'999',  marginLeft: '49.9vh', marginTop: '4.7vh'}}>
           {dropDownList.length === 0 && (
             <DropDownItem style={{fontFamily:'Cafe24SsurroundAir'}}>해당하는 단어가 없습니다</DropDownItem>
           )}
@@ -220,12 +220,12 @@ const DropDownBox = styled.ul`
   border-radius: 0 0 16px 16px;
   box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
   list-style-type: none;
-  z-index: 3;
+  z-index: 999;
+  position: relative; 
 `
 
 const DropDownItem = styled.li`
   padding: 0 16px;
-
   &.selected {
     background-color: lightgray;
   }

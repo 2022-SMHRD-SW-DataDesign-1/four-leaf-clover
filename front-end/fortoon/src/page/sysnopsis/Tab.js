@@ -43,27 +43,45 @@ const TabMenu = styled.ul`
 const Tab = ({getImage, inputValue}) => {
 
     const menuArr = [
-        { name: '월', content: '월요일만화', img: './img/나쁜 마법사의 꿈.jpg' },
-        { name: '화', content: '화요일만화', img: './img/별빛 커튼콜.jpg' },
-        { name: '수', content: '수요일만화', img: './img/산의 시간.jpg' },
-        { name: '목', content: '목요일만화', img: './img/스치면 인연 스며들면 사랑.jpg' },
-        { name: '금', content: '금요일만화', img: './img/이런 미친 엔딩.jpg' },
-        { name: '토', content: '토요일만화', img: './img/6월의 라벤더.jpg' },
-        { name: '일', content: '일요일만화', img: './img/주부 육성중.jpg' },
-        { name: '검색', content: '검색만화', img: './img/프로듀스 온리원.jpg' }
-      ];
+        { name: '월', content: '월요일만화' },
+        { name: '화', content: '화요일만화'},
+        { name: '수', content: '수요일만화' },
+        { name: '목', content: '목요일만화' },
+        { name: '금', content: '금요일만화'},
+        { name: '토', content: '토요일만화' },
+        { name: '일', content: '일요일만화'},
+        { name: '검색', content: '검색만화' }
+    ];
+    const monArr=[
+        [{title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }],
+
+        [{title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }]
+        
+    ]
 
     const [currentTab, setCurrentTab] = useState(0);
     const [show, setShow] = useState(false);
     const [color, setColor] = useState(false);
     const [selectImagesrcList, setSelectImagesrcList] = useState([]);
-//ref={el => uni.current.concat(el)}
-    const uniRef = useRef([]);
+    
+    const imgRef = useRef([])    
 
     const setSearchMenu = () => {
-        let saveCurrentIndex = currentTab
         if(inputValue != ''){
-            console.log(currentTab)
             selectMenuHandler(7)
         }
 
@@ -82,6 +100,14 @@ const Tab = ({getImage, inputValue}) => {
         setCurrentTab(index);
     };
 
+    const setFlag =(idx)=>{
+        console.log(imgRef.current[idx])
+        if (!imgRef.current[idx])
+            imgRef.current[idx] = true
+        else
+            imgRef.current[idx] = false
+        console.log(imgRef.current[idx])
+    }
 
     return (
         <>
@@ -114,130 +140,28 @@ const Tab = ({getImage, inputValue}) => {
                 <div className="box1" style={{}}>
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px', marginLeft:'50px' , float:'left',}}>
-                     
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
+                        {
+                            monArr[0].map((i, idx)=>{
+                                return (
+                                    <>
+                                        {!imgRef.current[idx]?
+                                        <img src={require(`${i.img}`)} 
+                                            style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                                borderRadius: '10%', width: '200px',
+                                                border: ''
+                                        }} onClick={() => {setShow(true); setSelectImagesrcList([`${i.img}`, ...selectImagesrcList]); setFlag(idx)}}
+                                        ref={() => imgRef.current[idx] = false} />
+                                        :
+                                        <img src={require(`${i.img}`) } 
+                                            style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                                borderRadius: '10%', width: '200px',
+                                                border: '6px solid #FDCD58' 
+                                        }} onClick={setFlag(idx)} ref={() => imgRef.current[idx] = true} />}
+                                        <span style={{padding:'13px'}}/>
+                                    </>
+                                )
+                            })
                         }
-                        <span style={{padding : '13px'}}></span>
-
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '13px'}}></span>
-                     
-                     
-                     
-                        
-
-
-                        
-                        
-
-                 
                     </div>
                 </div>
                 <Modal show={show} onChecked={onChecked} onClose={() => setShow(false)} onColor={() => setColor(true)} />

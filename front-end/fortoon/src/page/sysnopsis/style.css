@@ -122,3 +122,32 @@
   background: hsla(37, 97%, 58%, 0.102);
   /*스크롤바 뒷 배경 색상*/
 }
+
+.box2{
+  overflow:auto; 
+  height: 494px;
+  width: 19.6vw;
+  /* padding: 1.5rem; */
+  /* border: 2px solid gainsboro; */
+  border-radius: 0.5rem;
+  margin: auto;
+  /* margin-top: -2.5vh;  */
+}
+
+.box2::-webkit-scrollbar {
+width: 8px;
+/* 스크롤바의 너비 */
+}
+
+.box2::-webkit-scrollbar-thumb {
+height: 30%;
+/* 스크롤바의 길이 */
+background: gainsboro;
+/* 스크롤바의 색상 */
+border-radius: 0.5rem;
+}
+
+.box2::-webkit-scrollbar-track {
+background: hsla(37, 97%, 58%, 0.102);
+/*스크롤바 뒷 배경 색상*/
+}
