@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import './css/MyCarousel.scss';
+import ApiService from '../../ApiService';
 
 // const isEqual = require("react-fast-compare");
 
@@ -10,6 +11,7 @@ export function Carousel(props) {
   const [slideCurrent, setSlideCurrent] = useState(-1);
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState('0px');
+  const [tagData, setTagData] = useState([]);
   const intervalRef = useRef(null);
   const nextRef = useRef();
   const handlers = useSwipeable({
@@ -18,6 +20,7 @@ export function Carousel(props) {
     preventDefaultTouchmoveEvent: true,
     trackMouse: true
   });
+
   useEffect(() => {
     const locSlides = [];
     props.slides.forEach((slide) => {
@@ -56,8 +59,20 @@ export function Carousel(props) {
       }, 500);
     }
   },[slides,slideCurrent]);
-
   
+  useEffect(()=>{
+    ApiService.tag()
+    .then(res =>{
+      let tmpList = []
+      res.data.map(tag =>{
+        tmpList.push(tag)
+      })
+      console.log(tmpList)
+      setTagData(tmpList)
+    })
+  },[]);
+
+
   const slideRight = () => {
     let preactiveSlide;
     let proactiveSlide;

@@ -15,7 +15,7 @@ const CheckBoxList = () => {
   },[]);
 
   const loadGenre = () => {
-    ApiService.test()
+    ApiService.genre()
     .then(res => {
       console.log(res.data)
       let genreList = []

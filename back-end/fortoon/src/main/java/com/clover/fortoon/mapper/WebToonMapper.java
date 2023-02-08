@@ -11,4 +11,5 @@ public interface WebToonMapper {
     List<String> genreList();
     List<String> bigThumbUrlList();
     List<String> thumbnailList();
+    List<String> tagList();
 }
