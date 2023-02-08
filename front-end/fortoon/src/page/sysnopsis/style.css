@@ -97,12 +97,12 @@
 .box1{
     overflow:auto; 
     height:457px;
-    /* width: 730px; */
+    width: 65vw;
     /* padding: 1.5rem; */
     border: 2px solid gainsboro;
     border-radius: 0.5rem;
     margin: auto;
-    margin-top: -2vh;   
+    margin-top: -2.5vh; 
 }
 
 .box1::-webkit-scrollbar {

@@ -7,7 +7,7 @@ const Header = () => {
                 {display:'flex', 
                 justifyContent:'flex-start', 
                 width: "100%",
-                height: "10vh",
+                height: "8vh",
                 marginTop:"2vh",
                 marginLeft: "1rem",
                 }}> 
