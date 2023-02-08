@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
 import './css/ToonpickStyle.css'
@@ -54,19 +54,26 @@ const ImgStyle = [
 
 function ToonChoice()  {
   const [show, setShow] = React.useState(false);
-  // const [color, setColor] = useState('');
   const [newImgStyle , setNewImgStyle] = useState(ImgStyle);
   const [choice2, setChoice2] = useState(0);
-  const [choice1, setChoice1] = useState(0);
+  const [choice1, setChoice1] = useState(0);  
 
-// const [test, setTest] = useState();
+  // const [test, setTest] = useState();
 
 
-//  useEffect(function(){
-//  console.log('Test')
-//  console.log(newImgStyle); 
-  
-// },[newImgStyle])
+  //  useEffect(function(){
+  //  console.log('Test')
+  //  console.log(newImgStyle); 
+
+  // },[newImgStyle])
+
+  function test(index1, index2){
+    let list = newImgStyle;
+    list[index1].imgs[index2].color=""
+    setNewImgStyle(list.map((data)=> {return(data)}));
+
+  }
+
 
   return (
     <>
@@ -87,8 +94,16 @@ function ToonChoice()  {
                       // console.log(index2)
                       return(
                         // !color ?
+                        newImgStyle[index1].imgs[index2].color==''?
                         <img src={require(`${j.img}`)} alt='toon' className={j.id} key={j.id}
-                        style={{border:newImgStyle[index1].imgs[index2].color}} onClick={() => {setShow(true); setChoice2(index2); setChoice1(index1)}}/>
+                        style={{border:newImgStyle[index1].imgs[index2].color}} 
+                        onClick={() => {setShow(true); setChoice2(index2); setChoice1(index1)}}/>
+
+                        :<img src={require(`${j.img}`)} alt='toon' className={j.id} key={j.id}
+                        style={{border:newImgStyle[index1].imgs[index2].color}} 
+                        // 보더 없애야함
+                        onClick={() => {test(index1, index2);}}/>
+                        
                         // :6px solid #FDCD58
                         // <img src={require(`${j.img}`)} alt='toon' className={j.id} key={j.id}
                         // style={{border:color ? '6px solid #FDCD58':''}} onClick={() => setColor(false)} />
@@ -106,7 +121,6 @@ function ToonChoice()  {
 
               <Modal 
               show={show} 
-
               onClose={() => setShow(false)} 
               // onColor={() => setColor(true)}  
               onChoice1={choice1}
