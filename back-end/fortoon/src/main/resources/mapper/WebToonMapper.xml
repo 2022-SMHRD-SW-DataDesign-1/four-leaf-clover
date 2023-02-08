@@ -8,7 +8,15 @@
 		select distinct(webtoon_genre) from tbl_webtoon
 	</select>
 	
-	<select id="thumbUrlList" resultType="String">
+	<select id="bigThumbUrlList" resultType="String">
+		select webtoon_big_thumbnail_url from tbl_webtoon
+	</select>
+
+	<select id="thumbnailList" resultType="String">
 		select webtoon_thumbnail_url from tbl_webtoon
+	</select>
+
+	<select id="tagList" resultType="String">
+		select webtoon_tag from tbl_webtoon
 	</select>
 </mapper>

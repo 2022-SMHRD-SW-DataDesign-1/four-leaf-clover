@@ -24,6 +24,13 @@
     right: 8px;
     cursor: pointer;
   }
+  .norm {
+    min-width: 288px;
+    min-height: 374px;
+    border-radius: 30px;
+    display: flex;
+    position: relative;
+  }
   
   
   /* @keyframes fadeInDown {

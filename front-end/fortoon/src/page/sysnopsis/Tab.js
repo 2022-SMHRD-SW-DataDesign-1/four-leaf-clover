@@ -6,30 +6,32 @@ import './style.css';
 
 
 const TabMenu = styled.ul`
-    background-color: #d3d3d3;
     font-weight: bold;
     display: inline-flex;
     flex-direction: row;
     list-style: none;
-    margin-top: -0.2rem;
+    margin-top: -0.5rem;
     height: auto;
-    width: calc(100% /8);
+    margin-left: -2.3rem;
     
     
     
     .submenu {
         display: inline-flex;
-        padding: 2.2% 70px;
+        padding: 2.2% ;
         cursor: pointer;
         background-color: #d3d3d3;
         color: gray;
-        width: calc(100% /8);
+        width: 9.1vw;
+        height: 0.1vh;
         border-radius:10px 10px 0px 0px;
+        
     }
 
     .focused{
         display: inline-flex;
-        padding: 2.2% 70px;
+        width: calc(100% /8);
+        padding: 2.2% ;
         cursor: pointer;
         background-color: #999999;
         color: white;
@@ -38,7 +40,8 @@ const TabMenu = styled.ul`
 `;
 
 
-const Tab = ({getImage}) => {
+const Tab = ({getImage, inputValue}) => {
+
     const menuArr = [
         { name: '월', content: '월요일만화', img: './img/나쁜 마법사의 꿈.jpg' },
         { name: '화', content: '화요일만화', img: './img/별빛 커튼콜.jpg' },
@@ -57,6 +60,16 @@ const Tab = ({getImage}) => {
 //ref={el => uni.current.concat(el)}
     const uniRef = useRef([]);
 
+    const setSearchMenu = () => {
+        let saveCurrentIndex = currentTab
+        if(inputValue != ''){
+            console.log(currentTab)
+            selectMenuHandler(7)
+        }
+
+    }
+
+    useEffect(setSearchMenu, [inputValue])
 
     const onChecked = ()=>{
         console.log('oncheck function')
@@ -77,12 +90,12 @@ const Tab = ({getImage}) => {
                     fontFamily: 'Cafe24SsurroundAir',
                     height: '500px',
                     width: '65%',
-                    marginTop: '50px',
+                    marginTop: '2vh',
                     marginRight:'10%',
                     float:'right',
-                    borderStyle : 'solid',
-                    border: '2px solid gainsboro',
-                    borderRadius: '0.5rem'
+                    fontSize:'20px',
+                    justifyContent: 'center',
+                    alignitems: 'center'
                 }}>
                 <TabMenu>
                     {menuArr.map((ele, index) => {
@@ -98,9 +111,10 @@ const Tab = ({getImage}) => {
                         )
                     })}
                 </TabMenu>
-                <div className="box1" style={{textAlign:'center'}}>
-                    <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh'}}> {menuArr[currentTab].content}</div>
-                    <div style={{ marginTop: '10px' }}>
+                <div className="box1" style={{}}>
+                    <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
+                    <div style={{ marginTop: '10px', marginLeft:'50px' , float:'left',}}>
+                     
                         {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 
                                 style={{ boxShadow: '2px 3px 2px #dcdcdc',
@@ -114,49 +128,7 @@ const Tab = ({getImage}) => {
                                     border: color ? '6px solid #FDCD58' : ''
                                 }} onClick={() => setColor(false)} />
                         }
-                        <span style={{padding : '30px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '30px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '30px'}}></span>
-                        {!color ?
-                            <img src={require(`${menuArr[currentTab].img}`)} 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
-                            :
-                            <img src={require(`${menuArr[currentTab].img}`) } 
-                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                    borderRadius: '10%', width: '200px',
-                                    border: color ? '6px solid #FDCD58' : ''
-                                }} onClick={() => setColor(false)} />
-                        }
-                        <span style={{padding : '30px'}}></span> <br/>
+                        <span style={{padding : '13px'}}></span>
 
                         {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 
@@ -171,7 +143,7 @@ const Tab = ({getImage}) => {
                                     border: color ? '6px solid #FDCD58' : ''
                                 }} onClick={() => setColor(false)} />
                         }
-                        <span style={{padding : '30px'}}></span>
+                        <span style={{padding : '13px'}}></span>
                         {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 
                                 style={{ boxShadow: '2px 3px 2px #dcdcdc',
@@ -185,7 +157,8 @@ const Tab = ({getImage}) => {
                                     border: color ? '6px solid #FDCD58' : ''
                                 }} onClick={() => setColor(false)} />
                         }
-                        <span style={{padding : '30px'}}></span>{!color ?
+                        <span style={{padding : '13px'}}></span>
+                        {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 
                                 style={{ boxShadow: '2px 3px 2px #dcdcdc',
                                     borderRadius: '10%', width: '200px',
@@ -198,7 +171,8 @@ const Tab = ({getImage}) => {
                                     border: color ? '6px solid #FDCD58' : ''
                                 }} onClick={() => setColor(false)} />
                         }
-                        <span style={{padding : '30px'}}></span>{!color ?
+                        <span style={{padding : '13px'}}></span>
+                        {!color ?
                             <img src={require(`${menuArr[currentTab].img}`)} 
                                 style={{ boxShadow: '2px 3px 2px #dcdcdc',
                                     borderRadius: '10%', width: '200px',
@@ -211,8 +185,52 @@ const Tab = ({getImage}) => {
                                     border: color ? '6px solid #FDCD58' : ''
                                 }} onClick={() => setColor(false)} />
                         }
-                        <span style={{padding : '30px'}}></span>
-                        
+                        <span style={{padding : '13px'}}></span>
+                        {!color ?
+                            <img src={require(`${menuArr[currentTab].img}`)} 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
+                            :
+                            <img src={require(`${menuArr[currentTab].img}`) } 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => setColor(false)} />
+                        }
+                        <span style={{padding : '13px'}}></span>
+                        {!color ?
+                            <img src={require(`${menuArr[currentTab].img}`)} 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
+                            :
+                            <img src={require(`${menuArr[currentTab].img}`) } 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => setColor(false)} />
+                        }
+                        <span style={{padding : '13px'}}></span>
+                        {!color ?
+                            <img src={require(`${menuArr[currentTab].img}`)} 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => {setShow(true); setSelectImagesrcList([`${menuArr[currentTab].img}`, ...selectImagesrcList]);}} />
+                            :
+                            <img src={require(`${menuArr[currentTab].img}`) } 
+                                style={{ boxShadow: '2px 3px 2px #dcdcdc',
+                                    borderRadius: '10%', width: '200px',
+                                    border: color ? '6px solid #FDCD58' : ''
+                                }} onClick={() => setColor(false)} />
+                        }
+                        <span style={{padding : '13px'}}></span>
+                     
+                     
+                     
                         
 
 

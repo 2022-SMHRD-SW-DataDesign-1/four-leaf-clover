@@ -4,14 +4,21 @@ const USER_API_BASE_URL = "http://localhost:8082";
 
 class ApiService {
 
-    test(){
-        return axios.get(USER_API_BASE_URL+'/');
+    genre(){
+        return axios.get(USER_API_BASE_URL+'/genre');
     }
 
     resultToon(){
         return axios.get(USER_API_BASE_URL+'/resultToon');
     }
 
+    drawingStyle(){
+        return axios.get(USER_API_BASE_URL+'/drawingStyle')
+    }
+
+    tag(){
+        return axios.get(USER_API_BASE_URL+'/tag')
+    }
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
     // }

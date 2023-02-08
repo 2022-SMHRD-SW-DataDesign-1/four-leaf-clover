@@ -9,5 +9,7 @@ import com.clover.fortoon.model.WebToonDTO;
 @Mapper
 public interface WebToonMapper {
     List<String> genreList();
-    List<String> thumbUrlList();
+    List<String> bigThumbUrlList();
+    List<String> thumbnailList();
+    List<String> tagList();
 }

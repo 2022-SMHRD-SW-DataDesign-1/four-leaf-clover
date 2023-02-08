@@ -51,7 +51,7 @@ const Locker = ({ imagesrc }) => {
             width: '20%', height: '578px',
             float: 'left',
             boxSizing: 'border-box',
-            border:'4px solid gainsboro',
+            border:'2px solid gainsboro',
             borderRadius:'5%',
             marginLeft: '78px'
             

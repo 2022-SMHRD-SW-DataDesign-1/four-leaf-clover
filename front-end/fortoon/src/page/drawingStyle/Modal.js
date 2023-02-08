@@ -31,9 +31,10 @@ const Modal = ({ show, onClose, onColor, onChoice1, onChoice2, imgList, setNewIm
           onClick={() => {
           onClose(); 
           let list = imgList;
-          list[onChoice1].imgs[onChoice2].color="6px solid #FDCD58"
+          list[onChoice1][onChoice2].color="6px solid #FDCD58"
           setNewImgStyle(list.map((data)=> {return(data)}));
-          }} className={`${styles.btnClose} btn-close`}/>
+          }} 
+          className={`${styles.btnClose} btn-close`}/>
       </div>
     </div>
   );
