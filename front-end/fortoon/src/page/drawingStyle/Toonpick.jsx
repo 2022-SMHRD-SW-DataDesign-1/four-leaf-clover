@@ -61,7 +61,7 @@ function ToonChoice()  {
         }
         rowList.push(setImg)
 
-        if (index % 4 == 1)
+        if (index % 4 == 3)
         {
           ImgStyle.push(rowList)
           rowList =[]
