@@ -11,4 +11,8 @@
 	<select id="bigThumbUrlList" resultType="String">
 		select webtoon_big_thumbnail_url from tbl_webtoon
 	</select>
+
+	<select id="thumbnailList" resultType="String">
+		select webtoon_thumbnail_url from tbl_webtoon
+	</select>
 </mapper>

@@ -29,4 +29,10 @@ public class WebToonController {
         System.out.println("썸네일url 불러오기");
         return webToonMapper.bigThumbUrlList();
     }
+
+    @GetMapping("/drawingStyle")
+    private List<String> thumbnailList(){
+        System.out.println("그림체url 불러오기");
+        return webToonMapper.thumbnailList();
+    }
 }

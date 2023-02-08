@@ -10,4 +10,5 @@ import com.clover.fortoon.model.WebToonDTO;
 public interface WebToonMapper {
     List<String> genreList();
     List<String> bigThumbUrlList();
+    List<String> thumbnailList();
 }

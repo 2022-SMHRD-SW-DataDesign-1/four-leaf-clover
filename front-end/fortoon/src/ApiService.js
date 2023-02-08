@@ -12,6 +12,9 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/resultToon');
     }
 
+    drawingStyle(){
+        return axios.get(USER_API_BASE_URL+'/drawingStyle')
+    }
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
     // }
