@@ -4,6 +4,7 @@ import Checkbox from "./CheckBox";
 import GlobalStyles from "./GlobalStyles";
 import './CheckBoxListStyle.css';
 import ApiService from "../../ApiService"
+import Button from './TrunPageButton';
 
 const CheckBoxList = () => {
 
@@ -46,15 +47,21 @@ const CheckBoxList = () => {
   }
   
   return (
-    <main style={{height: "auto", marginBottom: "6vh"}}>
+    <main style={{height:'70vh', marginBottom:'8.2vh' }}>
       <GlobalStyles />
-        <div style={{textAlign:"center", display: "flex", flexDirection: "column", justifyContent: "center"}}>
-          <StyledH1>좋아하는 장르를 선택하세요.</StyledH1>
+        <div style={{
+          textAlign:"center", 
+          display: "flex", 
+          flexDirection: "column", 
+          justifyContent: "center",
+          fontFamily: 'Cafe24SsurroundAir',
+          fontSize:'25px'}}>
+          <StyledH1 style={{fontFamily:'Cafe24Ssurround', fontSize:'28px', marginTop: '4.7vh'}}>좋아하는 장르를 선택하세요.</StyledH1>
             <form>
               <div className="StyledFieldset2">
                 {genreData.map((item) => {
                   return(
-                  <div className="checkBoxes" key={item[0].id+item[1].id*10}>
+                  <div style={{marginBottom: '1vh', marginTop:'1vh'}} className="checkBoxes" key={item[0].id+item[1].id*10}>
                     <Checkbox key={item[0].id} text={item[0].text}/>
                     <Checkbox key={item[1].id} text={item[1].text}/> 
                   </div>
@@ -62,7 +69,7 @@ const CheckBoxList = () => {
               </div>
             </form>
         </div>
-        
+        <Button />
     </main>
   );
 }

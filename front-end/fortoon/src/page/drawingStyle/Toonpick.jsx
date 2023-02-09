@@ -94,10 +94,13 @@ function ToonChoice()  {
 
 
   return (
-    <>
+    <div style={{height:'70vh', marginBottom:'4.3vh'}}>
       <Toonpick>
-        <div>
-            <h1>좋아하는 그림체를 선택하세요</h1>
+        <div style={{ marginTop: '4vh'}}>
+            <h1 style={{
+              fontFamily:'Cafe24Ssurround',
+              fontSize:'28px'}}
+              > 좋아하는 그림체를 선택하세요. </h1>
             <div className='box'>
             
               
@@ -151,7 +154,7 @@ function ToonChoice()  {
           <Button />
         </div>
       </Toonpick> 
-    </>
+    </div>
   );
 }
 

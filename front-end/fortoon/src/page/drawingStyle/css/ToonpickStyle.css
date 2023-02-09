@@ -15,7 +15,7 @@ h1 {
     border: 2px solid gainsboro;
     border-radius: 0.5rem;
     margin: auto;
-    margin-top: 4vh;   
+    margin-top: 2vh;   
 }
 
 .box::-webkit-scrollbar {
@@ -45,3 +45,13 @@ h1 {
     margin: 20px;
     cursor: pointer;
 }
+
+@font-face {
+    font-family: "Cafe24SsurroundAir";
+    src: url("../../resultTag/css/font/Cafe24SsurroundAir/Cafe24SsurroundAir.ttf");
+  }
+  
+  @font-face {
+    font-family: "Cafe24Ssurround";
+    src: url("../../resultTag/css/font/Cafe24Ssurround/Cafe24Ssurround.ttf");
+  }
