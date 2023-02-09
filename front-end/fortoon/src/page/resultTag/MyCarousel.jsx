@@ -192,6 +192,8 @@ export function Carousel(props) {
     return sliderClass;
   };
 
+
+ const [num, setNum] = useState(0);
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
           {slides && slides.length > 0
@@ -217,19 +219,27 @@ export function Carousel(props) {
                                           <div className='slider-ment'>
                                               언제 어디서든
                                           </div>
-                                          <div className='slider-tagset'>
-                                            <div className='slider-tag'>
-                                                #이세계
-                                            </div>
-                                            <div className='slider-tag'>
-                                                #회귀물
-                                            </div>
-                                          </div>
-                                          <div className='slider-tagset'>
-                                            <div className='slider-tag'>
-                                                #게임판타지
-                                            </div>
-                                          </div>
+
+                                          <div className='test1'>
+                                          {tagData.map((tag,index)=> {
+                                            
+                                            if(index<11)
+                                            {
+                                              return(
+                                                <div className='slider-tagset' >
+                                                  <div className='slider-tag' style={{
+                                                  flex: "none",
+                                                  display: "inline-flex",
+                                                  alignItems: "center"}}>
+                                                  #{tagData[index]}
+                                                  </div>
+                                                </div>
+                                              )    
+                                            }    
+                                           
+                                          })}
+                                         </div>
+
                                         </div>
                                     </div>
                                 </div>
