@@ -14,10 +14,21 @@
     display: flex;
     align-items: flex-start;
     justify-content: center;
+   
   }
   main{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  @font-face {
+    font-family: "Cafe24SsurroundAir";
+    src: url("../resultTag/css/font/Cafe24SsurroundAir/Cafe24SsurroundAir.ttf");
+  }
+  
+  @font-face {
+    font-family: "Cafe24Ssurround";
+    src: url("../resultTag/css/font/Cafe24Ssurround/Cafe24Ssurround.ttf");
   }

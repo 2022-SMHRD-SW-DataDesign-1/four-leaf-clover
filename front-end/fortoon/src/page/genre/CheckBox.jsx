@@ -10,7 +10,7 @@ function Checkbox({ text }) {
     <div>
       <StyledInput type="checkbox" id={text} name={text} />
       <StyledLabel htmlFor={text}>
-        <StyledP>{text}</StyledP>
+        <StyledP style={{marginLeft: '1.2rem'}}>{text}</StyledP>
       </StyledLabel>      
     </div>
   );
@@ -27,6 +27,7 @@ const StyledLabel = styled.label`
   width: 400px;
   height: 70px;
   padding-left: 80px;
+  
   
 
   &:before {
@@ -60,6 +61,7 @@ const StyledLabel = styled.label`
     background-color: #d872bb;
     box-shadow: 5px 5px 10px -7px black;   
     margin-left: 80px;
+    
   }
 `;
 
