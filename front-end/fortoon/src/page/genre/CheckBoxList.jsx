@@ -4,6 +4,7 @@ import Checkbox from "./CheckBox";
 import GlobalStyles from "./GlobalStyles";
 import './CheckBoxListStyle.css';
 import ApiService from "../../ApiService"
+import Button from './TrunPageButton';
 
 const CheckBoxList = () => {
 
@@ -46,7 +47,7 @@ const CheckBoxList = () => {
   }
   
   return (
-    <main style={{height:'70vh', marginBottom:'8vh' }}>
+    <main style={{height:'70vh', marginBottom:'8.2vh' }}>
       <GlobalStyles />
         <div style={{
           textAlign:"center", 
@@ -55,7 +56,7 @@ const CheckBoxList = () => {
           justifyContent: "center",
           fontFamily: 'Cafe24SsurroundAir',
           fontSize:'25px'}}>
-          <StyledH1 style={{fontFamily:'Cafe24Ssurround', fontSize:'28px'}}>좋아하는 장르를 선택하세요.</StyledH1>
+          <StyledH1 style={{fontFamily:'Cafe24Ssurround', fontSize:'28px', marginTop: '4.7vh'}}>좋아하는 장르를 선택하세요.</StyledH1>
             <form>
               <div className="StyledFieldset2">
                 {genreData.map((item) => {
@@ -68,7 +69,7 @@ const CheckBoxList = () => {
               </div>
             </form>
         </div>
-        
+        <Button />
     </main>
   );
 }
