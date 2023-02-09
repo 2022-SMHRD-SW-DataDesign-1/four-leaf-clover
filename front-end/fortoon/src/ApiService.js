@@ -19,6 +19,10 @@ class ApiService {
     tag(){
         return axios.get(USER_API_BASE_URL+'/tag')
     }
+
+    loading(){
+        return axios.get(USER_API_BASE_URL+'/imagePath/clover_loading.gif')
+    }
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
     // }
