@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./style.css";
 import Tab from "./Tab";
 import Locker from './Locker';
+import { type } from "@testing-library/user-event/dist/type";
 
 
 const wholeTextArray = [
@@ -13,11 +14,6 @@ const wholeTextArray = [
   '스치면 인연 스며들면 사랑',
   '이런 미친 엔딩',
   '주부 육성중',
-  '#태그',
-  '#실험용',
-  '#샵문자',
-  '#찾나',
-  '#봐야지',
 ]
 
 const Search1 = () => {
@@ -73,7 +69,7 @@ const Search1 = () => {
   useEffect(showDropDownList, [inputValue])
 
   const [search, setsearch] = useState("");
-  const [imagesrc, setImagesrc] = useState();
+  const [imagesrc, setImagesrc] = useState([]);
 
   const onChange = (e) => {
     setsearch(e.target.value)
@@ -84,9 +80,26 @@ const Search1 = () => {
   // })
 
   const getImage = (img)=>{
+    let flag = false;
+    let beforeLen = imagesrc.length;
+    
+    console.log(imagesrc,"얘는 그냥 리스트")
+    let filtered = imagesrc.filter((element) => element !== img);
+    console.log(filtered,"얘는 필터링된 (중복제거된) 리스트")
+    let afterLen = filtered.length;
+    if(beforeLen>afterLen){
+      flag = true
+    }
 
-    console.log(img)
-    setImagesrc(img)
+    if(flag){
+      console.log('중복된 놈들은 다뒤졌따')
+      setImagesrc(filtered)
+    }else{
+      console.log('중복이 없었지롱')
+      setImagesrc(filtered.concat(img));
+    }
+    
+
   }
 
 
@@ -122,7 +135,7 @@ const Search1 = () => {
         <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
       </InputBox>
       {isHaveInputValue && (
-        <DropDownBox style={{width:'63.65vw', marginRight:'2rem', position:'absolute', zIndex:'999',  marginLeft: '49.9vh', marginTop: '4.7vh'}}>
+        <DropDownBox style={{width:'63.65vw', marginRight:'2rem', position:'absolute', zIndex:'999',  marginLeft: '51.7vh', marginTop: '4.8vh'}}>
           {dropDownList.length === 0 && (
             <DropDownItem style={{fontFamily:'Cafe24SsurroundAir'}}>해당하는 단어가 없습니다</DropDownItem>
           )}

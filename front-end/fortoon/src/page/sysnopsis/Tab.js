@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Modal from './Modal';
 import './style.css';
@@ -52,33 +52,97 @@ const Tab = ({getImage, inputValue}) => {
         { name: '일', content: '일요일만화'},
         { name: '검색', content: '검색만화' }
     ];
-    const monArr=[
-        [{title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-        {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-        {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-        {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-        {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-        {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-        {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
-        {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }],
+    let monArr=[
+        [
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }
+        ],
 
-        [{title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-        {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-        {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-        {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-        {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-        {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-        {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
-        {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }]
+        [
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        ],
+        [
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        ],
+        [
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        ],
+        [
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        ],
+        [
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        ],
+        [
+            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        ],
+        [
+
+        ]
+
         
     ]
 
     const [currentTab, setCurrentTab] = useState(0);
     const [show, setShow] = useState(false);
-    const [color, setColor] = useState(false);
-    const [selectImagesrcList, setSelectImagesrcList] = useState([]);
+    // const [color, setColor] = useState('');
+    // const [selectImagesrcList, setSelectImagesrcList] = useState([]);
+    const [selectIdx, setSelectIdx] = useState(0);
+    const [selectImg, setSelectImg] = useState('');
+    const [monArrTest, setMonArrTest] = useState(monArr)
+    const [, updateState] = useState(); // 상태 변수는 선언하지 않는다
+    const forceUpdate = useCallback(() => updateState({}), []);
     
-    const imgRef = useRef([])    
+    const imgRef = useRef([])
+    const modalRef = useRef([])
 
     const setSearchMenu = () => {
         if(inputValue != ''){
@@ -89,11 +153,11 @@ const Tab = ({getImage, inputValue}) => {
 
     useEffect(setSearchMenu, [inputValue])
 
-    const onChecked = ()=>{
-        console.log('oncheck function')
+    const onChecked = (choiceImg)=>{
+        console.log('onchekc함수지롱 이미지를 search1으로 넘기지롱')
         // console.log('img src list',selectImagesrcList)
         // 부모 태그에 값을 넣어준다
-        getImage(selectImagesrcList)
+        getImage(choiceImg)
     }
 
     const selectMenuHandler = (index) => {
@@ -101,12 +165,31 @@ const Tab = ({getImage, inputValue}) => {
     };
 
     const setFlag =(idx)=>{
-        console.log(imgRef.current[idx])
-        if (!imgRef.current[idx])
-            imgRef.current[idx] = true
-        else
-            imgRef.current[idx] = false
-        console.log(imgRef.current[idx])
+        
+        // console.log(idx)
+        // imgRef.current[idx].style.border == ''?
+        // imgRef.current[idx].style.border = ' solid 6px #FDCD58'
+        // :
+        // imgRef.current[idx].style.border = ''
+
+    
+        let tmpList = monArrTest
+
+        if(tmpList[currentTab][idx].color == ''){
+            tmpList[currentTab][idx].color = 'solid 6px #FDCD58';
+        }else{
+            tmpList[currentTab][idx].color = ''
+        }
+
+        console.log(tmpList)
+        setMonArrTest(tmpList)
+        forceUpdate()
+    }
+
+
+    const showModal = (img, idx) => {
+        setSelectIdx(idx)
+        setSelectImg(img)
     }
 
     return (
@@ -139,32 +222,42 @@ const Tab = ({getImage, inputValue}) => {
                 </TabMenu>
                 <div className="box1" style={{}}>
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
-                    <div style={{ marginTop: '10px', marginLeft:'50px' , float:'left',}}>
+                    <div style={{ marginTop: '10px', marginLeft:'2.7%' , float:'left',}}>
                         {
-                            monArr[0].map((i, idx)=>{
+                            monArrTest[currentTab].map((i, idx)=>{
+                            
                                 return (
                                     <>
-                                        {!imgRef.current[idx]?
+                                        {i.color == ''?
                                         <img src={require(`${i.img}`)} 
-                                            style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                                borderRadius: '10%', width: '200px',
-                                                border: ''
-                                        }} onClick={() => {setShow(true); setSelectImagesrcList([`${i.img}`, ...selectImagesrcList]); setFlag(idx)}}
-                                        ref={() => imgRef.current[idx] = false} />
+                                            style={{boxShadow: '2px 3px 2px #dcdcdc',
+                                                    borderRadius: '10%',
+                                                    width: '200px',
+                                                    border: i.color,
+                                                    margin: '8px'}} 
+                                            onClick={() => {showModal(i.img, idx); setShow(true);}}
+                                            ref={(el) => imgRef.current[idx] = el} />
                                         :
                                         <img src={require(`${i.img}`) } 
-                                            style={{ boxShadow: '2px 3px 2px #dcdcdc',
-                                                borderRadius: '10%', width: '200px',
-                                                border: '6px solid #FDCD58' 
-                                        }} onClick={setFlag(idx)} ref={() => imgRef.current[idx] = true} />}
-                                        <span style={{padding:'13px'}}/>
+                                            style={{boxShadow: '2px 3px 2px #dcdcdc',
+                                                    borderRadius: '10%',
+                                                    width: '200px',
+                                                    border: i.color,
+                                                    margin: '8px'
+                                            }}
+                                            onClick={()=>{setFlag(idx); onChecked(i.img)}}
+                                            ref={(el) => imgRef.current[idx] = el} />}
+                                        {/* <span style={{padding:'8px'}}/> */}
                                     </>
                                 )
                             })
                         }
+                        <Modal show={show} 
+                                onChecked={() => onChecked(selectImg)}
+                                setFlag ={()=>setFlag(selectIdx)} 
+                                onClose={() => setShow(false)} />
                     </div>
                 </div>
-                <Modal show={show} onChecked={onChecked} onClose={() => setShow(false)} onColor={() => setColor(true)} />
             </div>
 
 

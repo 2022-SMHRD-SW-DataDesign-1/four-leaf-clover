@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../drawingStyle/css/modal.module.css";
 
-const Modal = ({ show, onClose, onColor, onChecked }) => {
+const Modal = ({ show, onClose, onChecked, setFlag }) => {
   if (!show) {
     return null;
   }
@@ -23,7 +23,7 @@ const Modal = ({ show, onClose, onColor, onChecked }) => {
         <img
           src={require('../drawingStyle/img/tooncheck.png')}
           alt="closebtn"
-          onClick={() => { onClose(); onColor(); onChecked(); }}
+          onClick={() => { onClose(); onChecked(); setFlag();}}
           className={`${styles.btnClose} btn-close`} />
           
       </div>

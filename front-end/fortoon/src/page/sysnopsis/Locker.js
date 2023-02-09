@@ -16,7 +16,7 @@ const Locker = ( {imagesrc} ) => {
   const [imgCode, setImgCode] = useState()
 
   useEffect(() => {
-    console.log(imagesrc)
+    // console.log(imagesrc)
     if (imagesrc != undefined)
       setSrc(imagesrc)      
   }, [imagesrc])
@@ -64,7 +64,7 @@ const Locker = ( {imagesrc} ) => {
                 ? <img style={{width:'30%', float:'left'}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"></img>
                 :
                 src.map( (srcurl, idx) => {
-                  console.log(srcurl)
+                  // console.log(srcurl)
                   return(
                     
                       <img
