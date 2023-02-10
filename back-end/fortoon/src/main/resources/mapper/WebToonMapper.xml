@@ -12,8 +12,8 @@
 		select webtoon_big_thumbnail_url from tbl_webtoon
 	</select>
 
-	<select id="thumbnailList" resultType="String">
-		select webtoon_thumbnail_url from tbl_webtoon
+	<select id="drawingStyleList" resultType="com.clover.fortoon.model.DrawingStyleDTO">
+		select webtoon_num, webtoon_thumbnail_url from tbl_webtoon
 	</select>
 
 	<select id="tagList" resultType="String">

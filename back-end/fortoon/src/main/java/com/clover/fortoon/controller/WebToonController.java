@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clover.fortoon.mapper.WebToonMapper;
+import com.clover.fortoon.model.DrawingStyleDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -51,9 +52,9 @@ public class WebToonController {
     }
 
     @GetMapping("/drawingStyle")
-    private List<String> thumbnailList(){
-        System.out.println("그림체url 불러오기");
-        return webToonMapper.thumbnailList();
+    private List<DrawingStyleDTO> drawingStyleList(){
+        System.out.println("그림체url 및 웹툰번호 불러오기");
+        return webToonMapper.drawingStyleList();
     }
 
     @GetMapping("/tag")

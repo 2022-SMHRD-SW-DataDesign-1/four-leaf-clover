@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 
 
-function Checkbox({ text }) {
- 
+function Checkbox({ text, getChoiceGenre }) {
+
+  const sendChoiceGenre = (e) => {
+    getChoiceGenre(e.target.name, e.target.checked)
+  }
 
   return (
     <div>
-      <StyledInput type="checkbox" id={text} name={text} />
+      <StyledInput type="checkbox" id={text} name={text} onClick={(e) => {sendChoiceGenre(e)}} />
       <StyledLabel htmlFor={text}>
         <StyledP style={{marginLeft: '1.2rem'}}>{text}</StyledP>
       </StyledLabel>      

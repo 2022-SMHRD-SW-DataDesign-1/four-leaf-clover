@@ -50,13 +50,14 @@ function ToonChoice()  {
   useEffect(()=>{
     ApiService.drawingStyle()
     .then(res =>{
-      // console.log(res.data)
+      console.log(res.data)
       let ImgStyle =[]
       let rowList =[]
-      res.data.map((text, index)=>{
+      res.data.map((value, index)=>{
         const setImg ={
           id : index,
-          img : text,
+          img : value.webtoon_thumbnail_url,
+          num : value.webtoon_num,
           color : ''
         }
         rowList.push(setImg)
@@ -95,7 +96,6 @@ function ToonChoice()  {
 
   return (
     <div style={{height:'70vh', marginBottom:'4.3vh'}}>
-      <Toonpick>
         <div style={{ marginTop: '4vh'}}>
             <h1 style={{
               fontFamily:'Cafe24Ssurround',
@@ -151,9 +151,8 @@ function ToonChoice()  {
               />    
 
             </div>
-          <Button />
+          <Button drawingStyleOutput={newImgStyle} />
         </div>
-      </Toonpick> 
     </div>
   );
 }

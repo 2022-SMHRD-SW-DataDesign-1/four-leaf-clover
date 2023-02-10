@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../component/Header'
 import Footer from '../../component/Footer'
 import Toonpick from './Toonpick'

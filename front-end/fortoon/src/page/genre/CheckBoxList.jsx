@@ -9,7 +9,7 @@ import TurnPageButton from './TurnPageButton';
 const CheckBoxList = () => {
 
   const [genreData, setGenreData] = useState([])
-
+  const [outputData, setOutputData] = useState([])
 
   useEffect(()=>{
     loadGenre()
@@ -45,6 +45,19 @@ const CheckBoxList = () => {
       console.log("axios 에러", err)
     })
   }
+
+  const saveOutputData = (e) => {
+    
+  }
+
+  const getChoiceGenre = (e, status) => {
+    if (status){
+      setOutputData(outputData.concat(e))
+    }
+    else{
+      setOutputData(outputData.filter(output => output != e))
+    }
+  }
   
   return (
     <main style={{height:'70vh', marginBottom:'8.2vh' }}>
@@ -62,14 +75,14 @@ const CheckBoxList = () => {
                 {genreData.map((item) => {
                   return(
                   <div style={{marginBottom: '1vh', marginTop:'1vh'}} className="checkBoxes" key={item[0].id+item[1].id*10}>
-                    <Checkbox key={item[0].id} text={item[0].text}/>
-                    <Checkbox key={item[1].id} text={item[1].text}/> 
+                    <Checkbox key={item[0].id} text={item[0].text} getChoiceGenre={getChoiceGenre}/>
+                    <Checkbox key={item[1].id} text={item[1].text} getChoiceGenre={getChoiceGenre}/> 
                   </div>
                 )})}
               </div>
             </form>
         </div>
-        <TurnPageButton/>
+        <TurnPageButton outputData={outputData}/>
     </main>
   );
 }
