@@ -2,7 +2,7 @@ import React from 'react';
 import './TrunPageButton.css'
 
 
-const Button = () => {
+const Button = ({imagesrc, monArrTest}) => {
     return (
         <div className='turn_btn_box' >
             <img src={require("../drawingStyle/img/Prev2.png")} className="btn_prev"/>
