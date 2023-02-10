@@ -4,41 +4,139 @@ import "./style.css";
 import Tab from "./Tab";
 import Locker from './Locker';
 import { type } from "@testing-library/user-event/dist/type";
+import Button from './TrunPageButton';
 
 
-const wholeTextArray = [
-  '6월의 라벤더',
-  '나쁜 마법사의 꿈',
-  '별빛 커튼콜',
-  '산의 시간',
-  '스치면 인연 스며들면 사랑',
-  '이런 미친 엔딩',
-  '주부 육성중',
-  '#샵을붙여야한다니까?',
-  '#아니',
-  '#근데',
-  '#이걸',
-  '#그렇게',
-  '#도망을가네',
-  '#어이가없네',
-]
+
 
 const Search1 = () => {
+
+  // 여기가 spring에서 받아올 전체 데이터 대체용 기존데이터에 color와 같은 유니크값 구분용 특성 추가 필요
+  const monArr=[
+    [
+        {title:'별빛 커튼콜', author:'무명1',synopis:'testsetestsetestset2',tag:['하이','바이','크크','오호','리스트','태그'] , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'스치면 인연 스며들면 사랑',author:'무명2', synopis:'testsetestsetestset3' , tag:['하이','바이','크크','오호','리스트','태그'] ,img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'이런 미친 엔딩',author:'무명3', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'6월의 라벤더',author:'무명4', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'나쁜 마법사의 꿈',author:'무명5', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'주부 육성중', author:'무명6',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'프로듀스 온리원',author:'무명7', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        {title:'산의 시간', author:'무명8',synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }
+    ],
+
+    [
+        {title:'별빛 커튼콜',author:'무명1', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg'  ,color:''},
+        {title:'스치면 인연 스며들면 사랑',author:'무명2', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'나쁜 마법사의 꿈',author:'무명3', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이런 미친 엔딩',author:'무명4', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'6월의 라벤더',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'산의 시간', author:'무명6',synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'주부 육성중', author:'무명7',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'프로듀스 온리원',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+    ],
+    [
+        {title:'별빛 커튼콜',author:'무명1', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'산의 시간',author:'무명2', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'나쁜 마법사의 꿈',author:'무명3', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이런 미친 엔딩',author:'무명4', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'6월의 라벤더',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'스치면 인연 스며들면 사랑', author:'무명6',synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'주부 육성중',author:'무명7',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'프로듀스 온리원',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+    ],
+    [
+        {title:'6월의 라벤더',author:'무명1', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'별빛 커튼콜',author:'무명2', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'이런 미친 엔딩',author:'무명3', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'프로듀스 온리원',author:'무명4', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        {title:'스치면 인연 스며들면 사랑',author:'무명5', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'산의 시간',author:'무명6', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'나쁜 마법사의 꿈', author:'무명7',synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'주부 육성중',author:'무명8', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+    ],
+    [
+        {title:'삼번만화',author:'무명1', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'사번만화',author:'무명2', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'오번만화',author:'무명4', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'팔번만화',author:'무명5', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'일번만화',author:'무명6', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'육번만화',author:'무명7', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+    ],
+    [
+        {title:'육번만화',author:'무명1', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'일번만화',author:'무명2', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'삼번만화',author:'무명4', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'오번만화',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+        {title:'팔번만화',author:'무명6', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'사번만화',author:'무명7', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+    ],
+    [
+        {title:'삼번만화',author:'무명1', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+        {title:'일번만화',author:'무명2', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+        {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+        {title:'팔번만화',author:'무명4', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+        {title:'사번만화',author:'무명5', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+        {title:'칠번만화',author:'무명6', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+        {title:'육번만화',author:'무명7', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+        {title:'오번만화',author:'무명8', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+    ],
+    [
+    ]    
+]
   const [inputValue, setInputValue] = useState('')
   const [isHaveInputValue, setIsHaveInputValue] = useState(false)
-  const [dropDownList, setDropDownList] = useState(wholeTextArray)
+  const [dropDownList, setDropDownList] = useState()
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
-  
+  const [monArrTest, setMonArrTest] = useState(monArr) // 얘가 tab에 값넘겨줄 값 변형해줄 친구
+  const [wholeTextArray, setWholeTextArray] = useState([])
 
+
+  const title = monArr.map((element) => element.map((element2)=>element2.title)); // 이러면 얘가 각 요일별 웹툰 리스트를 가지고 있음 7번 index는 비었으니까 이거를 검색 된 결과를 넣어주면 되겠다 그치
+  const flatTitle = title.flat() // 다차원 배열 하나로 합쳐주기
+  const testTitle = [...new Set(flatTitle)] // 얘를 whole arrray text에 넣어놓고 이제 태그 찾아보자
+  
   const showDropDownList = () => {
     if (inputValue === '') {
       setIsHaveInputValue(false)
       setDropDownList([])
+      let tempList = monArrTest
+      tempList[7]= []
+      setMonArrTest(tempList)
     } else {
-      const choosenTextList = wholeTextArray.filter(textItem =>
+      let tempList = monArrTest
+      tempList[7] =[]
+      const choosenTextList = testTitle.filter(textItem =>
         textItem.includes(inputValue),
       )
       setDropDownList(choosenTextList)
+      
+      
+      monArr.map(
+        (element)=>element.map(
+          (element2)=>choosenTextList.map(
+           (i)=>{if(i==element2.title){
+            tempList[7].push(element2)
+            // tempList[7] = tempList[7].filter((k)=>{
+            //   return(k.title == element2.title)
+            // })
+            
+ 
+           }
+          
+          }
+          )
+        )
+      );
+
+
+      setMonArrTest(tempList)
+      console.log(tempList)
+      
+      
     }
   }
 
@@ -126,7 +224,8 @@ const Search1 = () => {
   // },[imagesrc])
 
   return (
-    <div style={{height:'70vh', marginTop:'8vh'}}>
+    <>
+    <div style={{height:'70vh', marginTop:'7vh', marginLeft: '7vh'}}>
       <Locker imagesrc={imagesrc} getOneimage={getOneimage}/>
       
         <div>
@@ -149,7 +248,7 @@ const Search1 = () => {
         <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
       </InputBox>
       {isHaveInputValue && (
-        <DropDownBox style={{width:'63.65vw', marginRight:'2rem', position:'absolute', zIndex:'999',  marginLeft: '51.7vh', marginTop: '4.8vh'}}>
+        <DropDownBox style={{width:'63.68vw', marginRight:'2rem', position:'absolute', zIndex:'2',  marginLeft: '50.2vh', marginTop: '4.9vh'}}>
           {dropDownList.length === 0 && (
             <DropDownItem style={{fontFamily:'Cafe24SsurroundAir'}}>해당하는 단어가 없습니다</DropDownItem>
           )}
@@ -194,9 +293,12 @@ const Search1 = () => {
             ))}
           </div> */}
         </div>
-        <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} />
+        <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} monArrTest={monArrTest}/>
+
+              
       </div>   
-      
+      <Button />
+      </>
     
     
   );
