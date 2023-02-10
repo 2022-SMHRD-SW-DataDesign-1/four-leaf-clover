@@ -14,6 +14,13 @@ const wholeTextArray = [
   '스치면 인연 스며들면 사랑',
   '이런 미친 엔딩',
   '주부 육성중',
+  '#샵을붙여야한다니까?',
+  '#아니',
+  '#근데',
+  '#이걸',
+  '#그렇게',
+  '#도망을가네',
+  '#어이가없네',
 ]
 
 const Search1 = () => {
@@ -70,6 +77,8 @@ const Search1 = () => {
 
   const [search, setsearch] = useState("");
   const [imagesrc, setImagesrc] = useState([]);
+  const [oneImage, setOneimage]= useState();
+  
 
   const onChange = (e) => {
     setsearch(e.target.value)
@@ -98,10 +107,14 @@ const Search1 = () => {
       console.log('중복이 없었지롱')
       setImagesrc(filtered.concat(img));
     }
-    
-
   }
 
+  const getOneimage = (img)=>{
+      setOneimage(img)
+      console.log("원이미지에 아까 고른 그 이미지 값" ,img,"를 넣고")
+      getImage(img)
+      console.log("getimage 불러다가 리스트안에 있는 값을 필터링으로 지움")
+  }
 
 
   // 1. 화면 구현이 완료됐을때 
@@ -114,7 +127,8 @@ const Search1 = () => {
 
   return (
     <div style={{height:'70vh', marginTop:'8vh'}}>
-      <Locker imagesrc={imagesrc} />
+      <Locker imagesrc={imagesrc} getOneimage={getOneimage}/>
+      
         <div>
         <WholeBox>
       <div text='AutoComplete' />
@@ -180,7 +194,7 @@ const Search1 = () => {
             ))}
           </div> */}
         </div>
-        <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} />
+        <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} />
       </div>   
       
     

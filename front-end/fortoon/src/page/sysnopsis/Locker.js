@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './style.css';
 
+
+
+
+
 // import '../sysnopsis/img/나쁜 마법사의 꿈.jpg'  <= 이렇게 써야함  
 
 
@@ -9,7 +13,8 @@ import './style.css';
 
 
 
-const Locker = ( {imagesrc} ) => {
+const Locker = ( {imagesrc, getOneimage} ) => {
+
 
   const [src, setSrc] = useState([])
 
@@ -20,6 +25,8 @@ const Locker = ( {imagesrc} ) => {
     if (imagesrc != undefined)
       setSrc(imagesrc)      
   }, [imagesrc])
+  
+  console.log(imagesrc)
 
   // useEffect(() => {
   //   if (src == '../sysnopsis/img/undefined' || src==''){
@@ -40,7 +47,12 @@ const Locker = ( {imagesrc} ) => {
   // let srcCode = 'require("../sysnopsis/img/나쁜 마법사의 꿈.jpg").default'
 
 
-
+  const onChecked = (choiceImg)=>{
+    console.log('onchekc함수지롱 이미지를 Locker에서  search1으로 넘기지롱')
+    // console.log('img src list',selectImagesrcList)
+    // 부모 태그에 값을 넣어준다
+    getOneimage(choiceImg)
+  }
   return (
     <>
       <div>
@@ -64,9 +76,10 @@ const Locker = ( {imagesrc} ) => {
                 ? <img style={{width:'30%', float:'left'}} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC"></img>
                 :
                 src.map( (srcurl, idx) => {
-                  // console.log(srcurl)
+                  console.log(srcurl)
                   return(
-                    
+          
+                    <>
                       <img
                         style={{
                           width: '10vh',
@@ -75,12 +88,13 @@ const Locker = ( {imagesrc} ) => {
                           marginTop: '2vh',
                           boxShadow: '2px 3px 2px #dcdcdc',
                           display: 'flex-inline'
-
                         }}
+                        onClick={()=>onChecked(srcurl)}
                         // src={`${srcurl}`}
                         src='https://shared-comic.pstatic.net/thumb/webtoon/783053/thumbnail/thumbnail_IMAG21_d7732f14-26da-4e35-8762-660cc87b53f1.jpg'
                       >
                       </img>
+                      </>
                     
                   )
                 })

@@ -40,7 +40,7 @@ const TabMenu = styled.ul`
 `;
 
 
-const Tab = ({getImage, inputValue}) => {
+const Tab = ({getImage, inputValue, oneImage}) => {
 
     const menuArr = [
         { name: '월', content: '월요일만화' },
@@ -54,75 +54,75 @@ const Tab = ({getImage, inputValue}) => {
     ];
     let monArr=[
         [
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }
+            {title:'월이번만화', author:'무명1',synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'월삼번만화',author:'무명2', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'월요사번만화',author:'무명3', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'월요일오번만화',author:'무명4', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'월우렁뤙ㄹ일번만화',author:'무명5', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'월육번만화', author:'무명6',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'월칠번만화',author:'무명7', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'월워러ㅜㄹ팔번만화', author:'무명8',synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' }
         ],
 
         [
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'화화화이번만화',author:'무명1', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'화요삼번만화',author:'무명2', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'일요화일번만화',author:'무명3', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'화요일사번만화',author:'무명4', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'화여일오번만화',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'화요일팔번만화', author:'무명6',synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'화요일육번만화', author:'무명7',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'화요오오오ㅗ옹칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
         ],
         [
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'이번만화',author:'무명1', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'팔번만화',author:'무명2', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화',author:'무명3', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'사번만화',author:'무명4', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'오번만화',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'삼번만화', author:'무명6',synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'육번만화',author:'무명7',synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
         ],
         [
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'오번만화',author:'무명1', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'이번만화',author:'무명2', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'사번만화',author:'무명3', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화',author:'무명4', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'삼번만화',author:'무명5', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'팔번만화',author:'무명6', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화', author:'무명7',synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'육번만화',author:'무명8', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
         ],
         [
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'삼번만화',author:'무명1', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'사번만화',author:'무명2', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'오번만화',author:'무명4', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'팔번만화',author:'무명5', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'일번만화',author:'무명6', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'육번만화',author:'무명7', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
         ],
         [
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'육번만화',author:'무명1', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'일번만화',author:'무명2', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'삼번만화',author:'무명4', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'오번만화',author:'무명5', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'팔번만화',author:'무명6', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'사번만화',author:'무명7', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화',author:'무명8', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
         ],
         [
-            {title:'삼번만화', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
-            {title:'일번만화', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
-            {title:'이번만화', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
-            {title:'팔번만화', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
-            {title:'사번만화', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
-            {title:'칠번만화', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
-            {title:'육번만화', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
-            {title:'오번만화', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
+            {title:'삼번만화',author:'무명1', synopis:'testsetestsetestset3' , img:'./img/스치면 인연 스며들면 사랑.jpg',color:''},
+            {title:'일번만화',author:'무명2', synopis:'testsetestsetestset1' , img: './img/나쁜 마법사의 꿈.jpg', color:''},
+            {title:'이번만화',author:'무명3', synopis:'testsetestsetestset2' , img:'./img/별빛 커튼콜.jpg' , color:''},
+            {title:'팔번만화',author:'무명4', synopis:'testsetestsetestset8' , img:'./img/산의 시간.jpg',color:'' },
+            {title:'사번만화',author:'무명5', synopis:'testsetestsetestset4' , img:'./img/이런 미친 엔딩.jpg',color:''},
+            {title:'칠번만화',author:'무명6', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
+            {title:'육번만화',author:'무명7', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
+            {title:'오번만화',author:'무명8', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
         ],
         [
 
@@ -137,10 +137,11 @@ const Tab = ({getImage, inputValue}) => {
     // const [selectImagesrcList, setSelectImagesrcList] = useState([]);
     const [selectIdx, setSelectIdx] = useState(0);
     const [selectImg, setSelectImg] = useState('');
+    const [selectToon, setSelectToon] = useState();
     const [monArrTest, setMonArrTest] = useState(monArr)
     const [, updateState] = useState(); // 상태 변수는 선언하지 않는다
     const forceUpdate = useCallback(() => updateState({}), []);
-    
+    const [tempImage, setTempImage] =useState(oneImage);
     const imgRef = useRef([])
     const modalRef = useRef([])
 
@@ -183,16 +184,18 @@ const Tab = ({getImage, inputValue}) => {
 
         console.log(tmpList)
         setMonArrTest(tmpList)
+        
         forceUpdate()
     }
 
-
-    const showModal = (img, idx) => {
+    const showModal = (img, idx,toon) => {
         setSelectIdx(idx)
         setSelectImg(img)
+        setSelectToon(toon)
     }
 
     return (
+        
         <>
             <div 
             style={{
@@ -220,6 +223,7 @@ const Tab = ({getImage, inputValue}) => {
                         )
                     })}
                 </TabMenu>
+                
                 <div className="box1" style={{}}>
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px', marginLeft:'2.7%' , float:'left',}}>
@@ -235,7 +239,7 @@ const Tab = ({getImage, inputValue}) => {
                                                     width: '200px',
                                                     border: i.color,
                                                     margin: '8px'}} 
-                                            onClick={() => {showModal(i.img, idx); setShow(true);}}
+                                            onClick={() => {showModal(i.img, idx, i); setShow(true);}}
                                             ref={(el) => imgRef.current[idx] = el} />
                                         :
                                         <img src={require(`${i.img}`) } 
@@ -245,16 +249,21 @@ const Tab = ({getImage, inputValue}) => {
                                                     border: i.color,
                                                     margin: '8px'
                                             }}
-                                            onClick={()=>{setFlag(idx); onChecked(i.img)}}
+                                            onClick={
+                                                i.img==oneImage?
+                                                    setFlag(idx)
+                                                :
+                                                    ()=>{setFlag(idx); onChecked(i.img)}
+                                            }
                                             ref={(el) => imgRef.current[idx] = el} />}
                                         {/* <span style={{padding:'8px'}}/> */}
                                     </>
                                 )
                             })
                         }
-                        <Modal show={show} 
+                        <Modal show={show} selectToon={selectToon}
                                 onChecked={() => onChecked(selectImg)}
-                                setFlag ={()=>setFlag(selectIdx)} 
+                                setFlag ={()=>setFlag(selectIdx)}
                                 onClose={() => setShow(false)} />
                     </div>
                 </div>
