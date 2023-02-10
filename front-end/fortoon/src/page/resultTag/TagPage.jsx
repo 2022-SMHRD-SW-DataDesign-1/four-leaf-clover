@@ -1,6 +1,5 @@
 import React from 'react'
 import { Carousel } from './MyCarousel'
-import Button from './TrunPageButton'
 
 const TagPage = () => {
 
@@ -16,7 +15,6 @@ const TagPage = () => {
     return (
         <div>
         <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
-        <Button/>
         </div>
     )
 }

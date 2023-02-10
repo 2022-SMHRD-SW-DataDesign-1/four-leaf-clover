@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import './css/MyCarousel.scss';
+import Button from './TrunPageButton'
 
 // const isEqual = require("react-fast-compare");
 
@@ -10,6 +11,8 @@ export function Carousel(props) {
   const [slideCurrent, setSlideCurrent] = useState(-1);
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState('0px');
+  const [cardLeftMove, setCardLeftMove] = useState(false);
+  const [cardRightMove, setCardRightMove] = useState(false);
   const intervalRef = useRef(null);
   const nextRef = useRef();
   const handlers = useSwipeable({
@@ -177,34 +180,45 @@ export function Carousel(props) {
     return sliderClass;
   };
 
+  let changeLeftStatus = () => setCardLeftMove(!cardLeftMove)
+  let changeRightStatus = () => setCardRightMove(!cardRightMove)
+
+  useEffect(() => {
+    console.log('왼쪽으로')
+    slideLeft()
+  },[cardLeftMove])
+
+  useEffect(() => {
+    console.log('오른쪽으로')
+    slideRight()
+  },[cardRightMove])
+
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
-          {slides && slides.length > 0
-                && <div className="slider-container" >
+      {slides && slides.length > 0 && <div className="slider-container" >
+        <div className="slider-content">
+          {slides.map((slider, index) => (
+            <div className={slider.class} key={index}>
+              <div className={sliderClass('left')} onClick={slideLeft}>
+                <div>
+                  <i className="fa fa-arrow-left"></i>
+                </div>
+              </div>
+                <div className={sliderClass('right')} onClick={slideRight} ref={nextRef}>
+                  <div >
+                    <i className="fa fa-arrow-right"></i>
+                  </div>
+                </div>
 
-                  <div className="slider-content">
-                      {slides.map((slider, index) => (
-                                <div className={slider.class} key={index}>
-                                    <div className={sliderClass('left')} onClick={slideLeft}>
-                                        <div>
-                                            <i className="fa fa-arrow-left"></i>
-                                        </div>
-                                    </div>
-                                    <div className={sliderClass('right')} onClick={slideRight} ref={nextRef}>
-                                        <div >
-                                            <i className="fa fa-arrow-right"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className="slider-single-content">
-                                        {slider.element}
-                                    </div>
-                                </div>
-                      ))}
-                    </div>
-
-                </div>}
+                <div className="slider-single-content">
+                  {slider.element}
+                </div>
+            </div>
+          ))}
         </div>
+      </div>}
+      <Button slideLeft={changeLeftStatus} slideRight={changeRightStatus} />
+    </div>
   );
 }
 Carousel.propTypes = {

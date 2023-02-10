@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel } from './MyCarousel'
-import Button from './TrunPageButton'
 import ApiService from "../../ApiService";
 
 const Toonpage = () => {
@@ -37,7 +36,6 @@ const Toonpage = () => {
     return (
         <div>
             <Carousel slides={slides} autoplay={false} interval={1000} arrows={false}></Carousel>
-            <Button />
         </div>
     )
 }

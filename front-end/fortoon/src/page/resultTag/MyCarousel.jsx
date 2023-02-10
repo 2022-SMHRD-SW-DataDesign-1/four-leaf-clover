@@ -3,6 +3,7 @@ import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import './css/MyCarousel.scss';
 import ApiService from '../../ApiService';
+import Button from './TrunPageButton'
 
 // const isEqual = require("react-fast-compare");
 
@@ -12,6 +13,8 @@ export function Carousel(props) {
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState('0px');
   const [tagData, setTagData] = useState([]);
+  const [cardLeftMove, setCardLeftMove] = useState(false);
+  const [cardRightMove, setCardRightMove] = useState(false);
   const intervalRef = useRef(null);
   const nextRef = useRef();
   const handlers = useSwipeable({
@@ -192,62 +195,71 @@ export function Carousel(props) {
     return sliderClass;
   };
 
+  let changeLeftStatus = () => setCardLeftMove(!cardLeftMove)
+  let changeRightStatus = () => setCardRightMove(!cardRightMove)
+
+  useEffect(() => {
+    console.log('왼쪽으로')
+    slideLeft()
+  },[cardLeftMove])
+
+  useEffect(() => {
+    console.log('오른쪽으로')
+    slideRight()
+  },[cardRightMove])
 
  const [num, setNum] = useState(0);
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
-          {slides && slides.length > 0
-                && <div className="slider-container" >
+      {slides && slides.length > 0 && <div className="slider-container" >
+        <div className="slider-content">
+          {slides.map((slider, index) => (
+            <div className={slider.class} key={index}>
+                <div className={sliderClass('left')} onClick={slideLeft}>
+                    <div>
+                        <i className="fa fa-arrow-left"></i>
+                    </div>
+                </div>
+                <div className={sliderClass('right')} onClick={slideRight} ref={nextRef}>
+                    <div >
+                        <i className="fa fa-arrow-right"></i>
+                    </div>
+                </div>
 
-                  <div className="slider-content">
-                      {slides.map((slider, index) => (
-                                <div className={slider.class} key={index}>
-                                    <div className={sliderClass('left')} onClick={slideLeft}>
-                                        <div>
-                                            <i className="fa fa-arrow-left"></i>
-                                        </div>
-                                    </div>
-                                    <div className={sliderClass('right')} onClick={slideRight} ref={nextRef}>
-                                        <div >
-                                            <i className="fa fa-arrow-right"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className="slider-single-content">
-                                        {slider.element}
-                                        <div className='slider-tagsets'>
-                                          <div className='slider-ment'>
-                                              언제 어디서든
-                                          </div>
-
-                                          <div className='test1'>
-                                          {tagData.map((tag,index)=> {
-                                            
-                                            if(index<11)
-                                            {
-                                              return(
-                                                <div className='slider-tagset' >
-                                                  <div className='slider-tag' style={{
-                                                  flex: "none",
-                                                  display: "inline-flex",
-                                                  alignItems: "center"}}>
-                                                  #{tagData[index]}
-                                                  </div>
-                                                </div>
-                                              )    
-                                            }    
-                                           
-                                          })}
-                                         </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                      ))}
+                <div className="slider-single-content">
+                  {slider.element}
+                  <div className='slider-tagsets'>
+                    <div className='slider-ment'>
+                        언제 어디서든
                     </div>
 
-                </div>}
-        </div>
+                    <div className='test1'>
+                      {tagData.map((tag,index)=> {
+                        
+                        if(index<11)
+                        {
+                          return(
+                            <div className='slider-tagset' >
+                              <div className='slider-tag' style={{
+                              flex: "none",
+                              display: "inline-flex",
+                              alignItems: "center"}}>
+                              #{tagData[index]}
+                              </div>
+                            </div>
+                          )    
+                        }    
+                        
+                      })}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          ))}
+       </div>
+      </div>}
+      <Button slideLeft={changeLeftStatus} slideRight={changeRightStatus} />
+    </div>
   );
 }
 Carousel.propTypes = {
