@@ -7,7 +7,7 @@ const Footer = () => {
                 {backgroundColor:"#F6F2F5", 
                 display:'flex', 
                 width: "100%",
-                height: "10vh",
+                height: "14vh",
                 bottom:'0'
                 }}>
                 <h5 style={{color:"gray", marginLeft: "1rem", paddingTop: "1rem"}}>

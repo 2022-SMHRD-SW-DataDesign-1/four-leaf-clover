@@ -4,7 +4,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -32,7 +34,8 @@ public class WebToonController {
         InputStream imageStream = new FileInputStream(imagePath);
         byte[] imageByteArray = IOUtils.toByteArray(imageStream);
         imageStream.close();
-        return new ResponseEntity<byte[]>(imageByteArray, HttpStatus.OK);
+        Encoder encoder = Base64.getEncoder();
+        return new ResponseEntity<byte[]>(encoder.encode(imageByteArray), HttpStatus.OK);
     }
 
     @GetMapping(value = "/genre")

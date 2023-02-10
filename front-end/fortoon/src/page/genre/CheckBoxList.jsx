@@ -4,7 +4,7 @@ import Checkbox from "./CheckBox";
 import GlobalStyles from "./GlobalStyles";
 import './CheckBoxListStyle.css';
 import ApiService from "../../ApiService"
-import Button from './TrunPageButton';
+import TurnPageButton from './TurnPageButton';
 
 const CheckBoxList = () => {
 
@@ -69,7 +69,7 @@ const CheckBoxList = () => {
               </div>
             </form>
         </div>
-        <Button />
+        <TurnPageButton/>
     </main>
   );
 }

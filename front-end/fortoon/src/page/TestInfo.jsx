@@ -2,13 +2,15 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import ApiService from '../ApiService'
+import Header from '../component/Header'
+import Footer from '../component/Footer'
 
 const TestInfo = () => {
 
     const [loadingImg, setLoadingImg] = useState()
     
     useEffect(() => {
-        ApiService.loading()
+        ApiService.imageLoad("clover_loading.gif")
         .then(res => {
             setLoadingImg(res.data)
         })
@@ -18,10 +20,13 @@ const TestInfo = () => {
     },[])
 
     return (
-        <div>
-           <img src={loadingImg}/>
-        </div>
-        
+        <>
+            <Header></Header>
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height:'500px', marginBottom:'1vh',marginTop: '4vh'}}>
+                <img src={`data:image/;base64,${loadingImg}`} style={{width: '500px', height:'500px'}}/>
+            </div>
+            <Footer></Footer>
+        </>
     )
 }
 
