@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clover.fortoon.mapper.WebToonMapper;
 import com.clover.fortoon.model.DrawingStyleDTO;
+import com.clover.fortoon.model.SynopsisDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -72,5 +73,27 @@ public class WebToonController {
 
         rcmTag = rcmTag.stream().distinct().collect(Collectors.toList());
         return rcmTag;
+    }
+
+    @GetMapping("/synopsis")
+    private List<List<SynopsisDTO>> synopsisList(){
+        System.out.println("synopsis 페이지에 필요한 값 불러오기");
+
+        List<List<SynopsisDTO>> resultList = new ArrayList<List<SynopsisDTO>>();
+        List<SynopsisDTO> dto = webToonMapper.synopsisList();
+
+        String dayArr[] = {"월","화","수","목","금","토","일"};
+
+        for (String day : dayArr) {
+            List<SynopsisDTO> tmpList = new ArrayList<SynopsisDTO>();
+            for (SynopsisDTO synopsisDTO : dto) {
+                if (synopsisDTO.getWebtoon_day().contains(day)) {
+                    tmpList.add(synopsisDTO);
+                }
+            }
+            resultList.add(tmpList);
+        }
+
+        return resultList;
     }
 }

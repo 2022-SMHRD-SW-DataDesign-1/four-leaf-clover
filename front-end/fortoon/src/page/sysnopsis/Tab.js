@@ -145,6 +145,8 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
     const imgRef = useRef([])
     const modalRef = useRef([])
 
+    console.log(monArrTest)
+
     const setSearchMenu = () => {
         if(inputValue != ''){
             selectMenuHandler(7)
@@ -228,7 +230,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px', marginLeft:'2.7%' , float:'left',}}>
                         {
-                            monArrTest2[currentTab].map((i, idx)=>{
+                            monArrTest2[currentTab] == undefined? null : monArrTest2[currentTab].map((i, idx)=>{
                             
                                 return (
                                     <>

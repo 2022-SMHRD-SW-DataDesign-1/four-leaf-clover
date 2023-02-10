@@ -50,7 +50,7 @@ function ToonChoice()  {
   useEffect(()=>{
     ApiService.drawingStyle()
     .then(res =>{
-      console.log(res.data)
+      // console.log(res.data)
       let ImgStyle =[]
       let rowList =[]
       res.data.map((value, index)=>{

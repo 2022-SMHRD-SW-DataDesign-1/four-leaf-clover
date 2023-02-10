@@ -5,6 +5,7 @@ import Tab from "./Tab";
 import Locker from './Locker';
 import { type } from "@testing-library/user-event/dist/type";
 import Button from './TrunPageButton';
+import ApiService from "../../ApiService";
 
 
 
@@ -83,17 +84,42 @@ const Search1 = () => {
         {title:'칠번만화',author:'무명6', synopis:'testsetestsetestset7' , img:'./img/프로듀스 온리원.jpg',color:''},
         {title:'육번만화',author:'무명7', synopis:'testsetestsetestset6' , img:'./img/주부 육성중.jpg',color:''},
         {title:'오번만화',author:'무명8', synopis:'testsetestsetestset5' , img:'./img/6월의 라벤더.jpg' ,color:''},
-    ],
-    [
     ]    
 ]
   const [inputValue, setInputValue] = useState('')
   const [isHaveInputValue, setIsHaveInputValue] = useState(false)
   const [dropDownList, setDropDownList] = useState()
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
-  const [monArrTest, setMonArrTest] = useState(monArr) // 얘가 tab에 값넘겨줄 값 변형해줄 친구
+  const [monArrTest, setMonArrTest] = useState([]) // 얘가 tab에 값넘겨줄 값 변형해줄 친구
   const [wholeTextArray, setWholeTextArray] = useState([])
 
+  useEffect(() => {
+    ApiService.synopsis()
+    .then((res) => {
+      let tmpList = []
+      res.data.map((day) => {
+        let dayList = []
+        day.map((obj) => {
+          let tmpObj = {
+            'num': obj.webtoon_num,
+            'day': obj.webtoon_day,
+            'title': obj.webtoon_title,
+            'author': obj.webtoon_writer,
+            'synopis': obj.webtoon_synopsis,
+            'tag': obj.webtoon_tag,
+            'img': obj.webtoon_big_thumbnail_url,
+            'color': ''
+          }
+          dayList.push(tmpObj)
+        })
+        tmpList.push(dayList)
+      })
+      setMonArrTest(tmpList)
+    })
+    .catch((err) => {
+      console.log("axios 에러", err)
+    })
+  },[])
 
   const title = monArr.map((element) => element.map((element2)=>element2.title)); // 이러면 얘가 각 요일별 웹툰 리스트를 가지고 있음 7번 index는 비었으니까 이거를 검색 된 결과를 넣어주면 되겠다 그치
   const flatTitle = title.flat() // 다차원 배열 하나로 합쳐주기
@@ -294,8 +320,6 @@ const Search1 = () => {
           </div> */}
         </div>
         <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} monArrTest={monArrTest}/>
-
-              
       </div>   
       <Button />
       </>

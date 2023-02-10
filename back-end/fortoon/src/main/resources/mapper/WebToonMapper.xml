@@ -19,4 +19,9 @@
 	<select id="tagList" resultType="String">
 		select webtoon_tag from tbl_webtoon
 	</select>
+
+	<select id="synopsisList" resultType="com.clover.fortoon.model.SynopsisDTO">
+		select webtoon_num, webtoon_title, webtoon_writer, webtoon_tag, webtoon_synopsis, webtoon_day, webtoon_big_thumbnail_url 
+		from tbl_webtoon
+	</select>
 </mapper>

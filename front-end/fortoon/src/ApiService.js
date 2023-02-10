@@ -23,6 +23,10 @@ class ApiService {
     imageLoad(filename){
         return axios.get(USER_API_BASE_URL+'/imagePath/'+filename)
     }
+
+    synopsis(){
+        return axios.get(USER_API_BASE_URL+'/synopsis')
+    }
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
     // }
