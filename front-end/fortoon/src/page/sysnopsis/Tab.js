@@ -130,7 +130,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
 
         
     // ]
-
+    const [monArrTest2, setMonArrTest2] = useState([])
     const [currentTab, setCurrentTab] = useState(0);
     const [show, setShow] = useState(false);
     // const [color, setColor] = useState('');
@@ -138,14 +138,16 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
     const [selectIdx, setSelectIdx] = useState(0);
     const [selectImg, setSelectImg] = useState('');
     const [selectToon, setSelectToon] = useState();
-    const [monArrTest2, setMonArrTest] = useState(monArrTest)
     const [, updateState] = useState(); // 상태 변수는 선언하지 않는다
     const forceUpdate = useCallback(() => updateState({}), []);
     const [tempImage, setTempImage] =useState(oneImage);
     const imgRef = useRef([])
     const modalRef = useRef([])
 
-    console.log(monArrTest)
+    console.log("탭에서 가져온 값임.",monArrTest)
+
+    
+    console.log("넘어온 값을 여기다 담았지 ",monArrTest2)
 
     const setSearchMenu = () => {
         if(inputValue != ''){
@@ -155,10 +157,10 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
     }
 
     useEffect(setSearchMenu, [inputValue])
+    useEffect(()=>setMonArrTest2(monArrTest))
 
     const onChecked = (choiceImg)=>{
-        console.log('onchekc함수지롱 이미지를 search1으로 넘기지롱')
-        // console.log('img src list',selectImagesrcList)
+        
         // 부모 태그에 값을 넣어준다
         getImage(choiceImg)
     }
@@ -184,8 +186,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
             tmpList[currentTab][idx].color = ''
         }
 
-        console.log(tmpList)
-        setMonArrTest(tmpList)
+        setMonArrTest2(tmpList)
         
         forceUpdate()
     }
@@ -230,12 +231,13 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px', marginLeft:'2.7%' , float:'left',}}>
                         {
-                            monArrTest2[currentTab] == undefined? null : monArrTest2[currentTab].map((i, idx)=>{
-                            
+                            (monArrTest2[currentTab] == undefined)?
+                             <div>loading</div>:
+                             monArrTest2[currentTab].map((i, idx)=>{
                                 return (
                                     <>
                                         {i.color == ''?
-                                        <img src={require(`${i.img}`)} 
+                                        <img src={`${i.img}`} 
                                             style={{boxShadow: '2px 3px 2px #dcdcdc',
                                                     borderRadius: '10%',
                                                     width: '200px',
@@ -244,7 +246,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                                             onClick={() => {showModal(i.img, idx, i); setShow(true);}}
                                             ref={(el) => imgRef.current[idx] = el} />
                                         :
-                                        <img src={require(`${i.img}`) } 
+                                        <img src={`${i.img}` } 
                                             style={{boxShadow: '2px 3px 2px #dcdcdc',
                                                     borderRadius: '10%',
                                                     width: '200px',

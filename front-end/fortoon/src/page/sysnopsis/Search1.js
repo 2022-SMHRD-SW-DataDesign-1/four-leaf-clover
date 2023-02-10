@@ -319,7 +319,10 @@ const Search1 = () => {
             ))}
           </div> */}
         </div>
-        <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} monArrTest={monArrTest}/>
+        {/* { data && <Component data={data} /> } */}
+        {
+          monArrTest && <Tab setImagesrc={setImagesrc} getImage={getImage} inputValue={inputValue} oneImage={oneImage} monArrTest={monArrTest}/>
+        }
       </div>   
       <Button />
       </>
