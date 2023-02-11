@@ -3,8 +3,9 @@
 # Fortoon
 
 ## 👀 서비스 소개
-* 서비스명:  
-* 서비스설명: 
+* 서비스명: For toon
+* 서비스설명: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
+
 <br>
 
 ## 📅 프로젝트 기간
@@ -74,15 +75,15 @@
 <br>
 
 ## 📌 유스케이스
-<img src=""/>
+<img src="https://user-images.githubusercontent.com/112142386/218247507-d2e2bacf-25b2-466d-ac6b-66c439c25d2d.png"/>
 <br>
 
 ## 📌 서비스 흐름도
-<img src=""/>
+<img src="https://user-images.githubusercontent.com/112142386/218247430-57449bfb-0771-4d97-a06d-561ea1fe0a95.png"/>
 <br>
 
 ## 📌 ER다이어그램
-<img src=""/>
+<img src="https://user-images.githubusercontent.com/112142386/218247394-6ac57ad6-a8a7-4f61-8cbb-b24970324d4d.png"/>
 <br>
 
 ## 🖥 화면 구성
