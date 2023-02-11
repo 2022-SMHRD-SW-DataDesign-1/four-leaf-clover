@@ -11,32 +11,6 @@ const Toonpick = styled.div`
   height: auto; 
 
 `;
-// const ImgStyle = [
-//   [
-//     {id: 1,img: "./img/마루는_강쥐.jpg" , color:''},
-//     {id: 2,img: "./img/싸움독학.jpg", color:''},
-//     {id: 3,img: "./img/참교육.jpg", color:''},
-//     {id: 4,img: "./img/아홉수 우리들.jpg", color:''}
-//   ],
-//   [
-//     {id: 5,img: "./img/사형소년.jpg", color:''},
-//     {id: 6,img: "./img/여신강림.jpg", color:''},
-//     {id: 7,img: "./img/재벌집막내아들.jpg", color:''},
-//     {id: 8,img: "./img/연애혁명.jpg" , color:''}
-//   ],
-//   [
-//     {id: 9,img: "./img/마루는_강쥐.jpg", color:''},
-//     {id: 10,img: "./img/싸움독학.jpg", color:''},
-//     {id: 11,img: "./img/참교육.jpg" ,color:''},
-//     {id: 12,img: "./img/아홉수 우리들.jpg", color:''}
-//   ],
-//   [
-//     {id: 13,img: "./img/사형소년.jpg", color:''},
-//     {id: 14,img: "./img/여신강림.jpg", color:''},
-//     {id: 15,img: "./img/재벌집막내아들.jpg", color:''},
-//     {id: 16,img: "./img/연애혁명.jpg", color:''}
-//   ]
-// ]
 
 function ToonChoice()  {
   const [show, setShow] = React.useState(false);
@@ -50,7 +24,7 @@ function ToonChoice()  {
   useEffect(()=>{
     ApiService.drawingStyle()
     .then(res =>{
-      // console.log(res.data)
+      console.log(res.data)
       let ImgStyle =[]
       let rowList =[]
       res.data.map((value, index)=>{
@@ -58,6 +32,7 @@ function ToonChoice()  {
           id : index,
           img : value.webtoon_thumbnail_url,
           num : value.webtoon_num,
+          path : value.filename,
           color : ''
         }
         rowList.push(setImg)
@@ -67,25 +42,14 @@ function ToonChoice()  {
           ImgStyle.push(rowList)
           rowList =[]
         }
-
-        setNewImgStyle(ImgStyle)
-        // console.log(ImgStyle);
-
       })
+      setNewImgStyle(ImgStyle)
+      console.log(ImgStyle);
     })
     .catch(err => {
       console.log("axios 에러", err)
     })
   },[])
-
-  // const [test, setTest] = useState();
-
-
-  //  useEffect(function(){
-  //  console.log('Test')
-  //  console.log(newImgStyle); 
-
-  // },[newImgStyle])
 
   function test(index1, index2){
     let list = newImgStyle;
@@ -143,7 +107,6 @@ function ToonChoice()  {
               <Modal 
               show={show} 
               onClose={() => setShow(false)} 
-              // onColor={() => setColor(true)}  
               onChoice1={choice1}
               onChoice2={choice2}
               imgList = {newImgStyle}

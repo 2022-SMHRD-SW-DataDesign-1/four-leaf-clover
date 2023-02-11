@@ -22,8 +22,8 @@ const TestInfo = () => {
     return (
         <>
             <Header></Header>
-            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height:'500px', marginBottom:'1vh',marginTop: '4vh'}}>
-                <img src={`data:image/;base64,${loadingImg}`} style={{width: '500px', height:'500px'}}/>
+            <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height:'700px', marginBottom:'1vh',marginTop: '4vh'}}>
+                <img src={`data:image/;base64,${loadingImg}`} style={{width: '700px', height:'700px'}}/>
             </div>
             <Footer></Footer>
         </>

@@ -16,6 +16,10 @@
 		select webtoon_num, webtoon_thumbnail_url from tbl_webtoon
 	</select>
 
+	<select id="getdrawingStyleInfo" parameterType="String" resultType="com.clover.fortoon.model.DrawingStyleDTO">
+		select webtoon_num, webtoon_thumbnail_url from tbl_webtoon where webtoon_title like #{filename}
+	</select>
+
 	<select id="tagList" resultType="String">
 		select webtoon_tag from tbl_webtoon
 	</select>

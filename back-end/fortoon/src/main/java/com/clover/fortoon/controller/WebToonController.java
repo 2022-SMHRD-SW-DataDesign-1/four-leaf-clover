@@ -1,11 +1,13 @@
 package com.clover.fortoon.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.Map;
 import java.util.Base64.Encoder;
 import java.util.stream.Collectors;
 
@@ -17,11 +19,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clover.fortoon.mapper.WebToonMapper;
 import com.clover.fortoon.model.DrawingStyleDTO;
 import com.clover.fortoon.model.SynopsisDTO;
+import com.clover.fortoon.model.WebToonDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -33,6 +38,16 @@ public class WebToonController {
     @GetMapping(value = "/imagePath/{imageName}", produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
     private ResponseEntity<byte[]> testImagePrint(@PathVariable("imageName") String imageName) throws IOException {
         String imagePath = "C:/FeatureImages/"+imageName;
+        InputStream imageStream = new FileInputStream(imagePath);
+        byte[] imageByteArray = IOUtils.toByteArray(imageStream);
+        imageStream.close();
+        Encoder encoder = Base64.getEncoder();
+        return new ResponseEntity<byte[]>(encoder.encode(imageByteArray), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/modalImagePath/{imageName}", produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
+    private ResponseEntity<byte[]> modalImagePrint(@PathVariable("imageName") String imageName) throws IOException {
+        String imagePath = "C:/FeatureImages/ImageCategory/"+imageName;
         InputStream imageStream = new FileInputStream(imagePath);
         byte[] imageByteArray = IOUtils.toByteArray(imageStream);
         imageStream.close();
@@ -55,7 +70,24 @@ public class WebToonController {
     @GetMapping("/drawingStyle")
     private List<DrawingStyleDTO> drawingStyleList(){
         System.out.println("그림체url 및 웹툰번호 불러오기");
-        return webToonMapper.drawingStyleList();
+
+        List<DrawingStyleDTO> result = new ArrayList<DrawingStyleDTO>();
+        String DATA_DIRECTORY = "C:/FeatureImages/ImageCategory/";
+        File dir = new File(DATA_DIRECTORY);
+
+        String[] filenames = dir.list();
+        for (int i = 0; i < filenames.length; i++) {
+            filenames[i] = filenames[i].replace("_", "%");
+            filenames[i] = filenames[i].replace(".png", "");
+            DrawingStyleDTO dto = new DrawingStyleDTO();
+            dto = webToonMapper.getdrawingStyleInfo(filenames[i]);
+            filenames[i] = filenames[i].replace("%", "_");
+            filenames[i] += ".png";
+            dto.setFilename(filenames[i]);
+            result.add(dto);
+        }
+
+        return result;
     }
 
     @GetMapping("/tag")
@@ -95,5 +127,18 @@ public class WebToonController {
         }
 
         return resultList;
+    }
+    
+    @PostMapping("/calcResult")
+    private List<List<WebToonDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
+        List<String> genre = params.get(0).get("genre");
+        List<String> drawingStyle = params.get(1).get("drawingStyle");
+        List<String> synopsis = params.get(2).get("synopsis");
+
+        // 여기서 추천 알고리즘 계산 해야함
+
+        List<List<WebToonDTO>> test = new ArrayList<List<WebToonDTO>>();
+
+        return test;
     }
 }

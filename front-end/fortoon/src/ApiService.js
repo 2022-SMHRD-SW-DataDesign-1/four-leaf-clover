@@ -24,8 +24,16 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/imagePath/'+filename)
     }
 
+    modalImageLoad(filename){
+        return axios.get(USER_API_BASE_URL+'/modalImagePath/'+filename)
+    }
+
     synopsis(){
         return axios.get(USER_API_BASE_URL+'/synopsis')
+    }
+
+    calcResult(result){
+        return axios.post(USER_API_BASE_URL+'/calcResult', result)
     }
     // fetchUsers(){
     //     return axios.get(USER_API_BASE_URL);
