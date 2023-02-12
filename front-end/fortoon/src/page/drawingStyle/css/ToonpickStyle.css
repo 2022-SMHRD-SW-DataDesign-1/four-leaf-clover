@@ -9,8 +9,8 @@ h1 {
 /* 박스 */
 .box{
     overflow:auto; 
-    height:500px;
-    width: 730px;
+    height: 50vh;
+    width: 50vw;
     padding: 1.5rem;
     border: 2px solid gainsboro;
     border-radius: 0.5rem;
@@ -41,8 +41,13 @@ h1 {
 
 .box-row > img{
     box-shadow: 2px 3px 2px #dcdcdc;
-    border-radius: 35px;
-    margin: 20px;
+    border-radius: 2vw;
+    margin-top : 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 8.5vw;
+    height: 7vw;
+    box-sizing: border-box;
     cursor: pointer;
 }
 

@@ -74,7 +74,6 @@ const Search1 = () => {
       tempList[7] = [...new Set(tempList[7])] 
 
       setMonArrTest(tempList)
-      console.log(tempList[7],"dsajflmfawlkmfdkwndqwjhfaekslaksjflwjafnklws")
       
     }
   }
@@ -155,7 +154,7 @@ const Search1 = () => {
                 <Input 
                 style={{fontFamily:'Cafe24SsurroundAir'}}
                 type='text'
-                placeholder='#태그 / 웹툰제목을 검색하세요.'
+                placeholder='웹툰제목을 검색하세요.'
                 value={inputValue}
                 onChange={changeInputValue}
                 onKeyUp={handleDropDownKey}
@@ -163,7 +162,7 @@ const Search1 = () => {
               <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
             </InputBox>
               {isHaveInputValue && (
-                <DropDownBox style={{width:'63.68vw', marginRight:'2rem', position:'absolute', zIndex:'2',  marginLeft: '50.2vh', marginTop: '4.9vh'}}>
+                <DropDownBox className="inputBox" style={{width:'63.68vw', height:'30vh', position:'absolute', zIndex:'2',  marginLeft: '51.8vh', marginTop: '4.9vh', overflow: "auto"}}>
                   {dropDownList.length === 0 && (
                     <DropDownItem style={{fontFamily:'Cafe24SsurroundAir'}}>해당하는 단어가 없습니다</DropDownItem>
                   )}

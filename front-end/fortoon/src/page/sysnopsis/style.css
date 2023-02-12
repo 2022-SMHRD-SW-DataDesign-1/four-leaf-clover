@@ -94,6 +94,35 @@
   background-color: rgb(198, 198, 241);
 }
 
+.box-tab{
+  overflow:auto; 
+  height:457px;
+  width: 65vw;
+  /* padding: 1.5rem; */
+  border: 2px solid gainsboro;
+  border-radius: 0.5rem;
+  margin: auto;
+  margin-top: -2.5vh;
+}
+
+.box-tab::-webkit-scrollbar {
+width: 8px;
+/* 스크롤바의 너비 */
+}
+
+.box-tab::-webkit-scrollbar-thumb {
+height: 30%;
+/* 스크롤바의 길이 */
+background: gainsboro;
+/* 스크롤바의 색상 */
+border-radius: 0.5rem;
+}
+
+.box-tab::-webkit-scrollbar-track {
+background: hsla(37, 97%, 58%, 0.102);
+/*스크롤바 뒷 배경 색상*/
+}
+
 .box1{
     overflow:auto; 
     height:457px;
@@ -103,7 +132,6 @@
     border-radius: 0.5rem;
     margin: auto;
     margin-top: -2.5vh; 
-    text-align: center;
 }
 
 .box1::-webkit-scrollbar {
@@ -127,12 +155,13 @@
 .box2{
   overflow:auto; 
   height: 494px;
-  width: 19.6vw;
+  /* width: 19.6vw; */
   /* padding: 1.5rem; */
   /* border: 2px solid gainsboro; */
   border-radius: 0.5rem;
   margin: auto;
   /* margin-top: -2.5vh;  */
+  text-align: center;
 }
 
 .box2::-webkit-scrollbar {
@@ -151,4 +180,22 @@ border-radius: 0.5rem;
 .box2::-webkit-scrollbar-track {
 background: hsla(37, 97%, 58%, 0.102);
 /*스크롤바 뒷 배경 색상*/
+}
+
+.inputBox::-webkit-scrollbar {
+  width: 8px;
+  /* 스크롤바의 너비 */
+}
+
+.inputBox::-webkit-scrollbar-thumb {
+  height: 30%;
+  /* 스크롤바의 길이 */
+  background: gainsboro;
+  /* 스크롤바의 색상 */
+  border-radius: 0.5rem;
+}
+
+.inputBox::-webkit-scrollbar-track {
+  background: hsla(37, 97%, 58%, 0.102);
+  /*스크롤바 뒷 배경 색상*/
 }

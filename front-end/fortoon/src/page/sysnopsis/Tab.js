@@ -134,7 +134,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                     })}
                 </TabMenu>
                 
-                <div className="box1" style={{}}>
+                <div className="box-tab" style={{textAlign: 'center'}}>
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
                     <div style={{ marginTop: '10px'}}>
                         {

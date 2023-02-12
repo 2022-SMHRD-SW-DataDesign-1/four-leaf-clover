@@ -30,8 +30,8 @@ const Locker = ( {imagesrc, getOneimage} ) => {
             marginLeft: '78px'
 
           }}>
-          <h1 style={{ fontSize: '25px' }}> 📁 내 보관함 </h1>
-          <div style={{width:'10px',display: 'inline' }}>
+          <h1 style={{ fontSize: '25px' }}> 선택한 웹툰 </h1>
+          <div style={{width:'100%',display: 'inline-flex', textAlign:'center', overflow: 'auto' }}>
             <div className='box2'>
               {
                 (src == './img/undefned' || src == '')
@@ -45,10 +45,11 @@ const Locker = ( {imagesrc, getOneimage} ) => {
                         style={{
                           width: '10vh',
                           borderRadius: '10%',
-                          marginLeft: '1rem',
-                          marginTop: '2vh',
+                          margin: '1vh',
+                          // marginLeft: '1rem',
+                          // marginTop: '2vh',
                           boxShadow: '2px 3px 2px #dcdcdc',
-                          display: 'flex-inline'
+                          display: 'inline-flex'
                         }}
                         onClick={()=>onChecked(srcurl)}
                         src={`${srcurl}`}
