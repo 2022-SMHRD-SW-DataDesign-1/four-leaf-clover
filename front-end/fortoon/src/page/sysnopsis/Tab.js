@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import styled from 'styled-components'
+import ApiService from '../../ApiService';
 import Modal from './Modal';
 import './style.css';
 
@@ -62,6 +63,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
     const forceUpdate = useCallback(() => updateState({}), []);
     const imgRef = useRef([])
     const modalRef = useRef([])
+    const [loadingImg, setLoadingImg] = useState('')
 
     const setSearchMenu = () => {
         if(inputValue != ''){
@@ -72,6 +74,15 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
 
     useEffect(setSearchMenu, [inputValue])
     useEffect(()=>setMonArrTest2(monArrTest))
+    useEffect(()=>{
+        ApiService.imageLoad('clover_loading.gif')
+        .then(res => {
+            setLoadingImg(res.data)
+        })
+        .catch(err => {
+            console.log('axios 에러', err)
+        })
+    },[])
 
     const onChecked = (choiceImg)=>{
         
@@ -139,7 +150,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                     <div style={{ marginTop: '10px'}}>
                         {
                             (monArrTest2[currentTab] == undefined)?
-                             <div>loading</div>:
+                             <div><img src={`data:image/;base64,${loadingImg}`} style={{width:'20vw', height:'20wh'}}></img></div>:
                              monArrTest2[currentTab].map((i, idx)=>{
                                 return (
                                     <>

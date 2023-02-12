@@ -4,12 +4,15 @@ import { useState } from 'react'
 import ApiService from '../ApiService'
 import Header from '../component/Header'
 import Footer from '../component/Footer'
+import {useNavigate} from 'react-router-dom'
 
 const TestInfo = () => {
 
     const [loadingImg, setLoadingImg] = useState()
+    const navigate = useNavigate();
     
     useEffect(() => {
+        navigate('/genre');
         ApiService.imageLoad("clover_loading.gif")
         .then(res => {
             setLoadingImg(res.data)
