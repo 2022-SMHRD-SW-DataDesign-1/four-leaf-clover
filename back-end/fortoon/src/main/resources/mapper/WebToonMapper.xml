@@ -28,4 +28,16 @@
 		select webtoon_num, webtoon_title, webtoon_writer, webtoon_tag, webtoon_synopsis, webtoon_day, webtoon_big_thumbnail_url 
 		from tbl_webtoon
 	</select>
+
+	<select id="webtoonList" resultType="com.clover.fortoon.model.WebToonDTO">
+		select *
+		from tbl_webtoon
+	</select>
+
+	<select id="featureValueList" resultType="com.clover.fortoon.model.FeatureValueDTO">
+		select *
+		from tbl_webtoonchrvl
+	</select>
+
+	
 </mapper>

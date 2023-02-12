@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ import com.clover.fortoon.mapper.WebToonMapper;
 import com.clover.fortoon.model.DrawingStyleDTO;
 import com.clover.fortoon.model.SynopsisDTO;
 import com.clover.fortoon.model.WebToonDTO;
+import com.clover.fortoon.model.FeatureValueDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -134,11 +136,45 @@ public class WebToonController {
         List<String> genre = params.get(0).get("genre");
         List<String> drawingStyle = params.get(1).get("drawingStyle");
         List<String> synopsis = params.get(2).get("synopsis");
-
         // 여기서 추천 알고리즘 계산 해야함
 
-        List<List<WebToonDTO>> test = new ArrayList<List<WebToonDTO>>();
+        // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
+        List<WebToonDTO> toons = webToonMapper.webtoonList();
+        List<WebToonDTO> filteredToon = new ArrayList<>();
+        // 1. 고른 장르로 필터링 해놓고 길이 구해보자
+        for (WebToonDTO tmp : toons){
+            for (String tmpgenre : genre) {
+                if(tmp.getWebtoon_genre().contains(tmpgenre)){
+                    filteredToon.add(tmp);
+                }
+            }
+        }
+        //  그렇게해서 장르로 한번 필터링한 웹툰 DTO 전체가 filtererd임.
+        System.out.println(filteredToon.size());
 
+        // 2. 이제 그림체로 필터린된 얘들을 가져와 보자
+        List<FeatureValueDTO> filteredDrawing = new ArrayList<>();
+        List<FeatureValueDTO> drawingFeatures =  webToonMapper.featureValueList();
+        
+        for(String tmp : drawingStyle){
+            for(FeatureValueDTO tmp2 : drawingFeatures){
+
+            }
+        }
+        for(FeatureValueDTO tmp : drawingFeatures){
+            for(String tmp2 : drawingStyle){
+                if(tmp.getWebtoon_num() == Integer.parseInt(tmp2) ){
+                    tmp.getChr_num();
+                    filteredDrawing.add(tmp);
+                }
+            }
+        }
+
+        System.out.println(filteredDrawing.size());
+
+        // 3. 고른 시놉시스 유사도를 계산하고
+
+        List<List<WebToonDTO>> test = new ArrayList<List<WebToonDTO>>();
         return test;
     }
 }
