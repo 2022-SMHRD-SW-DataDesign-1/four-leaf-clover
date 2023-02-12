@@ -12,10 +12,10 @@ const AppRouter = () => {
         <div>
             <BrowserRouter>
                 <Routes>
+                    <Route path="/genre" element={<GenrePage />} />
                     <Route path="/" element={<TestInfo />} />
                     <Route path="/resultTag" element={<ResultTag />} />
                     <Route path="/resultToon" element={<ResultToon />} />
-                    <Route path="/genre" element={<GenrePage />} />
                     <Route path="/synopsis" element={<SysnopsisPage />} />
                     <Route path="/drawingStyle" element={<DrawingStylePage />} />
                 </Routes>

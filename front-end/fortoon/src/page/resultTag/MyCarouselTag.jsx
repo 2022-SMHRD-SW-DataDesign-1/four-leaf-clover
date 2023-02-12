@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
-import './css/MyCarousel.scss';
+import './css/MyCarouselTag.scss';
 import ApiService from '../../ApiService';
 import Button from './TrunPageButton'
 
@@ -233,23 +233,16 @@ export function Carousel(props) {
                         언제 어디서든
                     </div>
 
-                    <div className='test1'>
+                    <div className='slider-tagset'>
                       {tagData.map((tag,index)=> {
-                        
                         if(index<11)
                         {
                           return(
-                            <div className='slider-tagset' >
-                              <div className='slider-tag' style={{
-                              flex: "none",
-                              display: "inline-flex",
-                              alignItems: "center"}}>
-                              #{tagData[index]}
-                              </div>
+                            <div className='slider-tag'>
+                            #{tag}
                             </div>
                           )    
                         }    
-                        
                       })}
                     </div>
                   </div>

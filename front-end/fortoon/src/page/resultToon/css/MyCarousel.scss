@@ -87,7 +87,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
         &.preactivede {
           z-index: 0;
           .slider-single-content {
-            filter: blur(7px);
+            filter: blur(10px);
             opacity: 1;
             transform: translateX(-110%) scale(0.6);
             
@@ -115,7 +115,7 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
           z-index: 0;
           .slider-single-content {
             filter: grayscale(100%);
-            filter: blur(7px);
+            filter: blur(10px);
             opacity: 1;
             transform: translateX(110%) scale(0.6);
             
@@ -136,31 +136,31 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
             align-items: center;
             justify-content: center;
             border-radius: 30px;
-            .slider-tagsets{
-              position: absolute;
-              z-index: 3;
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              margin-top: 30%;
-              .slider-tagset{
-                z-index: 4;
-                display: flex;
-                justify-content: flex-start;
-                padding-left: 15%;
-                .slider-tag{
-                  background-color: rgba(0, 0, 0, 0.7);
-                  padding: 2% 4% 2% 4%;
-                  margin-right: 2%;
-                  margin-bottom: 3%;
-                  font-size: 100%;
-                  color: #ffffff;
-                  font-family: 'tagFontSytle';
-                  border-radius: 100px;
-                  border: 2px solid white;
-                }
-              }
-            }
+            // .slider-tagsets{
+            //   position: absolute;
+            //   z-index: 3;
+            //   width: 100%;
+            //   display: flex;
+            //   flex-direction: column;
+            //   margin-top: 30%;
+            //   .slider-tagset{
+            //     z-index: 4;
+            //     display: flex;
+            //     justify-content: flex-start;
+            //     padding-left: 15%;
+            //     .slider-tag{
+            //       background-color: rgba(0, 0, 0, 0.7);
+            //       padding: 2% 4% 2% 4%;
+            //       margin-right: 2%;
+            //       margin-bottom: 3%;
+            //       font-size: 100%;
+            //       color: #ffffff;
+            //       font-family: 'tagFontSytle';
+            //       border-radius: 100px;
+            //       border: 2px solid white;
+            //     }
+            //   }
+            // }
           }
         }
       }

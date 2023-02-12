@@ -1,5 +1,5 @@
 import React from 'react'
-import { Carousel } from './MyCarousel'
+import { Carousel } from './MyCarouselTag'
 
 const TagPage = () => {
 

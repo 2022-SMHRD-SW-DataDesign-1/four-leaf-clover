@@ -150,10 +150,11 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
               width: 100%;
               display: flex;
               flex-direction: column;
+              justify-content: center;
+              align-items: center;
               margin-top: 30%;
               .slider-ment{
                 position: absolute;
-                left: 15%;
                 bottom: 50%;
                 color: #ffffff;
                 font-size: 275%;
@@ -162,11 +163,11 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
                 text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
               }
               .slider-tagset{
-                z-index: 4;
-                display: flex;
-                justify-content: flex-start;
-                padding-left: 15%;
+                padding-left: 5%;
+                padding-right: 5%;
+                margin-top: 20vh;
                 .slider-tag{
+                  z-index: 4;
                   background-color: rgba(0, 0, 0, 0.7);
                   padding: 2% 4% 2% 4%;
                   margin-right: 2%;
@@ -176,6 +177,9 @@ $mode: cubic-bezier(0.17, 0.67, 0.55, 1.43);
                   font-family: 'tagFontSytle';
                   border-radius: 100px;
                   border: 2px solid white;
+                  flex: none;
+                  display: inline-flex;
+                  align-items: center;
                 }
               }
             }

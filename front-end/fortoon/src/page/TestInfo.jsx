@@ -23,7 +23,7 @@ const TestInfo = () => {
         <>
             <Header></Header>
             <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height:'700px', marginBottom:'1vh',marginTop: '4vh'}}>
-                <img src={`data:image/;base64,${loadingImg}`} style={{width: '700px', height:'700px'}}/>
+                <img src={`data:image/;base64,${loadingImg}`} style={{width: '50vh', height:'50vh'}}/>
             </div>
             <Footer></Footer>
         </>
