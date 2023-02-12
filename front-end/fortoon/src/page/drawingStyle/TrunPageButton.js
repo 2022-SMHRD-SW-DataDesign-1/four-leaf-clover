@@ -28,7 +28,7 @@ const Button = ({drawingStyleOutput}) => {
             <img src={require("./img/Next2.png")} className="btn_next" onClick={() => goNextPage()} />
 
             <div className='circle'>
-                <img src={require("./img/1page2.png")} />
+                <img src={require("./img/2page2.png")} />
             </div>
         </div>
     );

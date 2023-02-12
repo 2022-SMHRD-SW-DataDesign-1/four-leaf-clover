@@ -13,7 +13,7 @@ const TurnPageButton = ({outputData}) => {
             <img src={require("../drawingStyle/img/Next2.png")} className="btn_next" onClick={() => {navigate('/drawingStyle', {state: {genre:outputData}}); }}/>
 
             <div className='circle'>
-                <img src={require("../drawingStyle/img/2page2.png")} />
+                <img src={require("../drawingStyle/img/1page2.png")} />
             </div>
         </div>
     );

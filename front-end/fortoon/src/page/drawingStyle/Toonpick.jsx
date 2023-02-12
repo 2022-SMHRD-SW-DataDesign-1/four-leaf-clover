@@ -70,7 +70,7 @@ function ToonChoice()  {
               
                {newImgStyle.map((i, index1) =>{                
            
-                 return(
+                return(
                 <div className='box-row' key={index1}>
                 {
 
@@ -81,11 +81,11 @@ function ToonChoice()  {
                         // !color ?
                         newImgStyle[index1][index2].color==''?
                         <img src={`${j.img}`} alt='toon' className={j.id} key={j.id}
-                        style={{border:newImgStyle[index1][index2].color}} 
+                        style={{border:newImgStyle[index1][index2].color, boxSizing:'border-box'}} 
                         onClick={() => {setShow(true); setChoice2(index2); setChoice1(index1)}}/>
 
                         :<img src={`${j.img}`} alt='toon' className={j.id} key={j.id}
-                        style={{border:newImgStyle[index1][index2].color}} 
+                        style={{border:newImgStyle[index1][index2].color, boxSizing:'border-box'}} 
                         // 보더 없애야함
                         onClick={() => {test(index1, index2);}}/>
                         

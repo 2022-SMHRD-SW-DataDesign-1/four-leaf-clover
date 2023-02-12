@@ -136,7 +136,7 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                 
                 <div className="box1" style={{}}>
                     <div style={{ fontFamily: 'Cafe24SsurroundAir', fontSize: '20px', marginTop: '2vh', textAlign:'center'}}> {menuArr[currentTab].content}</div>
-                    <div style={{ marginTop: '10px', marginLeft:'2.7%' , float:'left',}}>
+                    <div style={{ marginTop: '10px'}}>
                         {
                             (monArrTest2[currentTab] == undefined)?
                              <div>loading</div>:
@@ -158,7 +158,8 @@ const Tab = ({getImage, inputValue, oneImage, monArrTest}) => {
                                                     borderRadius: '10%',
                                                     width: '200px',
                                                     border: i.color,
-                                                    margin: '8px'
+                                                    margin: '8px',
+                                                    boxSizing: 'border-box'
                                             }}
                                             onClick={
                                                 i.img==oneImage?

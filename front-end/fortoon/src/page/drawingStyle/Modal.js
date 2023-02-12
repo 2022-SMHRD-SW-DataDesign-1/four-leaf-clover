@@ -25,7 +25,7 @@ const Modal = ({ show, onClose, onChoice1, onChoice2, imgList, setNewImgStyle })
       <div className={styles.modal}>
 
         {/* 이미지에 맞은 썸네일 불러와야함  */}
-        <img src={`data:image/;base64,${localImage}`} alt="bigimg" className={styles.modal} style={{width:"420px", height:"600px"}} />
+        <img src={`data:image/;base64,${localImage}`} alt="bigimg" className={styles.modal} style={{width:"20vw", height:"60vh"}} />
 
         <img src={require("./img/tooncheck.png")} alt="closebtn" 
           onClick={() => {
