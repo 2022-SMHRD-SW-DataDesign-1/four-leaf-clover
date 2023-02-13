@@ -1,5 +1,5 @@
 # 🥠For toon (팀명 : 네잎-clover)
-<img src="https://user-images.githubusercontent.com/112142386/218346856-8e017fd7-0a08-47db-b1d1-07a624fc15c2.png"/>
+<p align="center"><img src="https://user-images.githubusercontent.com/112142386/218346856-8e017fd7-0a08-47db-b1d1-07a624fc15c2.png"/></p>
 
 ## 👀 서비스 소개
 * <b>서비스명</b>: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
