@@ -1,10 +1,9 @@
-# four-leaf-clover
-네잎클로버 ForToon 프로젝트
-# Fortoon
+# 🥠For toon (팀명 : 네잎-clover)
+<img src="https://user-images.githubusercontent.com/112142386/218346856-8e017fd7-0a08-47db-b1d1-07a624fc15c2.png"/>
 
 ## 👀 서비스 소개
-* 서비스명: For toon
-* 서비스설명: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
+* <b>서비스명</b>: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
+* <b>서비스설명</b>: 
 
 <br>
 
@@ -86,21 +85,27 @@
 
 ## 🖥 화면 구성
 ### 장르 선택
- <img src=""/>
- <img src=""/>
+ <img src="https://user-images.githubusercontent.com/112142386/218347573-f0cac581-a1dd-4610-ac4b-7e87502f5ff3.png"/>
+ <br>
  
  ### 그림체 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218347725-e044c4b1-2bc3-45b0-a22e-282cd693fe0f.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218347776-d1aa5d9d-0f96-49bb-ae56-6d6d107c56b1.png"/>
+ <br>
+ 
  ### 시놉시스 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218358198-e799b1d7-9e1d-41c7-a47c-57e4b37aed7a.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218358424-dbdb4b34-7a16-451b-8b04-f4fec421df72.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218358592-ffa76e6f-611b-4383-a1d1-a48dc4bba2be.png"/>
+ <br>
+ 
  ### 태그 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218359239-0130d3bd-474e-41d1-8c64-6260b238803f.png"/>
+ <br>
+ 
  ### 추천 웹툰 페이지
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218359413-050356f5-e374-43c0-8ee6-b307f215d7f4.png"/>
+ <br>
  
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
