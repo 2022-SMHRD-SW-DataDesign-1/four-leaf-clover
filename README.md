@@ -113,7 +113,7 @@
     <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382639-c6a3de25-b5fe-4bd4-ad47-857ce7cad4a9.png" width="100" height="100"/></td>
     <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218383785-a83480ee-88cc-4fa3-a700-aad6eda4fd98.png" width="100" height="100"/></td>
     <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382465-ef758c36-87c3-47f7-add9-a83db0c99b54.png" width="100" height="100"/></td>
-    <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382410-0d60b16b-1127-41bb-adce-df3a22741f61.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112459519/218388631-a8251eae-a414-499f-bb14-169dd5f320a3.png" width="100" height="100"/></td>
   </tr>
   <tr>
     <td align="center"><strong>조영찬</strong></td>
