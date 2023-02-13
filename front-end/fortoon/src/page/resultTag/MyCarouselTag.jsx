@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import './css/MyCarouselTag.scss';
-import ApiService from '../../ApiService';
 import Button from './TrunPageButton'
 
 // const isEqual = require("react-fast-compare");
@@ -15,6 +14,7 @@ export function Carousel(props) {
   const [tagData, setTagData] = useState([]);
   const [cardLeftMove, setCardLeftMove] = useState(false);
   const [cardRightMove, setCardRightMove] = useState(false);
+  const [resultTagData, setResultTagData] = useState({});
   const intervalRef = useRef(null);
   const nextRef = useRef();
   const handlers = useSwipeable({
@@ -47,13 +47,15 @@ export function Carousel(props) {
     setSlideCurrent(-1);
     if (slideCurrent === -1) {
       setTimeout(() => {
+        slideRight();
         nextRef.current.click();
-        if (props.autoplay) {
-          intervalRef.current = setTimeout(() => {
-            nextRef.current.click();
-        }, props.interval);}
-      }, 500);
+        // if (props.autoplay) {
+        //   intervalRef.current = setTimeout(() => {
+        //     nextRef.current.click();
+        // }, props.interval);}
+      }, 0);
     }
+    slideRight();
   }, [props.slides]);
   useEffect(()=>{
     if(slideCurrent === 0){
@@ -64,17 +66,35 @@ export function Carousel(props) {
   },[slides,slideCurrent]);
   
   useEffect(()=>{
-    ApiService.tag()
-    .then(res =>{
-      let tmpList = []
-      res.data.map(tag =>{
-        tmpList.push(tag)
-      })
-      console.log(tmpList)
-      setTagData(tmpList)
-    })
-  },[]);
-
+    console.log(props.resultTagData)
+    setResultTagData(props.resultTagData)
+    // ApiService.imageLoad("clover_loading.gif")
+    // .then(res => {
+    //     setLoadingImg(res.data)
+    // })
+    // .catch(err => {
+    //     console.log('axios 에러', err)
+    // })
+    // let sendValue = location.state.sendValue
+    // ApiService.calcResult(sendValue.sendValue)
+    // .then((res) => {
+    //     console.log(res.data)
+    //     setResult(res.data)
+    //     setDonCalc(true)
+    // })
+    // .catch((err) => {
+    //     console.log("axios에러", err)
+    // })
+    // ApiService.tag()
+    // .then(res =>{
+    //   let tmpList = []
+    //   res.data.map(tag =>{
+    //     tmpList.push(tag)
+    //   })
+    //   console.log(tmpList)
+    //   setTagData(tmpList)
+    // })
+  },[props.resultTagData]);
 
   const slideRight = () => {
     let preactiveSlide;
@@ -208,7 +228,6 @@ export function Carousel(props) {
     slideRight()
   },[cardRightMove])
 
- const [num, setNum] = useState(0);
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
       {slides && slides.length > 0 && <div className="slider-container" >
@@ -230,11 +249,11 @@ export function Carousel(props) {
                   {slider.element}
                   <div className='slider-tagsets'>
                     <div className='slider-ment'>
-                        언제 어디서든
+                      {resultTagData[0]['ment']}
                     </div>
 
                     <div className='slider-tagset'>
-                      {tagData.map((tag,index)=> {
+                      {resultTagData[0]['tags'] == undefined? null : resultTagData[0]['tags'].map((tag,index)=> {
                         if(index<11)
                         {
                           return(

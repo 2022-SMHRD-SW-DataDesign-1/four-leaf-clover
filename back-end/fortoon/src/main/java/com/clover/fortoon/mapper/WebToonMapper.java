@@ -8,6 +8,9 @@ import com.clover.fortoon.model.DrawingStyleDTO;
 import com.clover.fortoon.model.SynopsisDTO;
 import com.clover.fortoon.model.WebToonDTO;
 import com.clover.fortoon.model.FeatureValueDTO;
+import com.clover.fortoon.model.ResultValueDTO;
+import com.clover.fortoon.model.SituationChrDTO;
+import com.clover.fortoon.model.SituationChrFormDTO;
 
 @Mapper
 public interface WebToonMapper {
@@ -19,4 +22,8 @@ public interface WebToonMapper {
     List<SynopsisDTO> synopsisList();
     List<WebToonDTO> webtoonList();
     List<FeatureValueDTO> featureValueList();
+    List<SituationChrFormDTO> getSttChrForm();
+    SituationChrDTO getSttChr(int wt_num);
+    ResultValueDTO getResultValue(int wt_num);
+    String getMent(String sttchr);
 }

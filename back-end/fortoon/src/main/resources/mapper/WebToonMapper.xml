@@ -39,5 +39,27 @@
 		from tbl_webtoonchrvl
 	</select>
 
+	<select id="getSttChrForm" resultType="com.clover.fortoon.model.SituationChrFormDTO">
+		select *
+		from tbl_sttchr_form
+	</select>
+
+	<select id="getSttChr" parameterType="int" resultType="com.clover.fortoon.model.SituationChrDTO">
+		select *
+		from tbl_contextchr
+		where webtoon_num = #{wt_num}
+	</select>
+
+	<select id="getResultValue" parameterType="int" resultType="com.clover.fortoon.model.ResultValueDTO">
+		select webtoon_num, webtoon_tag, webtoon_big_thumbnail_url, webtoon_url
+		from tbl_webtoon
+		where webtoon_num = #{wt_num}
+	</select>
+
+	<select id="getMent" parameterType="String" resultType="String">
+		select ment
+		from tbl_sttchr_form
+		where sttchr = #{sttchr}
+	</select>
 	
 </mapper>

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clover.fortoon.mapper.WebToonMapper;
@@ -29,6 +30,9 @@ import com.clover.fortoon.model.DrawingStyleDTO;
 import com.clover.fortoon.model.SynopsisDTO;
 import com.clover.fortoon.model.WebToonDTO;
 import com.clover.fortoon.model.FeatureValueDTO;
+import com.clover.fortoon.model.ResultValueDTO;
+import com.clover.fortoon.model.SituationChrDTO;
+import com.clover.fortoon.model.SituationChrFormDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -92,15 +96,15 @@ public class WebToonController {
         return result;
     }
 
-    @GetMapping("/tag")
-    private List<String> tagList(){
+    @PostMapping("/tag")
+    private List<String> tagList(@RequestBody List<String> tagList ){
         System.out.println("tag 불러오기");
 
-        List<String> allTag = webToonMapper.tagList();
+        System.out.println(tagList);
         List<String> rcmTag = new ArrayList<String>();
-        for(int i = 0 ; i<10; i++){
-            String[] splitTag = allTag.get(i).split(", ");
-            for(int j=0; j<splitTag.length; j++){
+        for(int i = 0 ; i < tagList.size(); i++){
+            String[] splitTag = tagList.get(i).split(", ");
+            for(int j=0; j < splitTag.length; j++){
                 rcmTag.add(splitTag[j]);
             };
         };
@@ -132,7 +136,8 @@ public class WebToonController {
     }
     
     @PostMapping("/calcResult")
-    private List<List<WebToonDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
+    private List<List<ResultValueDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
+        long beforeTime = System.currentTimeMillis();
         List<String> genre = params.get(0).get("genre");
         List<String> drawingStyle = params.get(1).get("drawingStyle");
         List<String> synopsis = params.get(2).get("synopsis");
@@ -174,7 +179,62 @@ public class WebToonController {
 
         // 3. 고른 시놉시스 유사도를 계산하고
 
-        List<List<WebToonDTO>> test = new ArrayList<List<WebToonDTO>>();
-        return test;
+        List<List<Object>> test = new ArrayList<List<Object>>();
+
+        // 랜덤으로 아무값 100개 넣음
+        List<Integer> randomWtList = new ArrayList<Integer>();
+        int randWtNum = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            randWtNum = (int)(Math.random()*561);
+            randomWtList.add(randWtNum);
+            while((i != 0) && (randomWtList.get(i-1) == randomWtList.get(i)))
+            {
+                randomWtList.remove(i);
+                randWtNum = (int)(Math.random()*561);
+                randomWtList.add(randWtNum);
+            }
+        }
+        
+        List<SituationChrFormDTO> sttChrFormList = webToonMapper.getSttChrForm();
+        List<List<ResultValueDTO>> result = new ArrayList<List<ResultValueDTO>>();
+        
+        // 웹툰 번호 넣을때 점수 높은거부터 정렬해서 넣어야 할듯
+        for (int i = 0; i < sttChrFormList.size(); i++) {
+
+            result.add(new ArrayList<ResultValueDTO>());
+
+            for (int wt_num : randomWtList) {
+
+                if (result.get(i).size() == 10){
+                    break;
+                }
+
+                SituationChrDTO sttchrDTO = webToonMapper.getSttChr(wt_num);
+                ResultValueDTO resultDTO = webToonMapper.getResultValue(wt_num);
+                
+                if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getTime_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getTime_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getTime_chr()));
+                    result.get(i).add(resultDTO);
+                }
+                else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getPlace_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getPlace_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getPlace_chr()));
+                    result.get(i).add(resultDTO);
+                }
+                else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getWeather_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getWeather_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getWeather_chr()));
+                    result.get(i).add(resultDTO);
+                }
+
+            }
+        }
+        long afterTime = System.currentTimeMillis(); 
+        long secDiffTime = (afterTime - beforeTime)/1000;
+        System.out.println("시간차이(m) : "+secDiffTime);
+
+        return result;
     }
 }

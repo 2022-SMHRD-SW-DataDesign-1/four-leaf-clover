@@ -8,7 +8,6 @@ const Button = ({imagesrc, monArrTest}) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const [result, setResult] = useState([]);
 
     const goNextPage = () => {
 
@@ -30,17 +29,9 @@ const Button = ({imagesrc, monArrTest}) => {
         console.log(genre)
         console.log(drawingStyle)
 
-        let sendResult = [{genre}, {drawingStyle},{synopsis}]
+        let sendValue = [{genre}, {drawingStyle},{synopsis}]
 
-        ApiService.calcResult(sendResult)
-        .then((res) => {
-            setResult(res.data)
-        })
-        .catch((err) => {
-            console.log("axios에러", err)
-        })
-
-        navigate('/resultTag', {state:{result : {result}}})
+        navigate('/resultTag', {state:{sendValue : {sendValue}}})
     }
 
     return (

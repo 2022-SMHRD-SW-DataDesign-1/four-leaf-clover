@@ -16,8 +16,12 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/drawingStyle')
     }
 
-    tag(){
-        return axios.get(USER_API_BASE_URL+'/tag')
+    // tag(){
+    //     return axios.get(USER_API_BASE_URL+'/tag')
+    // }
+
+    getTag(tagList){
+        return axios.post(USER_API_BASE_URL+'/tag', tagList)
     }
 
     imageLoad(filename){
