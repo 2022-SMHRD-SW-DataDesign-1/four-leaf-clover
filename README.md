@@ -1,10 +1,11 @@
-# four-leaf-clover
-네잎클로버 ForToon 프로젝트
-# Fortoon
+# 🥠For toon (팀명 : 네잎-clover)
+<p align="center"><img src="https://user-images.githubusercontent.com/112142386/218346856-8e017fd7-0a08-47db-b1d1-07a624fc15c2.png"/></p>
 
 ## 👀 서비스 소개
-* 서비스명: For toon
-* 서비스설명: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
+* <b>서비스명</b>: 소비자 상황특성 및 웹툰특성을 고려한 Style Transfer기반 웹툰추천 API
+* <b>서비스설명</b>: 사용자의 웹툰 작품 선택에 가장 큰 영향을 주는 특성(장르, 그림체, 시놉시스)들을 기반으로 웹툰 몰입을 돕기 위해 사용자의 상황을 함께 고려한 AI 추천 API
+   * 웹툰 시장 성장세에도 불구하고 대부분 웹툰 플랫폼들은 요일 별, 조회수 등과 같은 단순 지표 추천 시스템만을 제공하고 있다. <br> 단순 지표로만 추천이 이루어졌을 때 하위 순위에 위치하는 웹툰의 경우 평가의 기회조차 없는 경우가 대다수이다.<br> 이에 비인기 웹툰도 공정한 평가의 기회를 받을 수 있는 서비스를 제안하고자 한다.
+
 
 <br>
 
@@ -13,10 +14,7 @@
 <br>
 
 ## ⭐ 주요 기능
-* 웹툰 상황특성을 고려한 추천 서비스 
-* 
-* 
-* 
+* 웹툰특성, 상황특성을 종합해 고려한 웹툰 추천 기능
 
 ## ⛏ 기술스택
 <table>
@@ -69,7 +67,7 @@
 <br>
 
 ## ⚙ 시스템 아키텍처
-<img src=""/>
+<img src="https://user-images.githubusercontent.com/112142386/218362350-2ac907b8-58fb-4a8e-adc1-cf390a9219ab.png"/>
 <br>
 
 ## 📌 유스케이스
@@ -86,30 +84,36 @@
 
 ## 🖥 화면 구성
 ### 장르 선택
- <img src=""/>
- <img src=""/>
+ <img src="https://user-images.githubusercontent.com/112142386/218347573-f0cac581-a1dd-4610-ac4b-7e87502f5ff3.png"/>
+ <br>
  
  ### 그림체 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218347725-e044c4b1-2bc3-45b0-a22e-282cd693fe0f.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218347776-d1aa5d9d-0f96-49bb-ae56-6d6d107c56b1.png"/>
+ <br>
+ 
  ### 시놉시스 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218358198-e799b1d7-9e1d-41c7-a47c-57e4b37aed7a.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218358424-dbdb4b34-7a16-451b-8b04-f4fec421df72.png"/>
+ <img src="https://user-images.githubusercontent.com/112142386/218358592-ffa76e6f-611b-4383-a1d1-a48dc4bba2be.png"/>
+ <br>
+ 
  ### 태그 선택
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218359239-0130d3bd-474e-41d1-8c64-6260b238803f.png"/>
+ <br>
+ 
  ### 추천 웹툰 페이지
- <img src=""/>
-
+ <img src="https://user-images.githubusercontent.com/112142386/218359413-050356f5-e374-43c0-8ee6-b307f215d7f4.png"/>
+ <br>
  
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
-    <td align="center"><img src="https://item.kakaocdn.net/do/fd49574de6581aa2a91d82ff6adb6c0115b3f4e3c2033bfd702a321ec6eda72c" width="100" height="100"/></td>
-    <td align="center"><img src="https://mb.ntdtv.kr/assets/uploads/2019/01/Screen-Shot-2019-01-08-at-4.31.55-PM-e1546932545978.png" width="100" height="100"/></td>
-    <td align="center"><img src="https://mblogthumb-phinf.pstatic.net/20160127_177/krazymouse_1453865104404DjQIi_PNG/%C4%AB%C4%AB%BF%C0%C7%C1%B7%BB%C1%EE_%B6%F3%C0%CC%BE%F0.png?type=w2" width="100" height="100"/></td>
-    <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
-    <td align="center"><img src="https://pbs.twimg.com/media/B-n6uPYUUAAZSUx.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382501-0e8052db-4438-4c90-808d-c3c831523569.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382639-c6a3de25-b5fe-4bd4-ad47-857ce7cad4a9.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218383785-a83480ee-88cc-4fa3-a700-aad6eda4fd98.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112142386/218382465-ef758c36-87c3-47f7-add9-a83db0c99b54.png" width="100" height="100"/></td>
+    <td align="center"><img src="https://user-images.githubusercontent.com/112459519/218388631-a8251eae-a414-499f-bb14-169dd5f320a3.png" width="100" height="100"/></td>
   </tr>
   <tr>
     <td align="center"><strong>조영찬</strong></td>
@@ -126,11 +130,33 @@
     <td align="center"><b>Front-end</b></td>
   </tr>
   <tr>
-    <td>데이터</td>
-    <td>데이터</td>
-    <td>데이터</td>
-    <td>화면 구현</td>
-    <td>화면 구현</td>
+    <td>
+      1. 프로젝트 코드 총괄<br>
+      2. 이미지 벡터 추출 기능 구현
+    </td>
+    <td>
+      1. 웹툰 데이터 크롤링<br>
+      2. 자연어 데이터 전처리<br>
+      3. 자연어 처리 모델 선정 및 학습<br>
+      4. 시놉시스 페이지 기능 구현
+    </td>
+    <td>
+      1. word2vec 사용한 자연어 처리<br>
+      2. DB 테이블 생성<br>
+      3. DB값 Spring으로 불러오기
+    </td>
+    <td>
+      1. UI/UX 화면 설계<br>
+      2. 장르 페이지 기능 구현<br>
+      3. 시놉시스 페이지 CSS<br>
+      4. 웹툰 별 상황특성 데이터 수집
+    </td>
+    <td>
+      1. 그림체 페이지 구현<br> 
+      2. DB 연결<br>
+      2. 웹툰 결과 페이지 구현<br>
+      3. 웹툰 별 상황특성 데이터 수집
+    </td>
   </tr>
 </table>
 
