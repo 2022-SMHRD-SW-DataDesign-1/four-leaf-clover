@@ -204,22 +204,31 @@ public class WebToonController {
             for(String synopNum: synopsis){
                 for(WebToonDTO toonDTO : filteredToon){
                     // 사용자 선택이미지 기준 필터링된 웹툰과 그림체 유사도 -1~1
-                    String imgSim =  webToonMapper.featureValueList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num()); 
+                    Float imgSim = Float.parseFloat(webToonMapper.featureValueList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num())) ; 
+                    //-1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
+                    if(imgSim<0||imgSim>-1){
+                        imgSim += 1;
+                    }
+
                     // 사용자 선택 시놉시스 기준 필터링된 웹툰과 시놉시스 유사도 0~1
-                    String synopSim = webToonMapper.synopsSimList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num());
+                    Float synopSim =  Float.parseFloat(webToonMapper.synopsSimList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num()));
+
                     // 타겟 웹툰의 평점
-                    float rating =  toonDTO.getWebtoon_rating();
+                    Float rating =  toonDTO.getWebtoon_rating();
+                    
                     // 타겟 웹툰의 평점 총 잠여자
-                    float participants = toonDTO.getWebtoon_rating_count();
+                    Integer participants = toonDTO.getWebtoon_rating_count();
         
                     /*
                     *             위의 값들에 대해서 다음과 같은 계산 적용
                     *           x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
                     *             (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
-                    * (평점참여자 labeling 필요)
+                    *               
+                    *            (평점참여자 labeling 필요)
                     *
                     * 
                     *  경우 -1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
+                    *  이렇게 구한 값과 타겟 웹툰 넘버를 저장하는 map을만들어서 연속 쿼리. 그리고이걸
                     */
                     toonDTO.getWebtoon_num();
                 }
