@@ -219,15 +219,17 @@ export function Carousel(props) {
                   {slider.element}
                   <div className='slider-tagsets'>
                     <div className='slider-ment'>
-                      {props.resultTagData == undefined?
+                      {/* {props.resultTagData == undefined? */}
+                      {slider.ment == undefined?
                       null : 
-                      props.resultTagData[index]['ment']}
+                      slider.ment}
                     </div>
 
                     <div className='slider-tagset'>
-                      {props.resultTagData == undefined? 
+                      {/* {props.resultTagData == undefined?  */}
+                      {slider.tags == undefined? 
                       null : 
-                      props.resultTagData[index]['tags'].map((tag, tagidx) => {
+                      slider.tags.map((tag, tagidx) => {
                         if (tagidx < 8){
                           return(
                             <div className='slider-tag' key={tagidx}>

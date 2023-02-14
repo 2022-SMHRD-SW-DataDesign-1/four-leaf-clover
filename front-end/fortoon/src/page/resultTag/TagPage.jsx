@@ -9,7 +9,7 @@ const TagPage = () => {
     const [loadingImg, setLoadingImg] = useState()
     const [donCalc, setDonCalc] = useState(false);
     const [result, setResult] = useState([]);
-    const [resultTagData, setResultTagData] = useState([]);
+    // const [resultTagData, setResultTagData] = useState([]);
     const [slides, setSlides] = useState([]);
     const [cnt, setCnt] = useState(0);
     const location = useLocation();
@@ -45,14 +45,18 @@ const TagPage = () => {
     },[]);
 
     useEffect(() => {
-        let resultData = []
+        // let resultData = []
         let sttchrList = []
+        let mentList = []
+        let tagsList = []
+        console.log(result);
         result.map(resultItemList => {
-            let tagData = {}
+            // let tagData = {}
             if (resultItemList.length == 10){
             sttchrList.push(resultItemList[0].sttchr)
-            tagData['ment'] = resultItemList[0].ment
-            tagData['sttchr'] = resultItemList[0].sttchr
+            mentList.push(resultItemList[0].ment)
+            // tagData['ment'] = resultItemList[0].ment
+            // tagData['sttchr'] = resultItemList[0].sttchr
             let tagList = []
             let tmpList = []
             resultItemList.map( item => {
@@ -61,19 +65,22 @@ const TagPage = () => {
             ApiService.getTag(tagList)
             .then(res => {
                 tmpList = tmpList.concat(res.data)
-                tagData['tags'] = tmpList
+                tagsList.push(tmpList)
+                // tagData['tags'] = tmpList
                 // console.log(tagData['tags'])
             })
             .catch(err => {
                 console('axios 에러', err)
             })
             }
-            if (Object.keys(tagData).length != 0){
-                resultData.push(tagData)
-            }
+            // if (Object.keys(tagData).length != 0){
+            //     resultData.push(tagData)
+            // }
         })
-        console.log(resultData)
-        console.log(sttchrList)
+        // console.log(resultData)
+        console.log('sttchr: ',sttchrList)
+        console.log('ment :',mentList);
+        console.log('tags :',tagsList);
 
         let tmpSlides = [];
         for (let i = 0; i < sttchrList.length; i++) {
@@ -82,7 +89,9 @@ const TagPage = () => {
                 tmpSlides.push({
                     class : 'slider-single proactivede',
                     element : <img src={`data:image/;base64,${res.data}`} alt={i+1} key={sttchrList[i]}></img>,
-                    ment : 0,
+                    ment : mentList[i],
+                    tags : tagsList[i],
+                    sttchr : sttchrList[i],
                     index : i
                 })
             })
@@ -93,7 +102,7 @@ const TagPage = () => {
         console.log('tmpslides: ',tmpSlides)
         setSlides(tmpSlides);
         setCnt(sttchrList.length);
-        setResultTagData(resultData)
+        // setResultTagData(resultData)
     }, [donCalc])
 
     return (
@@ -104,7 +113,7 @@ const TagPage = () => {
         </div>
         :
         <div>
-            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData} cnt={cnt} result={result}></Carousel>}
+            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} cnt={cnt} result={result}></Carousel>}
         </div>
     )
 }
