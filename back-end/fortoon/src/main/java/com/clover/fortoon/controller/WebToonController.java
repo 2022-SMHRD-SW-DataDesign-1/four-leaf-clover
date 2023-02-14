@@ -145,115 +145,75 @@ public class WebToonController {
         return resultList;
     }
     
+
+
+
+
+    /*
+    1) 장르 기준으로 필터링
+    2) 필터링된 얘들 에서 추천리스트 구성 (아이템 특정 x)
+    3) 선택된 그림체 i 개 
+    4) 선택된 시놉시스 j개
+    장르 필터링된 웹툰들 중에서
+    (for문에 for문)
+    i*j
+
+    한개의 row에 대해서  
+    x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
+    (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
+    (평점참여자 labeling 필요)
+
+    수행  가중치 
+    */
+
+
     @PostMapping("/calcResult")
     private List<List<ResultValueDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
         long beforeTime = System.currentTimeMillis();
-        // List<String> genre = params.get(0).get("genre");
-        // List<String> drawingStyle = params.get(1).get("drawingStyle");
-        // List<String> synopsis = params.get(2).get("synopsis");
-        // // 여기서 추천 알고리즘 계산 해야함
-
-        // // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
-        // List<WebToonDTO> toons = webToonMapper.webtoonList();
-        // List<WebToonDTO> filteredToon = new ArrayList<>();
-    
-    
-        // // 1. 고른 장르로 필터링 해놓고 길이 구해보자
-        // for (WebToonDTO tmp : toons){
-        //     for (String tmpgenre : genre) {
-        //         if(tmp.getWebtoon_genre().contains(tmpgenre)){
-        //             filteredToon.add(tmp);
-        //         }
-        //     }
-        // }
-        // //  그렇게해서 장르로 한번 필터링한 웹툰 DTO 전체가 filtererd임.
-        // System.out.println("장르로 필터링한 녀석들의 길이"+filteredToon.size());
-
-        // // 2. 이제 그림체로 필터린된 얘들을 가져와 보자
-        // List<FeatureValueDTO> filteredDrawing = new ArrayList<>();
-        // List<FeatureValueDTO> drawingFeatures =  webToonMapper.featureValueList();
+        List<String> genre = params.get(0).get("genre");
+        List<String> drawingStyle = params.get(1).get("drawingStyle");
+        List<String> synopsis = params.get(2).get("synopsis");
         
-        // List<String> drawingChategory = new ArrayList<>();
+        // 여기서 추천 알고리즘 계산 해야함
+        List<FeatureValueDTO> features = webToonMapper.featureValueList(); // 일단 데이터 부르고시자작하자 2만건인데 얼마나 걸릴라나.
 
+        // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
+        List<WebToonDTO> toons = webToonMapper.webtoonList();
+        List<WebToonDTO> filteredToon = new ArrayList<>();
+        // 1. 고른 장르로 필터링 해놓고
+        for (WebToonDTO tmp : toons){
+            for (String tmpgenre : genre) {
+                if(tmp.getWebtoon_genre().contains(tmpgenre)){
+                    filteredToon.add(tmp);
+                }
+            }
+        }
 
-
-
-        // // 카테고리를 쓰지말자. 바로 X벡터 y벡터를 가져오자 
-        // for(String tmp : drawingStyle){
-        //     for(FeatureValueDTO tmp2 : drawingFeatures){
-        //         // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
-        //         if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
-        //         // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
-                    
-        //         }
-        //     }  
-        //     break;
-        // }
-
-
-        // // if (leftVector == null || rightVector == null) {
-        // //     throw new IllegalArgumentException("벡터값이 어떻게 널이냐 이말이야");
-        // // }
- 
-        // // final Set<CharSequence> intersection = getIntersection(leftVector, rightVector);
- 
-        // // final double dotProduct = dot(leftVector, rightVector, intersection);
-        // // double d1 = 0.0d;
-        // // for (final Integer value : leftVector.values()) {
-        // //     d1 += Math.pow(value, 2);
-        // // }
-        // // double d2 = 0.0d;
-        // // for (final Integer value : rightVector.values()) {
-        // //     d2 += Math.pow(value, 2);
-        // // }
-        // // double cosineSimilarity;
-        // // if (d1 <= 0.0 || d2 <= 0.0) {
-        // //     cosineSimilarity = 0.0;
-        // // } else {
-        // //     cosineSimilarity = (double) (dotProduct / (double) (Math.sqrt(d1) * Math.sqrt(d2)));
-        // // }
-
-
-        // // 그림체 카테고리를 일단 뽑아보자
-        // for(String tmp : drawingStyle){
-        //     for(FeatureValueDTO tmp2 : drawingFeatures){
-        //         // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
-        //         if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
-        //         // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
-        //             drawingChategory.add(tmp2.getChr_category());
-        //         }
-        //     }  
-        //     break;
-        // }
-
-        // // 이제 얘네가 사용자가 선택한 그림체 카테고리 번호가 되는거임
-        // System.out.println("그림체 카테고리 "+drawingChategory.size());
-
-
-        // // 다시 전체 웹툰 그림체 정보 에서 저 카테고리를 가진 얘들을 가져와보자.
-        // for(FeatureValueDTO tmp : drawingFeatures){
-        //     for(String tmp2 : drawingStyle){
-        //         if(tmp.getWebtoon_num() == Integer.parseInt(tmp2) ){
-        //             tmp.getChr_num();
-        //             filteredDrawing.add(tmp);
-        //         }
-        //     }
-        // }
-
-        // System.out.println(filteredDrawing.size());
-
-        // // 3. 고른 시놉시스 유사도를 계산하고
-
-
-
-
-
-
-
-
-
-
-
+        //  그렇게해서 장르로 한번 필터링한 filtererd임.
+        System.out.println(filteredToon.size());
+        
+        /*
+         3) 선택된 그림체 i 개 
+         4) 선택된 시놉시스 j개
+         장르 필터링된 웹툰들 중에서
+         (for문에 for문)
+        i*j
+         */
+        
+        for (String imgNum:  drawingStyle){
+            for(String synopNum: synopsis){
+                for(WebToonDTO toonDTO : filteredToon){
+                    /*
+                     한개의 row에 대해서
+                     x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
+                     (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
+                     (평점참여자 labeling 필요)
+                    */
+                    toonDTO.getWebtoon_num();
+                }
+            }
+        }
+     
         // 랜덤으로 아무값 100개 넣음
         List<Integer> randomWtList = new ArrayList<Integer>();
         int randWtNum = 0;
