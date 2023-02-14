@@ -32,6 +32,10 @@ class ApiService {
         return axios.get(USER_API_BASE_URL+'/modalImagePath/'+filename)
     }
 
+    slideImageLoad(filename){
+        return axios.get(USER_API_BASE_URL+'/ImagePath/slides/'+filename)
+    }
+
     synopsis(){
         return axios.get(USER_API_BASE_URL+'/synopsis')
     }

@@ -8,21 +8,22 @@ const TagPage = () => {
 
     const [loadingImg, setLoadingImg] = useState()
     const [donCalc, setDonCalc] = useState(false);
+    const [donData, setDonData] = useState(false);
     const [result, setResult] = useState([]);
-    const [resultTagData, setResultTagData] = useState({});
+    const [resultTagData, setResultTagData] = useState([]);
+    const [slides, setSlides] = useState();
     const location = useLocation();
+    let slideList = [];
 
-    let slides = [
-        <img src={require('./css/image/tagcard01.jpg')} alt="1" />,
-        <img src={require('./css/image/asdf.png')} alt="2" />  ,
-        <img src={require('./css/image/image (36).png')} alt="3" />  ,
-        <img src={require('./css/image/KakaoTalk_20230115_000011211.png')} alt="4" />  ,
-        <img src={require('./css/image/KakaoTalk_20230115_000250607.png')} alt="5" />  ,
-        <img src={require('./css/image/KakaoTalk_20230115_100329583_02.jpg')} alt="6" />  ,
-        <img src={require('./css/image/KakaoTalk_20230114_235510935.png')} alt="7" />
-    ];
-
-    let tags = ['asdf','qwe','zxcv','fghj','cnbv','rtyu','yuio','bnm,','qsdcv','zxdr','rhgrn','cvhu']
+    // let slides = [
+    //     <img src={require('./css/image/tagcard01.jpg')} alt="1" />,
+    //     <img src={require('./css/image/asdf.png')} alt="2" />  ,
+    //     <img src={require('./css/image/image (36).png')} alt="3" />  ,
+    //     <img src={require('./css/image/KakaoTalk_20230115_000011211.png')} alt="4" />  ,
+    //     <img src={require('./css/image/KakaoTalk_20230115_000250607.png')} alt="5" />  ,
+    //     <img src={require('./css/image/KakaoTalk_20230115_100329583_02.jpg')} alt="6" />  ,
+    //     <img src={require('./css/image/KakaoTalk_20230114_235510935.png')} alt="7" />,
+    // ];
 
     useEffect(()=>{
         ApiService.imageLoad("clover_loading.gif")
@@ -46,11 +47,13 @@ const TagPage = () => {
 
     useEffect(() => {
         let resultData = []
+        let sttchrList = []
         result.map(resultItemList => {
             let tagData = {}
             if (resultItemList.length == 10){
-            tagData['sttchr'] = resultItemList[0].sttchr
+            sttchrList.push(resultItemList[0].sttchr)
             tagData['ment'] = resultItemList[0].ment
+            // tagData['sttchr'] = resultItemList[0].ment
             let tagList = []
             let tmpList = []
             resultItemList.map( item => {
@@ -67,11 +70,26 @@ const TagPage = () => {
             })
             }
             if (Object.keys(tagData).length != 0){
-            resultData.push(tagData)
+                resultData.push(tagData)
             }
         })
         console.log(resultData)
+        console.log(sttchrList)
+
+        let tmpSlides = []
+        sttchrList.map((sttchr, idx) => {
+            ApiService.slideImageLoad(sttchr+'.png')
+            .then(res => {
+                tmpSlides.push(<img src={`data:image/;base64,${res.data}`} alt={idx+1} key={sttchr}></img>)
+            })
+            .catch(err => {
+                console.log('axios 에러', err)
+            })
+        })
+        console.log(tmpSlides)
+        setSlides(tmpSlides)
         setResultTagData(resultData)
+        setDonData(true)
     }, [donCalc])
     
 
@@ -82,7 +100,8 @@ const TagPage = () => {
         </div>
         :
         <div>
-            <Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData}></Carousel>
+            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData}></Carousel>}
+        
         </div>
     )
 }

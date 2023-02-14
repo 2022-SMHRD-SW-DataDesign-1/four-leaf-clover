@@ -7,14 +7,18 @@ import Button from './TrunPageButton'
 // const isEqual = require("react-fast-compare");
 
 export function Carousel(props) {
+
+  // let slides = props?.slides;
+
+  // console.log(slides);
+
   const [slideTotal, setSlideTotal] = useState(0);
   const [slideCurrent, setSlideCurrent] = useState(-1);
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState('0px');
-  const [tagData, setTagData] = useState([]);
   const [cardLeftMove, setCardLeftMove] = useState(false);
   const [cardRightMove, setCardRightMove] = useState(false);
-  const [resultTagData, setResultTagData] = useState({});
+  const [resultChild, setResultChild] = useState(props.resultTagData);
   const intervalRef = useRef(null);
   const nextRef = useRef();
   const handlers = useSwipeable({
@@ -25,38 +29,48 @@ export function Carousel(props) {
   });
 
   useEffect(() => {
-    const locSlides = [];
-    props.slides.forEach((slide) => {
-      const slideobject = {
-        class: 'slider-single proactivede',
-        element: slide,
-      };
-      locSlides.push(slideobject);
-    });
-    if(props.slides.length === 2){
-      props.slides.forEach((slide) => {
-        const slideobject = {
+    if(props.slides){
+      console.log('useEffect', props.slides);
+      const tmpList = props.slides
+      const locSlides = [];
+      props.slides.map((slide) => {
+        console.log('여기 확인해야함', slide)
+        let slideobject = {
           class: 'slider-single proactivede',
           element: slide,
         };
+        console.log('여기 확인해야함', slideobject)
         locSlides.push(slideobject);
       });
-    }
-    setSlides(locSlides);
-    setSlideTotal(locSlides.length - 1);
-    setSlideCurrent(-1);
-    if (slideCurrent === -1) {
-      setTimeout(() => {
-        slideRight();
-        nextRef.current.click();
-        // if (props.autoplay) {
-        //   intervalRef.current = setTimeout(() => {
-        //     nextRef.current.click();
-        // }, props.interval);}
-      }, 0);
-    }
-    slideRight();
-  }, [props.slides]);
+      // if(tmpList.length === 2){
+      //   tmpList.map((slide) => {
+      //     console.log('여기 확인해야함', slide)
+      //     const slideobject = {
+      //       class: 'slider-single proactivede',
+      //       element: slide,
+      //     };
+      //     locSlides.push(slideobject);
+      //   });
+      // }
+      console.log('locSlides:',locSlides);
+      console.log('이미지넘어오니?',props.slides);
+      setSlides(locSlides)
+      setSlideTotal(locSlides.length - 1);
+      setSlideCurrent(-1);
+      if (slideCurrent === -1) {
+        setTimeout(() => {
+          slideRight();
+          nextRef.current.click();
+          if (props.autoplay) {
+            intervalRef.current = setTimeout(() => {
+              nextRef.current.click();
+          }, props.interval);}
+        }, 0);
+      }
+      slideRight();
+      }
+  }, [props.slides])
+
   useEffect(()=>{
     if(slideCurrent === 0){
       setTimeout(() => {
@@ -64,37 +78,6 @@ export function Carousel(props) {
       }, 500);
     }
   },[slides,slideCurrent]);
-  
-  useEffect(()=>{
-    console.log(props.resultTagData)
-    setResultTagData(props.resultTagData)
-    // ApiService.imageLoad("clover_loading.gif")
-    // .then(res => {
-    //     setLoadingImg(res.data)
-    // })
-    // .catch(err => {
-    //     console.log('axios 에러', err)
-    // })
-    // let sendValue = location.state.sendValue
-    // ApiService.calcResult(sendValue.sendValue)
-    // .then((res) => {
-    //     console.log(res.data)
-    //     setResult(res.data)
-    //     setDonCalc(true)
-    // })
-    // .catch((err) => {
-    //     console.log("axios에러", err)
-    // })
-    // ApiService.tag()
-    // .then(res =>{
-    //   let tmpList = []
-    //   res.data.map(tag =>{
-    //     tmpList.push(tag)
-    //   })
-    //   console.log(tmpList)
-    //   setTagData(tmpList)
-    // })
-  },[props.resultTagData]);
 
   const slideRight = () => {
     let preactiveSlide;
@@ -140,7 +123,7 @@ export function Carousel(props) {
         setTimeout(() => {
           if (document.getElementsByClassName('slider-single active').length > 0) {
             const height = document.getElementsByClassName('slider-single active')[0].clientHeight;
-            setHeight(`${height  }px`);
+            setHeight(`${height}px`);
           }
         }, 500);
       }
@@ -230,7 +213,8 @@ export function Carousel(props) {
 
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
-      {slides && slides.length > 0 && <div className="slider-container" >
+      
+      { <div className="slider-container" >
         <div className="slider-content">
           {slides.map((slider, index) => (
             <div className={slider.class} key={index}>
@@ -247,28 +231,33 @@ export function Carousel(props) {
 
                 <div className="slider-single-content">
                   {slider.element}
+                  {/* <img src={slider.props.src} alt="이미지없니?" className='slider-single proactivede'/> */}
                   <div className='slider-tagsets'>
                     <div className='slider-ment'>
-                      {resultTagData[0]['ment']}
+                      {/* {props.resultTagData == undefined?
+                      null : 
+                      props.resultTagData[index]['ment']} */}
                     </div>
 
                     <div className='slider-tagset'>
-                      {resultTagData[0]['tags'] == undefined? null : resultTagData[0]['tags'].map((tag,index)=> {
-                        if(index<11)
+                      {/* {props.resultTagData == undefined? 
+                      null : 
+                      props.resultTagData[index]['tags'].map((tag, tagidx) => {
+                        if(tagidx<11)
                         {
                           return(
-                            <div className='slider-tag'>
+                            <div className='slider-tag' key={tagidx}>
                             #{tag}
                             </div>
                           )    
                         }    
-                      })}
+                      })} */}
                     </div>
                   </div>
                 </div>
             </div>
           ))}
-       </div>
+        </div>
       </div>}
       <Button slideLeft={changeLeftStatus} slideRight={changeRightStatus} />
     </div>
@@ -288,7 +277,6 @@ Carousel.defaultProps = {
   arrows: true,
   arrowBorders: true,
   onSlideChange:function(){
-
   }
 };
 
