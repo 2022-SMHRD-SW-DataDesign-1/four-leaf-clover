@@ -22,15 +22,8 @@ export function Carousel(props) {
     trackMouse: true
   });
   useEffect(() => {
-    const locSlides = [];
-    props.slides.forEach((slide) => {
-      const slideobject = {
-        class: 'slider-single proactivede',
-        element: slide,
-      };
-      locSlides.push(slideobject);
-    });
-    if(props.slides.length === 2){
+    if (slides){
+      const locSlides = [];
       props.slides.forEach((slide) => {
         const slideobject = {
           class: 'slider-single proactivede',
@@ -38,18 +31,28 @@ export function Carousel(props) {
         };
         locSlides.push(slideobject);
       });
-    }
-    setSlides(locSlides);
-    setSlideTotal(locSlides.length - 1);
-    setSlideCurrent(-1);
-    if (slideCurrent === -1) {
-      setTimeout(() => {
-        nextRef.current.click();
-        // if (props.autoplay) {
-        //   intervalRef.current = setTimeout(() => {
-        //     nextRef.current.click();
-        // }, props.interval);}
-      }, 500);
+      // if(props.slides.length === 2){
+      //   props.slides.forEach((slide) => {
+      //     const slideobject = {
+      //       class: 'slider-single proactivede',
+      //       element: slide,
+      //     };
+      //     locSlides.push(slideobject);
+      //   });
+      // }
+      console.log(locSlides);
+      setSlides(locSlides);
+      setSlideTotal(locSlides.length - 1);
+      setSlideCurrent(-1);
+      if (slideCurrent === -1) {
+        setTimeout(() => {
+          nextRef.current.click();
+          // if (props.autoplay) {
+          //   intervalRef.current = setTimeout(() => {
+          //     nextRef.current.click();
+          // }, props.interval);}
+        }, 500);
+      }
     }
   }, [props.slides]);
   useEffect(()=>{

@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel } from './MyCarousel'
 import ApiService from "../../ApiService";
+import { useLocation } from 'react-router-dom';
 
 const Toonpage = () => {
 
-    const [bigThumbList, setBigThumbList] = useState([])
+    const [resultList, setResultList] = useState([])
+    const [slides, setSlides] = useState([])
+    const location = useLocation();
 
     useEffect(()=>{
-        ApiService.resultToon()
-        .then(res => {
-            let tmpList = []
-            res.data.map( thumbUrl => {
-            tmpList.push(thumbUrl)
+        let resultData = location.state.outputList;
+        console.log(resultData);
+        let tmpList = [];
+        resultData.map((item) => {
+            tmpList.push({
+                'thumb' : item.webtoon_big_thumbnail_url,
+                'url' : item.webtoon_url
             })
-            console.log(tmpList)
-            setBigThumbList(tmpList)
         })
+        setResultList(tmpList);
     },[]);
 
-    // let slides = [
-    //     <img src={`${bigThumbList[10]}`} alt="1" />,
-    //     <img src={`${bigThumbList[8]}`} alt="2" />  ,
-    //     <img src={`${bigThumbList[500]}`} alt="3" />  ,
-    //     <img src={`${bigThumbList[380]}`} alt="4" />  ,
-    //     <img src={`${bigThumbList[70]}`} alt="5" />  ,
-    //     <img src={`${bigThumbList[410]}`} alt="6" />  ,
-    //     <img src={`${bigThumbList[80]}`} alt="7" />   ];
+    useEffect(() => {
+        let tmpList = []
+        resultList.map((result, idx) => {
+            tmpList.push(<a href={result.url}><img src={`${result.thumb}`} alt={idx} /></a>)
+        })
+        console.log(tmpList);
+        setSlides(tmpList)
+    },[resultList])
 
-    let slides = [];
-
-    for (let i = 0; i < 10; i++) {
-        slides.push(<img src={`${bigThumbList[i]}`} alt={i+1} />)
-    }
 
     return (
         <div>

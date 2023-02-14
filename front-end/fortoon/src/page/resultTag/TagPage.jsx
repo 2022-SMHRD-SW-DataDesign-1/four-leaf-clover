@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ApiService from '../../ApiService';
@@ -8,14 +8,11 @@ const TagPage = () => {
 
     const [loadingImg, setLoadingImg] = useState()
     const [donCalc, setDonCalc] = useState(false);
-    const [donData, setDonData] = useState(false);
     const [result, setResult] = useState([]);
     const [resultTagData, setResultTagData] = useState([]);
     const [slides, setSlides] = useState([]);
-    const location = useLocation();
-    let slideList = [];
-    let locSlides = [];
     const [cnt, setCnt] = useState(0);
+    const location = useLocation();
 
     // let slides = [
     //     <img src={require('./css/image/tagcard01.jpg')} alt="1" />,
@@ -38,7 +35,7 @@ const TagPage = () => {
         let sendValue = location.state.sendValue
         ApiService.calcResult(sendValue.sendValue)
         .then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             setResult(res.data)
             setDonCalc(true)
         })
@@ -55,7 +52,7 @@ const TagPage = () => {
             if (resultItemList.length == 10){
             sttchrList.push(resultItemList[0].sttchr)
             tagData['ment'] = resultItemList[0].ment
-            // tagData['sttchr'] = resultItemList[0].ment
+            tagData['sttchr'] = resultItemList[0].sttchr
             let tagList = []
             let tmpList = []
             resultItemList.map( item => {
@@ -84,47 +81,30 @@ const TagPage = () => {
             .then(res => {
                 tmpSlides.push({
                     class : 'slider-single proactivede',
-                    element : <img src={`data:image/;base64,${res.data}`} alt={i+1} key={sttchrList[i]}></img>
+                    element : <img src={`data:image/;base64,${res.data}`} alt={i+1} key={sttchrList[i]}></img>,
+                    ment : 0,
+                    index : i
                 })
             })
             .catch(err => {
                 console.log('axios 에러', err)
             })
         }
-        // console.log("넘어가기 전",tmpcnt)
+        console.log('tmpslides: ',tmpSlides)
         setSlides(tmpSlides);
         setCnt(sttchrList.length);
-        console.log(slideList)
-        // console.log('length: ',tmpSlides.length)
-
-   
-        // tmpSlides.forEach(slide => {
-        //     console.log('여기 확인해야함', slide)
-        //     // let slideobject = {
-        //     //     class: 'slider-single proactivede',
-        //     //     element: slide,
-        //     // };
-        //     // console.log('여기 확인해야함', slideobject)
-        //     // locSlides.push(slideobject);
-        // })
-
-        // console.log('locSlides: ',locSlides)
-  
-        // setSlides(tmpSlides)
         setResultTagData(resultData)
-        setDonData(true)
     }, [donCalc])
-    
 
     return (
         !donCalc ?
-        <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', width:'100%', height:'700px', marginBottom:'1vh',marginTop: '4vh'}}>
+        <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column', width:'100%', height:'700px', marginBottom:'1vh',marginTop: '4vh'}}>
             <img src={`data:image/;base64,${loadingImg}`} style={{width: '50vh', height:'50vh'}}/>
+            <div>웹툰을 선택중입니다!</div>
         </div>
         :
         <div>
-            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData} cnt={cnt}></Carousel>}
-        
+            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData} cnt={cnt} result={result}></Carousel>}
         </div>
     )
 }

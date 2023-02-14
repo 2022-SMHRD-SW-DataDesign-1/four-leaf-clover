@@ -3,6 +3,7 @@ import { useSwipeable } from 'react-swipeable';
 import PropTypes from 'prop-types';
 import './css/MyCarouselTag.scss';
 import Button from './TrunPageButton'
+import { useNavigate } from 'react-router-dom';
 
 // const isEqual = require("react-fast-compare");
 
@@ -22,9 +23,10 @@ export function Carousel(props) {
   const [height, setHeight] = useState('0px');
   const [cardLeftMove, setCardLeftMove] = useState(false);
   const [cardRightMove, setCardRightMove] = useState(false);
-  const [resultChild, setResultChild] = useState(props.resultTagData);
+  const [donCardLoading, setDonCardLoading] = useState(false);
   const intervalRef = useRef(null);
   const nextRef = useRef();
+  const navigate = useNavigate();
   const handlers = useSwipeable({
     onSwipedLeft: () => slideRight(),
     onSwipedRight: () => slideLeft(),
@@ -34,72 +36,23 @@ export function Carousel(props) {
 
   useEffect(() => {
     if(props.slides){
-      // console.log('useEffect', props.slides, props.slides.length);
-      // const tmpList = props.slides
-      // const locSlides = [];
-      // console.log(tmpList.length)
-      // tmpList.forEach((slide) => {
-      //   console.log('여기 확인해야함', slide)
-      //   let slideobject = {
-      //     class: 'slider-single proactivede',
-      //     element: slide,
-      //   };
-      //   console.log('여기 확인해야함', slideobject)
-      //   locSlides.push(slideobject);
-      // });
-      // if(tmpList.length === 2){
-      //   tmpList.map((slide) => {
-      //     console.log('여기 확인해야함', slide)
-      //     const slideobject = {
-      //       class: 'slider-single proactivede',
-      //       element: slide,
-      //     };
-      //     locSlides.push(slideobject);
-      //   });
-      // }
-      // console.log('locSlides:',locSlides);
-      // console.log('이미지넘어오니?',props.slides);
-      // console.log('cnt1 : ', props.cnt)
-      // console.log('cnt2 : ', cnt)
       setSlides(props.slides)
       setSlideTotal(props.cnt - 1);
       setSlideCurrent(-1);
-     
-      // setInterval(() => {
-      //   console.log("오른쪽으로!")
-      //   slideRight();
-      // }, 1000);
-      if (slideCurrent === -1) {
-        setTimeout(() => {
-          nextRef.current.click();
-          // slideRight();
-          // if (props.autoplay) {
-          //   intervalRef.current = setTimeout(() => {
-          //     nextRef.current.click();
-          // }, props.interval);}
-        }, 4000);
-      }
-      if (slideCurrent === 0) {
-        setTimeout(() => {
-          // nextRef.current.click();
-          slideRight();
-          // if (props.autoplay) {
-          //   intervalRef.current = setTimeout(() => {
-          //     nextRef.current.click();
-          // }, props.interval);}
-        }, 4500);
-      }
-      // slideRight();
-      }
+    
+      setDonCardLoading(true);
+    }
   }, [props.slides])
 
-  useEffect(()=>{
-    if(slideCurrent === 0){
-      setTimeout(() => {
-        // nextRef.current.click();
-      }, 500);
-    }
-  },[slides]);
+  useEffect(() => {
+    setTimeout(() => {
+      nextRef.current.click();
+    }, 4000);
+    setTimeout(() => {
+      nextRef.current.click();
+    }, 4500);
+  }, [donCardLoading])
+
 
   const slideRight = () => {
     let preactiveSlide;
@@ -233,6 +186,18 @@ export function Carousel(props) {
     slideRight()
   },[cardRightMove])
 
+  const goNextPage = (slider) => {
+    let outputList = []
+    props.result.map((items) => {
+      items.map((item) => {
+        if(item.sttchr == slider.sttchr){
+          outputList.push(item);
+        }
+      })
+    })
+    navigate('/resultToon',{state:{outputList}})
+  }
+
   return (
     <div className="react-3d-carousel" style={{ height }} {...handlers}>
       
@@ -250,10 +215,8 @@ export function Carousel(props) {
                         <i className="fa fa-arrow-right"></i>
                     </div>
                 </div>
-
-                <div className="slider-single-content">
+                <div className="slider-single-content" onClick={() => goNextPage(slider)}>
                   {slider.element}
-                  {/* <img src={slider.props.src} alt="이미지없니?" className='slider-single proactivede'/> */}
                   <div className='slider-tagsets'>
                     <div className='slider-ment'>
                       {props.resultTagData == undefined?
@@ -265,14 +228,13 @@ export function Carousel(props) {
                       {props.resultTagData == undefined? 
                       null : 
                       props.resultTagData[index]['tags'].map((tag, tagidx) => {
-                        if(tagidx<11)
-                        {
+                        if (tagidx < 8){
                           return(
                             <div className='slider-tag' key={tagidx}>
                             #{tag}
                             </div>
-                          )    
-                        }    
+                          )
+                        }
                       })}
                     </div>
                   </div>
