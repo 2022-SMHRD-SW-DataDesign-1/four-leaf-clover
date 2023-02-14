@@ -8,12 +8,16 @@ import Button from './TrunPageButton'
 
 export function Carousel(props) {
 
+  // console.log("이미지데이터:",props.slides);
+  // console.log("이미지크기:",props.cnt);
+
   // let slides = props?.slides;
 
   // console.log(slides);
 
+  const cnt = props.cnt;
   const [slideTotal, setSlideTotal] = useState(0);
-  const [slideCurrent, setSlideCurrent] = useState(-1);
+  const [slideCurrent, setSlideCurrent] = useState(0);
   const [slides, setSlides] = useState([]);
   const [height, setHeight] = useState('0px');
   const [cardLeftMove, setCardLeftMove] = useState(false);
@@ -30,18 +34,19 @@ export function Carousel(props) {
 
   useEffect(() => {
     if(props.slides){
-      console.log('useEffect', props.slides);
-      const tmpList = props.slides
-      const locSlides = [];
-      props.slides.map((slide) => {
-        console.log('여기 확인해야함', slide)
-        let slideobject = {
-          class: 'slider-single proactivede',
-          element: slide,
-        };
-        console.log('여기 확인해야함', slideobject)
-        locSlides.push(slideobject);
-      });
+      // console.log('useEffect', props.slides, props.slides.length);
+      // const tmpList = props.slides
+      // const locSlides = [];
+      // console.log(tmpList.length)
+      // tmpList.forEach((slide) => {
+      //   console.log('여기 확인해야함', slide)
+      //   let slideobject = {
+      //     class: 'slider-single proactivede',
+      //     element: slide,
+      //   };
+      //   console.log('여기 확인해야함', slideobject)
+      //   locSlides.push(slideobject);
+      // });
       // if(tmpList.length === 2){
       //   tmpList.map((slide) => {
       //     console.log('여기 확인해야함', slide)
@@ -52,32 +57,49 @@ export function Carousel(props) {
       //     locSlides.push(slideobject);
       //   });
       // }
-      console.log('locSlides:',locSlides);
-      console.log('이미지넘어오니?',props.slides);
-      setSlides(locSlides)
-      setSlideTotal(locSlides.length - 1);
+      // console.log('locSlides:',locSlides);
+      // console.log('이미지넘어오니?',props.slides);
+      // console.log('cnt1 : ', props.cnt)
+      // console.log('cnt2 : ', cnt)
+      setSlides(props.slides)
+      setSlideTotal(props.cnt - 1);
       setSlideCurrent(-1);
+     
+      // setInterval(() => {
+      //   console.log("오른쪽으로!")
+      //   slideRight();
+      // }, 1000);
       if (slideCurrent === -1) {
         setTimeout(() => {
-          slideRight();
           nextRef.current.click();
-          if (props.autoplay) {
-            intervalRef.current = setTimeout(() => {
-              nextRef.current.click();
-          }, props.interval);}
-        }, 0);
+          // slideRight();
+          // if (props.autoplay) {
+          //   intervalRef.current = setTimeout(() => {
+          //     nextRef.current.click();
+          // }, props.interval);}
+        }, 4000);
       }
-      slideRight();
+      if (slideCurrent === 0) {
+        setTimeout(() => {
+          // nextRef.current.click();
+          slideRight();
+          // if (props.autoplay) {
+          //   intervalRef.current = setTimeout(() => {
+          //     nextRef.current.click();
+          // }, props.interval);}
+        }, 4500);
+      }
+      // slideRight();
       }
   }, [props.slides])
 
   useEffect(()=>{
     if(slideCurrent === 0){
       setTimeout(() => {
-        //slideRight();
+        // nextRef.current.click();
       }, 500);
     }
-  },[slides,slideCurrent]);
+  },[slides]);
 
   const slideRight = () => {
     let preactiveSlide;
@@ -218,12 +240,12 @@ export function Carousel(props) {
         <div className="slider-content">
           {slides.map((slider, index) => (
             <div className={slider.class} key={index}>
-                <div className={sliderClass('left')} onClick={slideLeft}>
+                <div className={sliderClass('left')} onClick={() => slideLeft()}>
                     <div>
                         <i className="fa fa-arrow-left"></i>
                     </div>
                 </div>
-                <div className={sliderClass('right')} onClick={slideRight} ref={nextRef}>
+                <div className={sliderClass('right')} onClick={() => slideRight()} ref={nextRef}>
                     <div >
                         <i className="fa fa-arrow-right"></i>
                     </div>
@@ -234,13 +256,13 @@ export function Carousel(props) {
                   {/* <img src={slider.props.src} alt="이미지없니?" className='slider-single proactivede'/> */}
                   <div className='slider-tagsets'>
                     <div className='slider-ment'>
-                      {/* {props.resultTagData == undefined?
+                      {props.resultTagData == undefined?
                       null : 
-                      props.resultTagData[index]['ment']} */}
+                      props.resultTagData[index]['ment']}
                     </div>
 
                     <div className='slider-tagset'>
-                      {/* {props.resultTagData == undefined? 
+                      {props.resultTagData == undefined? 
                       null : 
                       props.resultTagData[index]['tags'].map((tag, tagidx) => {
                         if(tagidx<11)
@@ -251,7 +273,7 @@ export function Carousel(props) {
                             </div>
                           )    
                         }    
-                      })} */}
+                      })}
                     </div>
                   </div>
                 </div>
@@ -264,7 +286,7 @@ export function Carousel(props) {
   );
 }
 Carousel.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.element),
+  slides: PropTypes.array,
   autoplay: PropTypes.bool,
   interval: PropTypes.number,
   arrows: PropTypes.bool,

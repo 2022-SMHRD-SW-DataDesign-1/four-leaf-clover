@@ -11,9 +11,11 @@ const TagPage = () => {
     const [donData, setDonData] = useState(false);
     const [result, setResult] = useState([]);
     const [resultTagData, setResultTagData] = useState([]);
-    const [slides, setSlides] = useState();
+    const [slides, setSlides] = useState([]);
     const location = useLocation();
     let slideList = [];
+    let locSlides = [];
+    const [cnt, setCnt] = useState(0);
 
     // let slides = [
     //     <img src={require('./css/image/tagcard01.jpg')} alt="1" />,
@@ -76,18 +78,39 @@ const TagPage = () => {
         console.log(resultData)
         console.log(sttchrList)
 
-        let tmpSlides = []
-        sttchrList.map((sttchr, idx) => {
-            ApiService.slideImageLoad(sttchr+'.png')
+        let tmpSlides = [];
+        for (let i = 0; i < sttchrList.length; i++) {
+            ApiService.slideImageLoad(sttchrList[i]+'.png')
             .then(res => {
-                tmpSlides.push(<img src={`data:image/;base64,${res.data}`} alt={idx+1} key={sttchr}></img>)
+                tmpSlides.push({
+                    class : 'slider-single proactivede',
+                    element : <img src={`data:image/;base64,${res.data}`} alt={i+1} key={sttchrList[i]}></img>
+                })
             })
             .catch(err => {
                 console.log('axios 에러', err)
             })
-        })
-        console.log(tmpSlides)
-        setSlides(tmpSlides)
+        }
+        // console.log("넘어가기 전",tmpcnt)
+        setSlides(tmpSlides);
+        setCnt(sttchrList.length);
+        console.log(slideList)
+        // console.log('length: ',tmpSlides.length)
+
+   
+        // tmpSlides.forEach(slide => {
+        //     console.log('여기 확인해야함', slide)
+        //     // let slideobject = {
+        //     //     class: 'slider-single proactivede',
+        //     //     element: slide,
+        //     // };
+        //     // console.log('여기 확인해야함', slideobject)
+        //     // locSlides.push(slideobject);
+        // })
+
+        // console.log('locSlides: ',locSlides)
+  
+        // setSlides(tmpSlides)
         setResultTagData(resultData)
         setDonData(true)
     }, [donCalc])
@@ -100,7 +123,7 @@ const TagPage = () => {
         </div>
         :
         <div>
-            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData}></Carousel>}
+            {slides&&<Carousel slides={slides} autoplay={false} interval={1000} arrows={false} resultTagData={resultTagData} cnt={cnt}></Carousel>}
         
         </div>
     )

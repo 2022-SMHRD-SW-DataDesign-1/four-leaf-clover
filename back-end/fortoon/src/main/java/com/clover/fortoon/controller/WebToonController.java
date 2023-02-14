@@ -61,6 +61,16 @@ public class WebToonController {
         return new ResponseEntity<byte[]>(encoder.encode(imageByteArray), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/ImagePath/slides/{imageName}", produces = {MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
+    private ResponseEntity<byte[]> slideImagePrint(@PathVariable("imageName") String imageName) throws IOException {
+        String imagePath = "C:/FeatureImages/TagCardImage/"+imageName;
+        InputStream imageStream = new FileInputStream(imagePath);
+        byte[] imageByteArray = IOUtils.toByteArray(imageStream);
+        imageStream.close();
+        Encoder encoder = Base64.getEncoder();
+        return new ResponseEntity<byte[]>(encoder.encode(imageByteArray), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/genre")
     private List<String> genreList(){
         System.out.println("genre값 불러오기");
@@ -138,170 +148,170 @@ public class WebToonController {
     @PostMapping("/calcResult")
     private List<List<ResultValueDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
         long beforeTime = System.currentTimeMillis();
-        List<String> genre = params.get(0).get("genre");
-        List<String> drawingStyle = params.get(1).get("drawingStyle");
-        List<String> synopsis = params.get(2).get("synopsis");
-        // 여기서 추천 알고리즘 계산 해야함
+        // List<String> genre = params.get(0).get("genre");
+        // List<String> drawingStyle = params.get(1).get("drawingStyle");
+        // List<String> synopsis = params.get(2).get("synopsis");
+        // // 여기서 추천 알고리즘 계산 해야함
 
-        // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
-        List<WebToonDTO> toons = webToonMapper.webtoonList();
-        List<WebToonDTO> filteredToon = new ArrayList<>();
+        // // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
+        // List<WebToonDTO> toons = webToonMapper.webtoonList();
+        // List<WebToonDTO> filteredToon = new ArrayList<>();
     
     
-        // 1. 고른 장르로 필터링 해놓고 길이 구해보자
-        for (WebToonDTO tmp : toons){
-            for (String tmpgenre : genre) {
-                if(tmp.getWebtoon_genre().contains(tmpgenre)){
-                    filteredToon.add(tmp);
-                }
-            }
-        }
-        //  그렇게해서 장르로 한번 필터링한 웹툰 DTO 전체가 filtererd임.
-        System.out.println("장르로 필터링한 녀석들의 길이"+filteredToon.size());
+        // // 1. 고른 장르로 필터링 해놓고 길이 구해보자
+        // for (WebToonDTO tmp : toons){
+        //     for (String tmpgenre : genre) {
+        //         if(tmp.getWebtoon_genre().contains(tmpgenre)){
+        //             filteredToon.add(tmp);
+        //         }
+        //     }
+        // }
+        // //  그렇게해서 장르로 한번 필터링한 웹툰 DTO 전체가 filtererd임.
+        // System.out.println("장르로 필터링한 녀석들의 길이"+filteredToon.size());
 
-        // 2. 이제 그림체로 필터린된 얘들을 가져와 보자
-        List<FeatureValueDTO> filteredDrawing = new ArrayList<>();
-        List<FeatureValueDTO> drawingFeatures =  webToonMapper.featureValueList();
+        // // 2. 이제 그림체로 필터린된 얘들을 가져와 보자
+        // List<FeatureValueDTO> filteredDrawing = new ArrayList<>();
+        // List<FeatureValueDTO> drawingFeatures =  webToonMapper.featureValueList();
         
-        List<String> drawingChategory = new ArrayList<>();
+        // List<String> drawingChategory = new ArrayList<>();
 
 
 
 
-        // 카테고리를 쓰지말자. 바로 X벡터 y벡터를 가져오자 
-        for(String tmp : drawingStyle){
-            for(FeatureValueDTO tmp2 : drawingFeatures){
-                // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
-                if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
-                // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
+        // // 카테고리를 쓰지말자. 바로 X벡터 y벡터를 가져오자 
+        // for(String tmp : drawingStyle){
+        //     for(FeatureValueDTO tmp2 : drawingFeatures){
+        //         // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
+        //         if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
+        //         // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
                     
-                }
-            }  
-            break;
-        }
-
-
-        // if (leftVector == null || rightVector == null) {
-        //     throw new IllegalArgumentException("벡터값이 어떻게 널이냐 이말이야");
+        //         }
+        //     }  
+        //     break;
         // }
+
+
+        // // if (leftVector == null || rightVector == null) {
+        // //     throw new IllegalArgumentException("벡터값이 어떻게 널이냐 이말이야");
+        // // }
  
-        // final Set<CharSequence> intersection = getIntersection(leftVector, rightVector);
+        // // final Set<CharSequence> intersection = getIntersection(leftVector, rightVector);
  
-        // final double dotProduct = dot(leftVector, rightVector, intersection);
-        // double d1 = 0.0d;
-        // for (final Integer value : leftVector.values()) {
-        //     d1 += Math.pow(value, 2);
+        // // final double dotProduct = dot(leftVector, rightVector, intersection);
+        // // double d1 = 0.0d;
+        // // for (final Integer value : leftVector.values()) {
+        // //     d1 += Math.pow(value, 2);
+        // // }
+        // // double d2 = 0.0d;
+        // // for (final Integer value : rightVector.values()) {
+        // //     d2 += Math.pow(value, 2);
+        // // }
+        // // double cosineSimilarity;
+        // // if (d1 <= 0.0 || d2 <= 0.0) {
+        // //     cosineSimilarity = 0.0;
+        // // } else {
+        // //     cosineSimilarity = (double) (dotProduct / (double) (Math.sqrt(d1) * Math.sqrt(d2)));
+        // // }
+
+
+        // // 그림체 카테고리를 일단 뽑아보자
+        // for(String tmp : drawingStyle){
+        //     for(FeatureValueDTO tmp2 : drawingFeatures){
+        //         // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
+        //         if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
+        //         // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
+        //             drawingChategory.add(tmp2.getChr_category());
+        //         }
+        //     }  
+        //     break;
         // }
-        // double d2 = 0.0d;
-        // for (final Integer value : rightVector.values()) {
-        //     d2 += Math.pow(value, 2);
+
+        // // 이제 얘네가 사용자가 선택한 그림체 카테고리 번호가 되는거임
+        // System.out.println("그림체 카테고리 "+drawingChategory.size());
+
+
+        // // 다시 전체 웹툰 그림체 정보 에서 저 카테고리를 가진 얘들을 가져와보자.
+        // for(FeatureValueDTO tmp : drawingFeatures){
+        //     for(String tmp2 : drawingStyle){
+        //         if(tmp.getWebtoon_num() == Integer.parseInt(tmp2) ){
+        //             tmp.getChr_num();
+        //             filteredDrawing.add(tmp);
+        //         }
+        //     }
         // }
-        // double cosineSimilarity;
-        // if (d1 <= 0.0 || d2 <= 0.0) {
-        //     cosineSimilarity = 0.0;
-        // } else {
-        //     cosineSimilarity = (double) (dotProduct / (double) (Math.sqrt(d1) * Math.sqrt(d2)));
-        // }
+
+        // System.out.println(filteredDrawing.size());
+
+        // // 3. 고른 시놉시스 유사도를 계산하고
 
 
-        // 그림체 카테고리를 일단 뽑아보자
-        for(String tmp : drawingStyle){
-            for(FeatureValueDTO tmp2 : drawingFeatures){
-                // 선택한 그림체 웹툰 번호가 db의 그림체 지정 정보와 같을 때
-                if(tmp.equals(Integer.toString(tmp2.getWebtoon_num()) )){
-                // 그 웹툰의 chr_category를 리스트에 담아 놓겠다
-                    drawingChategory.add(tmp2.getChr_category());
-                }
-            }  
-            break;
-        }
-
-        // 이제 얘네가 사용자가 선택한 그림체 카테고리 번호가 되는거임
-        System.out.println("그림체 카테고리 "+drawingChategory.size());
 
 
-        // 다시 전체 웹툰 그림체 정보 에서 저 카테고리를 가진 얘들을 가져와보자.
-        for(FeatureValueDTO tmp : drawingFeatures){
-            for(String tmp2 : drawingStyle){
-                if(tmp.getWebtoon_num() == Integer.parseInt(tmp2) ){
-                    tmp.getChr_num();
-                    filteredDrawing.add(tmp);
-                }
+
+
+
+
+
+
+
+        // 랜덤으로 아무값 100개 넣음
+        List<Integer> randomWtList = new ArrayList<Integer>();
+        int randWtNum = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            randWtNum = (int)(Math.random()*561);
+            randomWtList.add(randWtNum);
+            while((i != 0) && (randomWtList.get(i-1) == randomWtList.get(i)))
+            {
+                randomWtList.remove(i);
+                randWtNum = (int)(Math.random()*561);
+                randomWtList.add(randWtNum);
             }
         }
-
-        System.out.println(filteredDrawing.size());
-
-        // 3. 고른 시놉시스 유사도를 계산하고
-
-
-
-
-
-
-
-
-
-
-
-        // // 랜덤으로 아무값 100개 넣음
-        // List<Integer> randomWtList = new ArrayList<Integer>();
-        // int randWtNum = 0;
-        // for (int i = 0; i < 100; i++)
-        // {
-        //     randWtNum = (int)(Math.random()*561);
-        //     randomWtList.add(randWtNum);
-        //     while((i != 0) && (randomWtList.get(i-1) == randomWtList.get(i)))
-        //     {
-        //         randomWtList.remove(i);
-        //         randWtNum = (int)(Math.random()*561);
-        //         randomWtList.add(randWtNum);
-        //     }
-        // }
         
 
 
 
-        // List<SituationChrFormDTO> sttChrFormList = webToonMapper.getSttChrForm();
-        // List<List<ResultValueDTO>> result = new ArrayList<List<ResultValueDTO>>();
-        
-        // // 웹툰 번호 넣을때 점수 높은거부터 정렬해서 넣어야 할듯
-        // for (int i = 0; i < sttChrFormList.size(); i++) {
-
-        //     result.add(new ArrayList<ResultValueDTO>());
-
-        //     for (int wt_num : randomWtList) {
-
-        //         if (result.get(i).size() == 10){
-        //             break;
-        //         }
-
-        //         SituationChrDTO sttchrDTO = webToonMapper.getSttChr(wt_num);
-        //         ResultValueDTO resultDTO = webToonMapper.getResultValue(wt_num);
-                
-        //         if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getTime_chr())){
-        //             resultDTO.setSttchr(sttchrDTO.getTime_chr());
-        //             resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getTime_chr()));
-        //             result.get(i).add(resultDTO);
-        //         }
-        //         else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getPlace_chr())){
-        //             resultDTO.setSttchr(sttchrDTO.getPlace_chr());
-        //             resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getPlace_chr()));
-        //             result.get(i).add(resultDTO);
-        //         }
-        //         else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getWeather_chr())){
-        //             resultDTO.setSttchr(sttchrDTO.getWeather_chr());
-        //             resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getWeather_chr()));
-        //             result.get(i).add(resultDTO);
-        //         }
-
-        //     }
-        // }
-        // long afterTime = System.currentTimeMillis(); 
-        // long secDiffTime = (afterTime - beforeTime)/1000;
-        // System.out.println("시간차이(m) : "+secDiffTime);
-        
+        List<SituationChrFormDTO> sttChrFormList = webToonMapper.getSttChrForm();
         List<List<ResultValueDTO>> result = new ArrayList<List<ResultValueDTO>>();
+        
+        // 웹툰 번호 넣을때 점수 높은거부터 정렬해서 넣어야 할듯
+        for (int i = 0; i < sttChrFormList.size(); i++) {
+
+            result.add(new ArrayList<ResultValueDTO>());
+
+            for (int wt_num : randomWtList) {
+
+                if (result.get(i).size() == 10){
+                    break;
+                }
+
+                SituationChrDTO sttchrDTO = webToonMapper.getSttChr(wt_num);
+                ResultValueDTO resultDTO = webToonMapper.getResultValue(wt_num);
+                
+                if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getTime_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getTime_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getTime_chr()));
+                    result.get(i).add(resultDTO);
+                }
+                else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getPlace_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getPlace_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getPlace_chr()));
+                    result.get(i).add(resultDTO);
+                }
+                else if (sttChrFormList.get(i).getSttchr().equals(sttchrDTO.getWeather_chr())){
+                    resultDTO.setSttchr(sttchrDTO.getWeather_chr());
+                    resultDTO.setMent(webToonMapper.getMent(sttchrDTO.getWeather_chr()));
+                    result.get(i).add(resultDTO);
+                }
+
+            }
+        }
+        long afterTime = System.currentTimeMillis(); 
+        long secDiffTime = (afterTime - beforeTime)/1000;
+        System.out.println("시간차이(m) : "+secDiffTime);
+        
+        // List<List<ResultValueDTO>> result = new ArrayList<List<ResultValueDTO>>();
 
         return result;
     }
