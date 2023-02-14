@@ -33,6 +33,7 @@ import com.clover.fortoon.model.FeatureValueDTO;
 import com.clover.fortoon.model.ResultValueDTO;
 import com.clover.fortoon.model.SituationChrDTO;
 import com.clover.fortoon.model.SituationChrFormDTO;
+import com.clover.fortoon.model.SynopSimDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -175,8 +176,6 @@ public class WebToonController {
         List<String> synopsis = params.get(2).get("synopsis");
         
         // 여기서 추천 알고리즘 계산 해야함
-        List<FeatureValueDTO> features = webToonMapper.featureValueList(); // 일단 데이터 부르고시자작하자 2만건인데 얼마나 걸릴라나.
-
         // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
         List<WebToonDTO> toons = webToonMapper.webtoonList();
         List<WebToonDTO> filteredToon = new ArrayList<>();
@@ -196,18 +195,31 @@ public class WebToonController {
          3) 선택된 그림체 i 개 
          4) 선택된 시놉시스 j개
          장르 필터링된 웹툰들 중에서
-         (for문에 for문)
-        i*j
-         */
+         (for문에 for문) i*j*필터링된 웹툰만큼 for문 돌아
         
+         */
+        // features
+        // synops
         for (String imgNum:  drawingStyle){
             for(String synopNum: synopsis){
                 for(WebToonDTO toonDTO : filteredToon){
+                    // 사용자 선택이미지 기준 필터링된 웹툰과 그림체 유사도 -1~1
+                    String imgSim =  webToonMapper.featureValueList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num()); 
+                    // 사용자 선택 시놉시스 기준 필터링된 웹툰과 시놉시스 유사도 0~1
+                    String synopSim = webToonMapper.synopsSimList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num());
+                    // 타겟 웹툰의 평점
+                    float rating =  toonDTO.getWebtoon_rating();
+                    // 타겟 웹툰의 평점 총 잠여자
+                    float participants = toonDTO.getWebtoon_rating_count();
+        
                     /*
-                     한개의 row에 대해서
-                     x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
-                     (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
-                     (평점참여자 labeling 필요)
+                    *             위의 값들에 대해서 다음과 같은 계산 적용
+                    *           x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
+                    *             (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
+                    * (평점참여자 labeling 필요)
+                    *
+                    * 
+                    *  경우 -1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
                     */
                     toonDTO.getWebtoon_num();
                 }

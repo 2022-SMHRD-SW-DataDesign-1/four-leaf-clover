@@ -34,11 +34,6 @@
 		from tbl_webtoon
 	</select>
 
-	<select id="featureValueList" resultType="com.clover.fortoon.model.FeatureValueDTO">
-		select *
-		from tbl_webtoonchrvl
-	</select>
-
 	<select id="getSttChrForm" resultType="com.clover.fortoon.model.SituationChrFormDTO">
 		select *
 		from tbl_sttchr_form
@@ -60,6 +55,18 @@
 		select ment
 		from tbl_sttchr_form
 		where sttchr = #{sttchr}
+	</select>
+	
+	<select id="synopsSimList" resultType="String">
+		select synopsim
+		from tbl_synopall
+		where webtoon_num=#{webtoon_num} and target_num=#{target_num}
+	</select>
+
+	<select id="featureValueList" resultType="String">
+		select drawingsim
+		from tbl_imgall
+		where webtoon_num=#{webtoon_num} and target_num=#{target_num}
 	</select>
 	
 </mapper>
