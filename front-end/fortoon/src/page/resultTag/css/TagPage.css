@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'loadingMentFont';
+    src: url('../css/font/Cafe24Ssurround/Cafe24Ssurround.ttf') format('truetype');
+}
+
+.loading-ment{
+    font-family: 'loadingMentFont';
+    font-size: 300%;
+}
+

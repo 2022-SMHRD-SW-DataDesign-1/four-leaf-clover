@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import ApiService from '../../ApiService';
 import { Carousel } from './MyCarouselTag'
+import './css/TagPage.css'
 
 const TagPage = () => {
 
@@ -109,7 +110,7 @@ const TagPage = () => {
         !donCalc ?
         <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', flexDirection:'column', width:'100%', height:'700px', marginBottom:'1vh',marginTop: '4vh'}}>
             <img src={`data:image/;base64,${loadingImg}`} style={{width: '50vh', height:'50vh'}}/>
-            <div>웹툰을 선택중입니다!</div>
+            <div className='loading-ment'>웹툰을 선택중입니다!</div>
         </div>
         :
         <div>
