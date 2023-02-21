@@ -7,9 +7,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Base64.Encoder;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
@@ -167,6 +171,13 @@ public class WebToonController {
     수행  가중치 
     */
 
+    // 로그함수여~
+    public double log_n (double n, double x) {
+
+        return Math.log(x) / Math.log(n);
+        
+    }
+
 
     @PostMapping("/calcResult")
     private List<List<ResultValueDTO>> getCalcResult(@RequestBody List<Map<String, List<String>>> params){
@@ -175,6 +186,22 @@ public class WebToonController {
         List<String> drawingStyle = params.get(1).get("drawingStyle");
         List<String> synopsis = params.get(2).get("synopsis");
         
+        /*
+        1) 장르 기준으로 필터링
+        2) 필터링된 얘들 에서 추천리스트 구성 (아이템 특정 x)
+        3) 선택된 그림체 i 개 
+        4) 선택된 시놉시스 j개
+        장르 필터링된 웹툰들 중에서
+        (for문에 for문)
+        i*j
+
+        한개의 row에 대해서  
+        x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
+        (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
+        (평점참여자 labeling 필요)
+
+        수행  가중치 
+        */
         // 여기서 추천 알고리즘 계산 해야함
         // 0. webtoon 전체 데이터를 불러보자 이거 속도 체크하고 아니다 싶으면 쿼리 여러번 해서 받는걸로 수정?
         List<WebToonDTO> toons = webToonMapper.webtoonList();
@@ -191,6 +218,7 @@ public class WebToonController {
         //  그렇게해서 장르로 한번 필터링한 filtererd임.
         System.out.println(filteredToon.size());
         
+ 
         /*
          3) 선택된 그림체 i 개 
          4) 선택된 시놉시스 j개
@@ -198,43 +226,89 @@ public class WebToonController {
          (for문에 for문) i*j*필터링된 웹툰만큼 for문 돌아
         
          */
-        // features
-        // synops
-        for (String imgNum:  drawingStyle){
-            for(String synopNum: synopsis){
-                for(WebToonDTO toonDTO : filteredToon){
-                    // 사용자 선택이미지 기준 필터링된 웹툰과 그림체 유사도 -1~1
-                    Float imgSim = Float.parseFloat(webToonMapper.featureValueList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num())) ; 
-                    //-1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
-                    if(imgSim<0||imgSim>-1){
-                        imgSim += 1;
-                    }
-
-                    // 사용자 선택 시놉시스 기준 필터링된 웹툰과 시놉시스 유사도 0~1
-                    Float synopSim =  Float.parseFloat(webToonMapper.synopsSimList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num()));
-
-                    // 타겟 웹툰의 평점
-                    Float rating =  toonDTO.getWebtoon_rating();
-                    
-                    // 타겟 웹툰의 평점 총 잠여자
-                    Integer participants = toonDTO.getWebtoon_rating_count();
         
-                    /*
-                    *             위의 값들에 대해서 다음과 같은 계산 적용
-                    *           x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
-                    *             (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
-                    *               
-                    *            (평점참여자 labeling 필요)
-                    *
-                    * 
-                    *  경우 -1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
-                    *  이렇게 구한 값과 타겟 웹툰 넘버를 저장하는 map을만들어서 연속 쿼리. 그리고이걸
-                    */
-                    toonDTO.getWebtoon_num();
-                }
-            }
-        }
-     
+        //  //도대체 어디서 오류가나는거여 싯펄! 그거 찾을 변수
+        // int testcase =0;
+        // // features
+        // // synops
+        // //여기에다 아래 값 담을껏인디
+        // List<List<ResultValueDTO>> algorithmResult = new ArrayList<List<ResultValueDTO>>();
+        // //얘가 모든 리스트 값을 다 담을 hash map
+        // Map<Integer, Float> testMap = new HashMap<Integer, Float>();
+
+        // for (String imgNum:  drawingStyle){
+        //     for(String synopNum: synopsis){
+        //         for(WebToonDTO toonDTO : filteredToon){
+        //             // 사용자 선택이미지 기준 필터링된 웹툰과 그림체 유사도 -1~1
+        //             Float imgSim = Float.parseFloat(webToonMapper.featureValueList(Integer.parseInt(imgNum),toonDTO.getWebtoon_num())) ; 
+        //             // System.out.println("그림체유사도 통과");
+        //             //-1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
+        //             if(imgSim<0||imgSim>-1){
+        //                 imgSim += 1;
+        //             }
+
+        //             // 사용자 선택 시놉시스 기준 필터링된 웹툰과 시놉시스 유사도 0~1
+        //             Float synopSim =  Float.parseFloat(webToonMapper.synopsSimList(Integer.parseInt(synopNum),toonDTO.getWebtoon_num()));
+        //             // System.out.println("시놉유사도 통과");
+
+        //             // 타겟 웹툰의 평점
+        //             Float rating =  toonDTO.getWebtoon_rating();
+        //             // System.out.println("평점 통과");
+
+        //             // 타겟 웹툰의 평점 총 잠여자
+        //             Integer participants = toonDTO.getWebtoon_rating_count();
+        //             // 아니 생각해보니까 참여자별로 라벨링해서 값나눠주고 로그함수에 넣을꺼면 애초에 걍 12345까지 값줘버리면 되는거아잉교?
+        //             // 유사도가 0~10, 평점이 0~10이니까 얘는 그냥 0~4 주자 이게 바로 발상의전환!
+        //             if(participants>8331904){
+        //                 participants = 0;
+        //             }else if(participants>303285){
+        //                 participants = 1;
+        //             }else if(participants>146288){
+        //                 participants = 2;
+        //             }else if(participants>16757){
+        //                 participants = 3;
+        //             }else{
+        //                 participants = 4;
+        //             }
+        //             // System.out.println("조회수 통과");
+                    
+        
+        //             /*
+        //             *             위의 값들에 대해서 다음과 같은 계산 적용
+        //             *           x * 그림체 유사도 + y * 시놉시스 유사도 +  z * 평점 + w(지수함수)*조회수(평점참여자)
+        //             *             (cosine유사도 -1~1)  (코싸인 유사도 0~1)    (0~10)    ( 정수값 => 정수범위에 맞춰 labeling)
+        //             *               
+        //             *            (평점참여자 labeling 필요)
+        //             *
+        //             * 
+        //             *       경우 -1<그림체유사도< 0의  값을 갖는 경우 1을 더한다.
+        //             *       이렇게 구한 값을 sorting하고 타겟 웹툰 넘버를 저장하는 map을만들어서 연속 쿼리. 그리고이걸
+        //             */
+        //             Float resultScore =  imgSim*10+synopSim*10+rating+ participants;
+        //             // System.out.println(resultScore);
+        //             // System.out.println(testcase+"번째 웹툰 탐색중");
+        //             // testcase += 1;
+        //             // toonDTO.getWebtoon_num();
+        //             testMap.put( toonDTO.getWebtoon_num() , resultScore);
+        //         }
+        //     }
+        // }
+        // // for문을 끝냈으니 넣은 값을 value기준 내림차순 정렬을 해보자
+        // List<Entry<Integer, Float>> list_entries = new ArrayList<Entry<Integer, Float>>(testMap.entrySet());
+        // Collections.sort(list_entries, new Comparator<Entry<Integer, Float>>() {
+		// 	// compare로 값을 비교
+		// 	public int compare(Entry<Integer, Float> obj1, Entry<Integer, Float> obj2)
+		// 	{
+		// 		// 내림 차순으로 정렬
+		// 		return obj2.getValue().compareTo(obj1.getValue());
+		// 	}
+		// });
+
+        // //이제 쟤네를 차례로 query찍어가면서 algorittmResult에 담으면되는디
+
+       
+       
+       
         // 랜덤으로 아무값 100개 넣음
         List<Integer> randomWtList = new ArrayList<Integer>();
         int randWtNum = 0;
